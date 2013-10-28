@@ -4,9 +4,9 @@
 
 ### Methodology
 
-As we try to follow the [12 Factor](http://12factor.net/config) approach to configuration, we've settled on the following strategy for declaring `ENV` to be used in configuration.
+As we try to follow the [12 Factor](http://12factor.net/config) approach to configuration, we've settled on the following strategy for declaring `ENV` variables to be used in our standard Rails configuration.
 
-To start all configuration values such as database connection and external API credentials should be declared in the `env.rb` that lives at the root of the Rails project. The declarations will have values set that work with our standard development setup and safe to check into source control.  Below is a brief example.
+All configuration values such as database connection and external API credentials should be declared in the `env.rb` file that lives at the root of the Rails project. These declarations will have values set that work with our standard development setup and are safe to check into source control.  Below is a brief example.
 
 ```ruby
 # Local override
@@ -32,11 +32,11 @@ ENV["MANDRILL_PASSWORD"] ||= ""
 
 ### Overriding ENV variables
 
-Obviously the default values that are set in `env.rb` will not will for every development setup and definitely won't be the values the we want to use in production.  For those reasons the top of the `env.rb` should always include a statement which checks for the presence of a `.env_overrides.rb` which if it exists will be loaded and set the appropriate config values.
+Obviously the default values that are set in `env.rb` will not work for every development setup and definitely won't be the values the we want to use in production.  For those reasons the top of the `env.rb` should always include a statement which checks for the presence of a `.env_overrides.rb` file, which if it exists will be loaded and set the appropriate config values.
 
-Because the standard format of the `env.rb` file is to use the `||=` operator to set the default values if the value has been set else where, either in `.env_overrides.rb` or somewhere else, then the default value will not override what is already set.
+Because the standard format of the `env.rb` file is to use the `||=` operator to set the default values. If the value has been set else where, either in `.env_overrides.rb` or somewhere else, then the default value will not override what is already set.
 
-It should be noted that the `.env_overrides.rb` should not be checked into source control and should be a part of the .gitinore file.
+It should be noted that the `.env_overrides.rb` **should not** be checked into source control and **should** be a part of the .gitinore file.
 
 ### How to Use
 
@@ -46,7 +46,7 @@ To have access to all your configuration values through out your Rails app, the 
 require File.expand_path('../../env', __FILE__)
 ```
 
-Once that is in place you can use your config value in files like `config/database.yml` like the example below which allows the value to be checked into source control.
+Once that is in place you can use your config values in files like `config/database.yml` just like the example below which allows the `config/database.yml` file to be checked into source control.
 
 ```ruby
 default: &default
