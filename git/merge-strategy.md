@@ -47,7 +47,7 @@ The benefit of this strategy is that you can view the process of your feature br
 git log --merges --oneline
 ```
 
-This can be especially useful pair with the `since` option to see the features merge since a date in time, such as the last time you worked on the project.
+This can be especially useful when paired with the `--since` option to see the features merged since a date in time, such as the last time you worked on the project.
 
 ```bash
 git log --merges --oneline --since=yesterday
