@@ -8,7 +8,7 @@ Because of this the RoleModel preferred method of merging is described below.
 
 ### Rebase on Master
 
-Before you merge rebase and squash commits as needed.  To do this from the command line you you switch to the master branch and pull the latest changes to ensure master is up to date.  Then switch back to your feature branch and rebase your changes on top of master using the following.
+Before you merge rebase and squash commits as needed. To do this from the command line you you switch to the master branch and pull the latest changes to ensure master is up to date. Then switch back to your feature branch and rebase your changes on top of master using the following.
 
 ```bash
 git rebase master
@@ -23,7 +23,7 @@ git checkout master
 git merge --no-ff <branch-name>
 ```
 
-When running the above command you will be prompted for a commit message for your merge.  The commit message should be in the following format.
+When running the above command you will be prompted for a commit message for your merge. The commit message should be in the following format.
 
 ```
 <title of Kanbanery card or summary of feature> [#<Kanbanery task number>] (#<Pull Request number>)
