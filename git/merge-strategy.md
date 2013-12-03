@@ -6,7 +6,7 @@ The default merging of Pull Requests on Github provides a less than optimal set 
 
 Because of this the RoleModel preferred method of merging is described below.
 
-### Rebase on Master
+### Rebase on Master (or any other target branch)
 
 Before you merge rebase and squash commits as needed. To do this from the command line you you switch to the master branch and pull the latest changes to ensure master is up to date. Then switch back to your feature branch and rebase your changes on top of master using the following.
 
