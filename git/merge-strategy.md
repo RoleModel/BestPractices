@@ -38,7 +38,7 @@ git merge --no-ff <branch-name> # forces a merge commit and will open commit pro
 When running the above command you will be prompted for a commit message for your merge. The commit message should be in the following format.
 
 ```
-<title of Kanbanery card or summary of feature> [<Task abbreviation>#<Kanbanery task number>] (<Source Control abbreviation>#<Pull Request number>)
+<title of Kanbanery card or summary of feature> [<Task abbreviation> #<Kanbanery task number>] (<Source Control abbreviation> #<Pull Request number>)
 
 <highlights of feature change if any>
 ```
@@ -46,7 +46,7 @@ When running the above command you will be prompted for a commit message for you
 And example would look like
 
 ```
-Return 404 on permissions API when no access [KB#1188645] (GH#4)
+Return 404 on permissions API when no access [KB #1188645] (GH #4)
 
 If a user no access to a study at all we want to be able communicate that to API clients, thus we will return a 404.
 ```
