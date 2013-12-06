@@ -11,22 +11,34 @@ Because of this the RoleModel preferred method of merging is described below.
 Before you merge rebase and squash commits as needed. To do this from the command line you you switch to the master branch and pull the latest changes to ensure master is up to date. Then switch back to your feature branch and rebase your changes on top of master using the following.
 
 ```bash
-git rebase master
+git checkout master
+git pull --rebase origin master
+
+git checkout <branch-name>
+git rebase master # or target branch
+git push -f origin <branch-name> # push rebased branch to remote
+```
+
+Note when pushing the rebased branch with a force any other members of the team that previously had that branch checked out will need to reset their local branch to the state of origin because the history is now different. This can be done with the following commands.
+
+```bash
+git checkout <branch-name>
+git reset --hard origin/<branch-name>
 ```
 
 ### Merge Feature Branch Locally
 
-After you have rebase your feature branch on master, checkout master and run the following command to merge your feature branch.
+After you have rebased your feature branch on master, checkout master and run the following command to merge your feature branch.
 
 ```bash
 git checkout master
-git merge --no-ff <branch-name>
+git merge --no-ff <branch-name> # forces a merge commit and will open commit prompt
 ```
 
 When running the above command you will be prompted for a commit message for your merge. The commit message should be in the following format.
 
 ```
-<title of Kanbanery card or summary of feature> [#<Kanbanery task number>] (#<Pull Request number>)
+<title of Kanbanery card or summary of feature> [<Task abbreviation>#<Kanbanery task number>] (<Source Control abbreviation>#<Pull Request number>)
 
 <highlights of feature change if any>
 ```
@@ -34,10 +46,21 @@ When running the above command you will be prompted for a commit message for you
 And example would look like
 
 ```
-Return 404 on permissions API when no access [#1188645] (#4)
+Return 404 on permissions API when no access [KB#1188645] (GH#4)
 
 If a user no access to a study at all we want to be able communicate that to API clients, thus we will return a 404.
 ```
+
+#### Abbreviations
+
+* Tasks
+  * KB - Kanbanery
+  * TR - Trello
+  * LK - Lean Kit
+* Source Control
+  * GH - Github
+  * GL - Gitlab
+  * BB - BitBucket
 
 ### Dependent Feature Branch
 
