@@ -70,14 +70,16 @@ If a user no access to a study at all we want to be able communicate that to API
 
 You now have a fully merge repository, but the remote does not.  Push those changes now.
 
-```git push
+```bash
+git push
 ```
 
 ### Cleanup
 
 Finally, once you have merged your feature branch, push your changes to the remote repository and delete the branch:
 
-```git push
+```bash
+git push
 git push origin --delete <branch-name>    # or shortcut: git push origin :<branch-name>
 git branch -d <branch-name>
 ```
