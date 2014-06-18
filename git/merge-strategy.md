@@ -70,7 +70,8 @@ If a user no access to a study at all we want to be able communicate that to API
 
 You now have a fully merge repository, but the remote does not.  Push those changes now.
 
-```git push```
+```git push
+```
 
 ### Cleanup
 
