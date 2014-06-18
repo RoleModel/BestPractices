@@ -32,7 +32,7 @@ git reset --hard origin/<branch-name>
 
 ### Merge Feature Branch Locally
 
-After you have rebased your feature branch on master, checkout master and run the following commands to merge your feature branch:
+After you have rebased your feature branch on master, switch to master and run the following commands to merge your feature branch:
 
 ```bash
 git checkout master
