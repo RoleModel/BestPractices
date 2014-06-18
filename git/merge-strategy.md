@@ -22,7 +22,7 @@ git rebase master # or target branch
 git push -f origin <branch-name> # force-push rebased branch to remote
 ```
 
-Note: pushing the rebased branch with a force requires any other members of the team that may have had that branch checked out to reset their local branch to the new state of origin because the history they are using is now out of sync. This can be done with the following commands:
+Note: Any other members of the team that may have had your branch checked out now must reset their local branch to the new state of origin because the history they are using is now out of sync. This can be done with the following commands:
 
 
 ```bash
@@ -57,29 +57,36 @@ If a user no access to a study at all we want to be able communicate that to API
 
 #### Abbreviations
 
-* Tasks
-  * KB - Kanbanery
-  * TR - Trello
-  * LK - Lean Kit
-* Source Control
-  * GH - Github
-  * GL - Gitlab
-  * BB - BitBucket
+|Tasks            |Source Control
+|:----------------|:-------------
+|  KB - Kanbanery |  GH - Github
+|  TR - Trello    |  GL - Gitlab
+|  LK - Lean Kit  |  BB - BitBucket
 
 ### Push the merged changes to the remote
 
-You now have a fully merge repository, but the remote does not.  Push those changes now.
+You now have a fully merge repository, but the remote does not.  You need to push those changes now. If you have not already established an upstream branch in the remote, your first push should look like this:
 
 ```bash
-git push
+git push -u origin <branch-name>
+```
+or this:
+
+```bash
+git push origin master
+```
+
+Otherwise, you should be able to use a default push:
+
+```bash
+git push 
 ```
 
 ### Cleanup
 
-Finally, once you have merged your feature branch, push your changes to the remote repository and delete the branch:
+Finally, once you have merged your feature branch, use these commands to push your changes to the remote repository and delete the branch:
 
 ```bash
-git push
 git push origin --delete <branch-name>    # or shortcut: git push origin :<branch-name>
 git branch -d <branch-name>
 ```
@@ -88,11 +95,11 @@ At this point your changes are merged into the remote repository and the complet
 
 ### Dependent Feature Branch
 
-Although the goal of our workflow and tight feedback cycle is to have each developer keep only one Pull Request open at a time, there can be situations where you will need code that is in a 1st feature branch that hasn't been merged in order to complete a 2nd feature branch.
+Although the goal of our workflow and tight feedback cycle is to have each developer keep only one Pull Request open at a time, there can be situations where you will need code that is in a 1st feature branch that has not been merged in order to complete a 2nd feature branch.
 
-In that case, we have preferred strategy of branching and rebasing. Lets run through an example with branches named `master`, `feature1`, and `feature2`. Let say you completed your `feature1` branch, but need a class it added in order to complete `feature2`. First thing you should do is try to get `feature1` merged to `master`, but if that's not possible then the best strategy is to branch off of `feature1` to create `feature2`.
+In that case, we have preferred strategy of branching and rebasing. Lets run through an example with branches named `master`, `feature1`, and `feature2`. Let say you completed your `feature1` branch, but need a class it added in order to complete `feature2`. First thing you should do is try to get `feature1` merged to `master`, but if that is not possible then the best strategy is to branch `feature1` to create `feature2`.
 
-Now that you have these dependent features they will eventually need to merge into master. When that time comes it's best to follow the normal procedure to rebase and merge `feature1` into master and then do the same with `feature2`. This will ensure that your changes are not duplicated and the history will cleanly show the 2 different features.
+Now that you have these dependent features they will eventually need to merge into master. When that time comes it is best to follow the normal procedure to rebase and merge `feature1` into master and then do the same with `feature2`. This will ensure that your changes are not duplicated and the history will cleanly show the 2 different features.
 
 The other option you have in this situation is to branch `feature2` off of `master` and then merge `feature1` into `feature2`. While this will work it is not as clean as the rebasing option and will most likely make your final merging more difficult if you have any merge conflicts.
 
