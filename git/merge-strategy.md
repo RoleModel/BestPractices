@@ -63,23 +63,12 @@ If a user no access to a study at all we want to be able communicate that to API
 |  TR - Trello    |  GL - Gitlab
 |  LK - Lean Kit  |  BB - BitBucket
 
-### Push the merged changes to the remote
+### Push the Merged Changes to the Remote
 
-You now have a fully merge repository, but the remote does not.  You need to push those changes now. If you have not already established an upstream branch in the remote, your first push should look like this:
-
-```bash
-git push -u origin <branch-name>
-```
-or this:
+You now have a fully merge repository, but the remote does not.  You need to push those changes now: 
 
 ```bash
 git push origin master
-```
-
-Otherwise, you should be able to use a default push:
-
-```bash
-git push 
 ```
 
 ### Cleanup
