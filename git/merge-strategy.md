@@ -18,7 +18,7 @@ git pull --rebase origin master
 
 git checkout <branch-name>
 git rebase master # or target branch
-    # this is a good point at which to squash any commits
+#<-- this is a good point at which to squash any commits
 git push -f origin <branch-name> # force-push rebased branch to remote
 ```
 
