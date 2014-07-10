@@ -24,7 +24,7 @@ Make sure you have `hub` installed and that you are on the feature branch that y
 
 ```bash
 # Replace 42 with the issue number
-$ git -i 42
+$ git pull-request -i 42
 ```
 
 For more information on the options you can specify when converting an issue to a pull-request, see [this blog post](http://opensoul.org/blog/archives/2012/11/09/convert-a-github-issue-into-a-pull-request/).
