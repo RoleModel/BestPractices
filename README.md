@@ -13,3 +13,8 @@ This holds all of our best practices.
 
 1. [Configuration](rails/configuration.md)
 1. [Gems](rails/gems.md)
+
+## Support
+
+1. [Trello](support/using_trello_for_support.md)
+1. [Professionalism](support/professionalism.md)
