@@ -16,7 +16,9 @@ This update should contain the following parts:
 
 Here is an example:
 
+```
 Yesterday: Merge (Breakdown of Background Processing project, Test reports, start of combining ctms and ctmsapi projects) @ Merge
 Today: Merge (Auth0 production configuration, Background Processing), Lunch w/ Ken @ RM
 Tomorrow: Merge (Background Processing), Craftsmanship Team @ RM
 Blocking: none
+```
