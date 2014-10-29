@@ -18,4 +18,5 @@ This holds all of our best practices.
 ## Support
 
 1. [Trello](support/using_trello_for_support.md)
-1. [Professionalism](support/professionalism.md)
+2. [Professionalism](support/professionalism.md)
+3. [Skype Standup](support/skype_standup.md)
