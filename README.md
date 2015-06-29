@@ -6,9 +6,9 @@ This holds all of our best practices.
 ## Git
 
 1. [Setup](git/setup.md)
-2. [Pull Requests](git/pull-requests.md)
-3. [Merge Strategy](git/merge-strategy.md)
-4. [Flight Rules](https://github.com/k88hudson/git-flight-rules)
+1. [Pull Requests](git/pull-requests.md)
+1. [Merge Strategy](git/merge-strategy.md)
+1. [Flight Rules](https://github.com/k88hudson/git-flight-rules)
 
 ## Rails
 
@@ -18,5 +18,9 @@ This holds all of our best practices.
 ## Support
 
 1. [Trello](support/using_trello_for_support.md)
-2. [Professionalism](support/professionalism.md)
-3. [Skype Standup](support/skype_standup.md)
+1. [Professionalism](support/professionalism.md)
+1. [Skype Standup](support/skype_standup.md)
+
+## DevOps
+
+1. [Centralized Logging](devops/centralized_logging.md)
