@@ -13,7 +13,8 @@ This holds all of our best practices.
 ## Rails
 
 1. [Configuration](rails/configuration.md)
-1. [Gems](rails/gems.md)
+2. [Gems](rails/gems.md)
+3. [Upgrade Checklist](rails/upgrade-checklist.md)
 
 ## Support
 
