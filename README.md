@@ -3,6 +3,9 @@ BestPractices
 
 This holds all of our best practices.
 
+## Development Environments
+1. [Using Selenium with Vagrant](development_environments/using_selenium_with_vagrant.md)
+
 ## Git
 
 1. [Setup](git/setup.md)
