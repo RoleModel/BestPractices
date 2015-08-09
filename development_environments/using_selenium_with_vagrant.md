@@ -52,11 +52,7 @@ end
 VCR.configure do |c|
   c.ignore_request do |request|
     uri = URI(request.uri)
-    if uri.host == SELENIUM_SERVER && uri.port == SELENIUM_PORT
-      true
-    else
-      false
-    end
+    uri.host == SELENIUM_SERVER && uri.port == SELENIUM_PORT
   end
 end
 ```
