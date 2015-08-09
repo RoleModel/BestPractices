@@ -11,7 +11,7 @@ Here's how to make them play nicely together.
 
 ### 1. Install Dependencies on Mac
 ```
-$ brew install chromedriver
+$ brew install chromedriver # optional, for running with Chrome
 $ brew install selenium-server-standalone
 ```
 
@@ -21,7 +21,12 @@ Add this code to your test suite's config file (e.g. `features/env.rb`).
 ```ruby
 SELENIUM_SERVER = '10.0.2.2' # found with `netstat -rn | grep "^0.0.0.0 " | cut -d " " -f10`
 SELENIUM_PORT = 4444
-RAILS_APP_HOST = '127.0.0.1:3001'
+
+# configure port for app to boot on to be exposed in Vagrantfile
+Capybara.configure do |config|
+  config.run_server = true
+  config.server_port = 31338
+end
 
 # Register new driver
 Capybara.register_driver :selenium_remote do |app|
@@ -36,13 +41,11 @@ end
 # Cucumber hooks, make appropriate translations for Spinach
 Before('@selenium-remote') do
   Capybara.javascript_driver = :selenium_remote
-  Capybara.app_host = "http://#{RAILS_APP_HOST}"
 end
 
 After do
   Capybara.reset_sessions!
   Capybara.use_default_driver
-  Capybara.app_host = nil
 end
 
 # Make VCR ignore Selenium traffic (if applicable)
@@ -62,7 +65,7 @@ end
 In `Vagrantfile`
 ```ruby
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.network :forwarded_port, guest: 3001, host: 3001
+  config.vm.network :forwarded_port, guest: 31338, host: 31338
 end
 ```
 
@@ -72,12 +75,7 @@ end
 $ selenium-server
 ```
 
-### 2. Start Rails Server on Vagrant
-```
-rails server -p 3001 -e test
-```
-
-### 3. Run Tests on Vagrant
+### 2. Run Tests on Vagrant
 ```
 $ cucumber features/example.feature
 ```
