@@ -13,7 +13,7 @@ This update should contain the following parts:
 * What project(s) you are working on today, what you expect to accomplish, and where are you working
 * What project(s) you are working on tomorrow, what you expect to accomplish, and where are you working (or if you will be out, etc)
 * What is blocking you moving forward
-* Any time off coming up in the coming week
+* Any time off coming up in the coming week or extended time off in the next 30 days
 
 Here is an example:
 
