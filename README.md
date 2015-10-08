@@ -20,7 +20,7 @@ This holds all of our best practices.
 
 1. [Trello](support/using_trello_for_support.md)
 1. [Professionalism](support/professionalism.md)
-1. [Skype Standup](support/skype_standup.md)
+1. [Skype Standup](support/slack_standup.md)
 
 ## DevOps
 
