@@ -6,9 +6,12 @@ This holds all of our best practices.
 ## Git
 
 1. [Setup](git/setup.md)
-1. [Pull Requests](git/pull-requests.md)
-1. [Merge Strategy](git/merge-strategy.md)
-1. [Flight Rules](https://github.com/k88hudson/git-flight-rules)
+2. [Pull Requests](git/pull-requests.md)
+3. [Merge Strategy](git/merge-strategy.md)
+4. [Squashing](git/squashing.md)
+5. [Merge Commit Format](git/merge-commit-format.md)
+6. [Release based Branching](git/release-branching.md)
+7. [Flight Rules](https://github.com/k88hudson/git-flight-rules)
 
 ## Rails
 

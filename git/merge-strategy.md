@@ -8,9 +8,9 @@ Because of this the RoleModel preferred method of merging is described below.
 
 ### Rebase on Master (or any other target branch)
 
-The process begins by rebasing to master and, possibly, squashing some commits.
+The process begins by rebasing to master and [squashing](squashing.md) your commits.
 
-Practices and ways to squash commits vary, but the basic process is described [here](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html).  To rebase, switch to the master branch and pull the latest changes to ensure master is up to date, then switch back to your feature branch and rebase your changes on top of master using the following:
+To rebase, switch to the master branch and pull the latest changes to ensure master is up to date, then switch back to your feature branch and rebase your changes on top of master using the following:
 
 ```bash
 git checkout master
@@ -18,14 +18,14 @@ git pull --rebase origin master
 
 git checkout <branch-name>
 git rebase master # or target branch
-#<-- this is a good point at which to squash any commits
+#<-- squash commits
 git push -f origin <branch-name> # force-push rebased branch to remote
 ```
 
 Note: Any other members of the team that may have had your branch checked out now must reset their local branch to the new state of origin because the history they are using is now out of sync. This can be done with the following commands:
 
-
 ```bash
+git fetch
 git checkout <branch-name>
 git reset --hard origin/<branch-name>
 ```
@@ -39,33 +39,11 @@ git checkout master
 git merge --no-ff <branch-name> # forces a merge commit and will open commit prompt
 ```
 
-When running the above command you will be prompted for a commit message for your merge. The commit message should be in the following format:
-
-```
-<title of Kanbanery card or summary of feature> [<Task abbreviation> #<Kanbanery task number>] (<Source Control abbreviation> #<Pull Request number>)
-
-<highlights of feature change if any>
-```
-
-And example would look like:
-
-```
-Return 404 on permissions API when no access [KB #1188645] (GH #4)
-
-If a user no access to a study at all we want to be able communicate that to API clients, thus we will return a 404.
-```
-
-#### Abbreviations
-
-|Tasks            |Source Control
-|:----------------|:-------------
-|  KB - Kanbanery |  GH - Github
-|  TR - Trello    |  GL - Gitlab
-|  LK - Lean Kit  |  BB - BitBucket
+When running the above command you will be prompted for a commit message for your merge. The commit message should follow the [Merge Commit Format](merge-commit-format.md).
 
 ### Push the Merged Changes to the Remote
 
-You now have a fully merge repository, but the remote does not.  You need to push those changes now: 
+Your merge is now completed locally but needs to be updated on the remote repository.
 
 ```bash
 git push origin master
@@ -80,17 +58,7 @@ git push origin --delete <branch-name>    # or shortcut: git push origin :<branc
 git branch -d <branch-name>
 ```
 
-At this point your changes are merged into the remote repository and the completed branches have been removed.  
-
-### Dependent Feature Branch
-
-Although the goal of our workflow and tight feedback cycle is to have each developer keep only one Pull Request open at a time, there can be situations where you will need code that is in a 1st feature branch that has not been merged in order to complete a 2nd feature branch.
-
-In that case, we have preferred strategy of branching and rebasing. Lets run through an example with branches named `master`, `feature1`, and `feature2`. Let say you completed your `feature1` branch, but need a class it added in order to complete `feature2`. First thing you should do is try to get `feature1` merged to `master`, but if that is not possible then the best strategy is to branch `feature1` to create `feature2`.
-
-Now that you have these dependent features they will eventually need to merge into master. When that time comes it is best to follow the normal procedure to rebase and merge `feature1` into master and then do the same with `feature2`. This will ensure that your changes are not duplicated and the history will cleanly show the 2 different features.
-
-The other option you have in this situation is to branch `feature2` off of `master` and then merge `feature1` into `feature2`. While this will work it is not as clean as the rebasing option and will most likely make your final merging more difficult if you have any merge conflicts.
+At this point your changes are merged into the remote repository and the completed branches have been removed.
 
 ### How This Affects Git History
 
