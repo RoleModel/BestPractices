@@ -8,6 +8,7 @@ This document seeks to be a resource for determining the gems/libraries that Rol
   * [Devise](https://github.com/plataformatec/devise) - widely used on almost all projects
 * Authorization
   * [CanCan](https://github.com/ryanb/cancan) - previously used a lot, project hasn't been updated much lately
+  * [CanCanCan](https://github.com/CanCanCommunity/cancancan) - community fork of the original and now abandoned CanCan gem. Projects already using CanCan should switch to CanCanCan.
   * [Pundit](https://github.com/elabs/pundit) - ready for an experiment
 * Forms
   * [Simple Form](https://github.com/plataformatec/simple_form) - great improvement to default Rails form builder
