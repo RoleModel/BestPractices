@@ -19,6 +19,8 @@ _NOTE: Total presentation should be between 50 minutes and 90 minutes.  Dependin
 ## Customer Value Add _(10-20 minutes)_
 
 * What have we delivered to the customer?
+ * Demonstration of how it works (or what it looks like in the case of unimplemented design)
+ * Other artifacts or summary of things we have done (e.g. usability test with N users) and how it added value
  * If history, what did it look like “iteration 1”, “iteration 2”, …?
 * What is imminent?
 * What is in the near future?
