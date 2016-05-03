@@ -28,3 +28,7 @@ This holds all of our best practices.
 ## DevOps
 
 1. [Centralized Logging](devops/centralized_logging.md)
+
+## Project Practices
+
+1. [Core Project Presentations](projects/core_presentation.md)
