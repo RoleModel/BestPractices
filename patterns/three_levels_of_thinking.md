@@ -43,12 +43,16 @@ Parameters should have type suggesting names.
 
 The internal code of a method should exploit the power of the conceptual class names and the specification level method signatures
 with role suggesting variable names.
+Instance variables (or properties) and the implementation of methods answer the question `What information does the component manage?` and
+`How does it execute the commands and answer the questions specified in its interface?`
 
 ## Examples
 
 ### Ruby
 
 The initialize method should use either named arguments or keyword arguments
+so that it is clear how one initializes an instance
+without having to read the implementation or knowing the names of instance variables.
 
 ```
 class PlayingCard
@@ -77,6 +81,8 @@ end
 ### JavaScript
 
 Constructors should use explicitly named arguments
+so that it is clear how one initializes an instance of a particular type of object
+without having to read the implementation or know the names of the private properties of the object.
 
 ```
 function PlayingCard(rank, suit) {
