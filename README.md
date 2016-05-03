@@ -32,3 +32,7 @@ This holds all of our best practices.
 ## Project Practices
 
 1. [Core Project Presentations](projects/core_presentation.md)
+
+## Encouraged Design & Code Patterns
+
+1. [Complete Constructor](patterns/complete_constructor.md)
