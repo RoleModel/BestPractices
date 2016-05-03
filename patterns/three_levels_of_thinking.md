@@ -97,3 +97,10 @@ function PlayingCard() {
   this._suit = arguments[1];
 }
 ```
+and NOT arguments as a generic object/hash
+```
+function PlayingCard(attributes) {
+  this._rank = attributes.rank;
+  this._suit = attributes.suit;
+}
+```
