@@ -1,6 +1,6 @@
 # Complete Constructor
 
-_NOTE: Some of the phrases used here come from "Smalltalk Best Practice Patterns" by Kent Beck, *Constructor Method*
+_NOTE: Some of the phrases used here come from "Smalltalk Best Practice Patterns" by Kent Beck, *Constructor Method*_
 
 In just about every language that is Object-Oriented (or allows/encourages the use of Object-Oriented techniques), the concept of _instance creation_ is present.
 

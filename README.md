@@ -35,4 +35,5 @@ This holds all of our best practices.
 
 ## Encouraged Design & Code Patterns
 
+1. [Three Levels of Thinking](patterns/three_levels_of_thinking.md)
 1. [Complete Constructor](patterns/complete_constructor.md)
