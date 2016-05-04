@@ -17,15 +17,19 @@ Each level should be distinct and reflected in our code.
 ## Discussion
 
 All systems have a context.  They cover one or more problem spaces or domains.
-"Naming classes is your biggest billboard for communicating about your system.  The first thing readers will look at when they look at your code is the names of the classes. Those names will go beyond your code. Insidiously, they leak into everyday conversation...
+> "Naming classes is your biggest billboard for communicating about your system.  The first thing readers will look at when they look at your code is the names of the classes. Those names will go beyond your code. Insidiously, they leak into everyday conversation...
 Good class names provide insight into the purpose and design of a system.  They reveal underlying metaphors. They communicate themes and variations.
-They break the system into parts and show how the parts get put back together." (p. 61, Classes, Smalltalk Best Practice Patterns, Kent Beck)
+They break the system into parts and show how the parts get put back together."
+>
+> p. 61, Classes, Smalltalk Best Practice Patterns, Kent Beck
+
 These are the subjects of your programming literature.
 
 All methods have a context. In a pure object-oriented system, they are always in the context of an instance of a class or the class itself.
 The method signatures are the predicates of your programming literature.
 
 Inside the methods are the implementation.  They draw their context from the method signatures inside the context of a class.
+
 This is where the sentences and paragraphs are put together.  Messages are sent to objects.
 If _Intention Revealing Names_ are used for classes and method signatures,
 the implementation can read almost like natural language.
@@ -54,23 +58,27 @@ The initialize method should use either named arguments or keyword arguments
 so that it is clear how one initializes an instance
 without having to read the implementation or knowing the names of instance variables.
 
-```
+```ruby
 class PlayingCard
   def initialize(rank, suit)
     @rank, @suit = rank, suit
   end
 end
 ```
+
 or
-```
+
+```ruby
 class PlayingCard
   def initialize(rank:, suit:)
     @rank, @suit = rank, suit
   end
 end
 ```
+
 but NOT
-```
+
+```ruby
 class PlayingCard
   def initialize(attributes)
     @rank, @suit = attributes[:rank], attributes[:suit]
@@ -84,21 +92,25 @@ Constructors should use explicitly named arguments
 so that it is clear how one initializes an instance of a particular type of object
 without having to read the implementation or know the names of the private properties of the object.
 
-```
+```js
 function PlayingCard(rank, suit) {
   this._rank = rank;
   this._suit = suit;
 }
 ```
+
 but NOT implicit arguments
-```
+
+```js
 function PlayingCard() {
   this._rank = arguments[0];
   this._suit = arguments[1];
 }
 ```
+
 and NOT arguments as a generic object/hash
-```
+
+```js
 function PlayingCard(attributes) {
   this._rank = attributes.rank;
   this._suit = attributes.suit;

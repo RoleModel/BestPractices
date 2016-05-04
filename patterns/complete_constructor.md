@@ -35,7 +35,7 @@ It would not have side effects like modifying one of the objects that was sent i
 
 The initializer should give you an object that you can then send messages to in order to make things happen.
 
-```
+```ruby
 class Thing
   def initialize(name)
     @name = name
@@ -48,26 +48,33 @@ end
 ```
 
 So, without having to read the implementation details of any of the methods, one who would like to use the Thing class would write…
-```
+
+```ruby
 thing = Thing.new(name)
 thing.doYourThing
 ```
+
 vs.
-```
+
+```ruby
 thing = Thing.new
 thing.name = name
 thing.doYourThing
 ```
+
 vs.
-```
-thing = Thing.new(name) #which after it creates the instance of thing authomatically sends :doYourThing
+
+```ruby
+thing = Thing.new(name) #which after it creates the instance of thing automatically sends :doYourThing
 ```
 
 The following:
-```
+
+```ruby
 numberArray = %w(1 2 3)
 thing = AnotherThing.new(numberArray)
 ```
+
 should not modify numberArray (e.g. doing a `pop`) on the numberArray inside the Constructor/Initializer
 
 ### JavaScript
@@ -77,7 +84,7 @@ There are a variety of decent articles to teach about Constructors in JavaScript
 * [Some Javascript constructor patterns, and when to use them](http://www.samselikoff.com/blog/some-Javascript-constructor-patterns/) - written November 14, 2013 but still a good overview
 * [JavaScript Tutorial OOP Patterns](http://javascript.info/tutorial/oop)
 
-```
+```js
 function Thing(name) {
   this._name = name;
 }
@@ -88,24 +95,31 @@ Thing.prototype.doYourThing = function() {
 ```
 
 So, without having to read the implementation details of any of the methods, one who would like to use the Thing class would write…
-```
+
+```js
 var thing = new Thing(name);
 thing.doYourThing();
 ```
+
 vs.
-```
+
+```js
 var thing = new Thing();
 thing._name = name;
 thing.doYourThing();
 ```
+
 vs.
-```
+
+```js
 var thing = new Thing(); // which after it creates the instance of thing authomatically sends :doYourThing
 ```
 
 The following:
-```
+
+```js
 var numberArray = [1, 2, 3];
 var thing = new AnotherThing(numberArray);
 ```
+
 should not modify numberArray (e.g. `numberArray.pop()`) on the numberArray inside the Constructor/Initializer
