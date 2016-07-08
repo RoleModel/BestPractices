@@ -5,7 +5,7 @@ In order to increase the continuous learning of our team, and provide fodder for
 
 At this point, there is no Template for such a presentation, but it should include the following:
 
-_NOTE: Total presentation should be between 50 minutes and 90 minutes.  Depending on the project, more time may be spent in one section than the other, but each should be considered._
+_NOTE: Total presentation should be between 50 minutes and 90 minutes.  Depending on the project, more time may be spent in one section than the other, but each should be considered.  The questions/bullets listed below each topic are considered fodder for things to consider in preparing a presentation, not a checklist of everything that needs to be covered._
 
 ## Quick History and Context _(5-10 minutes)_
 
