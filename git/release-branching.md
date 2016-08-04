@@ -121,17 +121,17 @@ o---o---o master
             o feature
 ```
 
-After the **release branch** your state will look like:
+After rebasing the **release branch** your state will look like:
 
 ```
 A   B   G
 o---o---o master
-         \
-          H   I
-          o---o  release
-           \
-            C   D   F
-            o---o---o feature
+     \   \
+      \   H   I
+       \  o---o  release
+        \
+         C   D   F
+         o---o---o feature
 ```
 
 To clean up use `git rebase --onto`:
@@ -153,3 +153,9 @@ o---o---o master
                 J
                 o feature
 ```
+
+If you have more than one commit unique to the feature branch, `F` should be the first (i.e. earliest) of them. If you don't know which one that is, you have a few options:
+
+* If you haven't pushed master to origin yet, then `git log --oneline origin/master..feature` will list the commits that are in the `feature` branch and not in the `origin/master` branch.
+* Or just rely on a regular `git log` and your memory.
+* If all else fails, you can use the git reflog to tell you what commit the `release` branch used to point to. If you followed these instructions, `release@(1)` will be the commit the `release` branch pointed to before it was rebased. Assuming that's true, `git log release@(1)..feature` will list the commits unique to the feature branch, which you can use to find your `F`.
