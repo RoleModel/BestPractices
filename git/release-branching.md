@@ -121,17 +121,17 @@ o---o---o master
             o feature
 ```
 
-After the **release branch** your state will look like:
+After rebasing the **release branch** your state will look like:
 
 ```
 A   B   G
 o---o---o master
-         \
-          H   I
-          o---o  release
-           \
-            C   D   F
-            o---o---o feature
+     \   \
+      \   H   I
+       \  o---o  release
+        \
+         C   D   F
+         o---o---o feature
 ```
 
 To clean up use `git rebase --onto`:
@@ -153,3 +153,5 @@ o---o---o master
                 J
                 o feature
 ```
+
+If you have more than one commit unique to the feature branch, you can't use `F^` in the `rebase --onto` command. Instead, you should use `F~3` or similar, depending on how many commits you have. If you don't know the number to use, you can still determine it (assuming you haven't pushed master to origin yet) with `git log --oneline origin/master..feature`, which will list the commits in the `feature` branch and not in the `origin/master` branch. (If you have pushed already, you will have to either examine the git log and rely on your memory, or else use the revlog. Good luck, and don't be shy about asking for help!)
