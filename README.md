@@ -1,7 +1,7 @@
 BestPractices
 =============
 
-This holds all of our best practices.
+This holds all of our [best practices](about.md).
 
 ## Git
 
