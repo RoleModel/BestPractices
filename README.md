@@ -22,8 +22,8 @@ This holds all of our best practices.
 ## Support
 
 1. [Trello](support/using_trello_for_support.md)
-1. [Professionalism](support/professionalism.md)
-1. [Slack Standup](support/slack_standup.md)
+2. [Professionalism](support/professionalism.md)
+3. [Slack Standup](support/slack_standup.md)
 
 ## DevOps
 
@@ -36,4 +36,5 @@ This holds all of our best practices.
 ## Encouraged Design & Code Patterns
 
 1. [Three Levels of Thinking](patterns/three_levels_of_thinking.md)
-1. [Complete Constructor](patterns/complete_constructor.md)
+2. [Complete Constructor](patterns/complete_constructor.md)
+3. [Self Encapsulation](patterns/self_encapsulation.md) 

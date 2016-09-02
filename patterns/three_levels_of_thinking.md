@@ -16,17 +16,18 @@ Each level should be distinct and reflected in our code.
 
 ## Discussion
 
-All systems have a context.  They cover one or more problem spaces or domains.
+All systems have a context: the real life problem it is meant to solve.  Systems cover at least one problem space or domain, but can cover more than one.
 > "Naming classes is your biggest billboard for communicating about your system.  The first thing readers will look at when they look at your code is the names of the classes. Those names will go beyond your code. Insidiously, they leak into everyday conversation...
 Good class names provide insight into the purpose and design of a system.  They reveal underlying metaphors. They communicate themes and variations.
 They break the system into parts and show how the parts get put back together."
 >
 > p. 61, Classes, Smalltalk Best Practice Patterns, Kent Beck
 
-These are the subjects of your programming literature.
+In your programming literature, class names are the subjects of your sentences.
 
-All methods have a context. In a pure object-oriented system, they are always in the context of an instance of a class or the class itself.
-The method signatures are the predicates of your programming literature.
+Just like systems have a context, all methods have a context, too. For methods within classes, the method's class naturally provides the context for the method. In a pure object-oriented system, methods are always in the context of an instance of a class or the class itself.
+
+The method signatures are the verbs of your programming literature.
 
 Inside the methods are the implementation.  They draw their context from the method signatures inside the context of a class.
 
