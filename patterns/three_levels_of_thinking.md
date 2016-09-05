@@ -32,33 +32,42 @@ The method signatures are the verbs of your programming literature.
 Inside the methods are the implementation.  They draw their context from the method signatures inside the context of a class.
 
 This is where the sentences and paragraphs are put together.  Messages are sent to objects.
-If _Intention Revealing Names_ are used for classes and method signatures,
-the implementation can read almost like natural language.
+
+If you use _Intention Revealing Names_ for classes and method signatures, the implementation can read almost like natural language. Really.
 
 ## Solution
 
 In order to allow readers to grok your code at the Conceptual, Specification, and Implementation levels,
 You must write your code with these three levels of thinking in mind at all times.
+* _Conceptual_ should be clear from reading class names alone.
+* _Specification_ should be clear from reading method signatures.
+* _Implementation_ should be clear from reading method details that follow the conceptual and specification naming schemes.
 
 Classes should be named to convey their purpose and answer the question, `What is this component responsible for?`
-Typically these are nouns or short noun phrases that further qualify the context in which the main noun is appropriate.
+Typically these are nouns or short noun phrases that further qualify the context the main noun is appropriate in. For example, you might have a class hierarchy like this:
+```
+Frame
+    |
+  StructuralFrame
+        |        \
+    RoofFrame    DeckFrame
+```
+In this example, StructuralFrame's context and singular responsibility should be a subset of Frame's context and responsibility. Likewise, DeckFrame's and RoofFrame's context and responsibility should be a subset of StructuralFrame's.
 
 Method signatures should indicate `What command does this execute?` or `What question does this answer?` without having to read the implementation details.
-Parameters should have type suggesting names.
+Parameter's names should be suggestive of their type (e.g. ```name``` suggests a string, not an array).
 
-The internal code of a method should exploit the power of the conceptual class names and the specification level method signatures
-with role suggesting variable names.
-Instance variables (or properties) and the implementation of methods answer the question `What information does the component manage?` and
-`How does it execute the commands and answer the questions specified in its interface?`
+Once you are working on the implementation of a method, exploit the power of class names (conceptual thinking level) and method signatures (specification thinking level). You can exploit the power of these two things by using instance and local variable names suggestive of their role (implementation thinking level).
+
+Someone who reads your implementation likely has two questions in mind: `What information does the component manage?` and
+`How does it execute the commands and answer the questions specified in its interface?` Name your instance and local variables (or properties) and design your implementation in such a way as to respond clearly to those two questions.
+
+For example, the initialize method should use either named or keyword arguments (not a hash of "attributes"). It should be clear from reading the method signature how one initializes an instance. Someone should not have to comb through the implementation or know the names of instance variables to figure out how to call the method successfully.
 
 ## Examples
 
 ### Ruby
-
-The initialize method should use either named arguments or keyword arguments
-so that it is clear how one initializes an instance
-without having to read the implementation or knowing the names of instance variables.
-
+Use
 ```ruby
 class PlayingCard
   def initialize(rank, suit)
@@ -66,9 +75,7 @@ class PlayingCard
   end
 end
 ```
-
 or
-
 ```ruby
 class PlayingCard
   def initialize(rank:, suit:)
@@ -76,9 +83,7 @@ class PlayingCard
   end
 end
 ```
-
 but NOT
-
 ```ruby
 class PlayingCard
   def initialize(attributes)
@@ -87,33 +92,54 @@ class PlayingCard
 end
 ```
 
-### JavaScript
-
-Constructors should use explicitly named arguments
-so that it is clear how one initializes an instance of a particular type of object
-without having to read the implementation or know the names of the private properties of the object.
-
+### JavaScript (es5)
+Use
 ```js
 function PlayingCard(rank, suit) {
   this._rank = rank;
   this._suit = suit;
 }
 ```
-
 but NOT implicit arguments
-
 ```js
 function PlayingCard() {
   this._rank = arguments[0];
   this._suit = arguments[1];
 }
 ```
-
 and NOT arguments as a generic object/hash
-
 ```js
 function PlayingCard(attributes) {
   this._rank = attributes.rank;
   this._suit = attributes.suit;
+}
+```
+
+### Javascript (es6)
+Use
+```javascript
+class PlayingCard {
+  constructor(rank, suit) {
+    this._rank = rank
+    this._suit = suit
+  }
+}
+```
+but NOT implicit arguments
+```js
+class PlayingCard {
+  constructor() {
+    this._rank = arguments[0];
+    this._suit = arguments[1];
+  }
+}
+```
+and NOT arguments as a generic object/hash
+```js
+class PlayingCard {
+  constructor(attributes) {
+    this._rank = attributes.rank;
+    this._suit = attributes.suit;    
+  }
 }
 ```
