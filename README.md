@@ -18,6 +18,7 @@ This holds *all* of our [best practices](about.md).
 1. [Configuration](rails/configuration.md)
 2. [Gems](rails/gems.md)
 3. [Upgrade Checklist](rails/upgrade-checklist.md)
+4. [ES6](rails/es6.md)
 
 ## Support
 
