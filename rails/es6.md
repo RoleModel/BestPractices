@@ -84,6 +84,10 @@ development of JavaScript components.
   	= react_component('ScorecardsDoughnutChart', graph_data)
   	```
 
+### Deployment
+  Note: When deploying to Heroku, you will need to turn on an additional
+  [buildpack](https://devcenter.heroku.com/articles/buildpacks#using-multiple-buildpacks) for node.
+
 ### References
   * [sprockets-commoner](https://github.com/Shopify/sprockets-commoner) - serve assets
   * [react-rails](https://github.com/reactjs/react-rails) - provides Rails helper
