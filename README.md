@@ -34,3 +34,8 @@ This holds *all* of our [best practices](about.md).
 ## Project Practices
 
 1. [Core Project Presentations](projects/core_presentation.md)
+
+## Encouraged Design & Code Patterns
+
+1. [Three Levels of Thinking](patterns/three_levels_of_thinking.md)
+1. [Complete Constructor](patterns/complete_constructor.md)
