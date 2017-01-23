@@ -31,6 +31,7 @@ This holds *all* of our [best practices](about.md).
 
 1. [Centralized Logging](devops/centralized_logging.md)
 
-## Project Practices
+## Presentations
 
-1. [Core Project Presentations](projects/core_presentation.md)
+1. [Core Project Presentations](presentations/core_presentation.md)
+2. [Chow and Pow Wow](presentations/chow_and_pow_wow.md)
