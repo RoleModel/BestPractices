@@ -26,6 +26,7 @@ This holds *all* of our [best practices](about.md).
 1. [Trello](support/using_trello_for_support.md)
 1. [Professionalism](support/professionalism.md)
 1. [Slack Standup](support/slack_standup.md)
+1. [Resolving Disagreements](support/resolving_disagreements.md)
 
 ## DevOps
 
