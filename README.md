@@ -21,6 +21,11 @@ This holds *all* of our [best practices](about.md).
 3. [Upgrade Checklist](rails/upgrade-checklist.md)
 4. [ES6](rails/es6.md)
 
+## Testing
+
+1. [Cross-browser Testing](testing/cross_browser_test.md)
+2. [Selenium Server Testing](testing/selenium_server.md)
+
 ## Support
 
 1. [Trello](support/using_trello_for_support.md)
