@@ -105,13 +105,34 @@ above by specifying a `--fail-level` argument:
 bundle exec rubocop --fail-level ERROR
 ```
 
+Additionally it can be useful to have Rubocop generate a "TODO" file for the current violations.  This ensures things pass in the current state and gives a nice list of items to fix.
+
+```bash
+bundle exec rubocop --auto-gen-config
+```
+
+```
+$ cat .rubocop_todo.yml
+# Offense count: 3
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Enabled: false
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: line_count_dependent, lambda, literal
+Style/Lambda:
+  Enabled: false
+```
+
 ## ESLint
 * [ESLint Documentation](http://eslint.org/docs/user-guide)
 
 ### Create the config file
 You'll want to copy these two files into your project directory:
-* [.eslintrc.js](https://github.com/RoleModel/almanac/blob/add_rubocop_scss_and_eslint/.eslintrc.js)
-* [.eslintignore](https://github.com/RoleModel/almanac/blob/add_rubocop_scss_and_eslint/.eslintignore)
+* [.eslintrc.js](https://github.com/RoleModel/Rails-Template/blob/master/templates/.eslintrc.js)
+* [.eslintignore](https://github.com/RoleModel/Rails-Template/blob/master/templates/.eslintignore)
 
 * Note: Need to update various [environments](http://eslint.org/docs/user-guide/configuring#specifying-environments) (i.e. jQuery)
 
@@ -177,6 +198,7 @@ scss-lint
 * [Atom](https://atom.io/packages/linter-scss-lint)
 
 #### Semaphore / Other CI
+
 ```bash
 scss-lint
 ```
