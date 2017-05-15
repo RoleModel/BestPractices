@@ -10,7 +10,7 @@ This holds *all* of our [best practices](about.md).
 3. [Merge Strategy](git/merge-strategy.md)
 4. [Squashing](git/squashing.md)
 5. [Merge Commit Format](git/merge-commit-format.md)
-6. [Release based Branching](git/release-branching.md)
+7. [Release based Branching](git/release-branching.md)
 7. [Flight Rules](https://github.com/k88hudson/git-flight-rules)
 8. [Tagging versions](git/tagging-versions.md)
 
