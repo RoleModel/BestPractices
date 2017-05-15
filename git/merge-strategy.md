@@ -39,7 +39,7 @@ git checkout master
 git merge --no-ff <branch-name> # forces a merge commit and will open commit prompt
 ```
 
-When running the above command you will be prompted for a commit message for your merge. The commit message should follow the [Merge Commit Format](merge-commit-format.md).
+When running the above command you will be prompted for a commit message for your merge. The commit message should follow the [Commit Messages](commit-messages.md) best practice.
 
 ### Push the Merged Changes to the Remote
 
