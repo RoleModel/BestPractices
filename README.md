@@ -5,15 +5,16 @@ This holds *all* of our [best practices](about.md).
 
 ## Git
 
-1. [Setup](git/setup.md)
-1. [The Purpose of Git (or: Philosophy of Git)](git/purpose-of-git.md)
-4. [Squashing](git/squashing.md)
-3. [Commit Messages](git/commit-messages.md)
-5. [Merge Strategies](git/merge-strategies.md)
-6. [Linear History](git/linear-history.md)
-6. [Release based Branching](git/release-branching.md)
-7. [Flight Rules](https://github.com/k88hudson/git-flight-rules)
-8. [Tagging versions](git/tagging-versions.md)
+- [0. Setup](git/setup.md)
+- [1. The Purpose of Git (or: Philosophy of Git)](git/purpose-of-git.md)
+- [2. Development Workflow](git/development-workflow.md)
+- [3. Commit Messages](git/commit-messages.md)
+- [4. Squashing](git/squashing.md)
+- [5. Merge Strategies](git/merge-strategies.md)
+- [6. Linear History](git/linear-history.md)
+- [7. Release based Branching](git/release-branching.md)
+- [8. Tagging versions](git/tagging-versions.md)
+- [9. Flight Rules](https://github.com/k88hudson/git-flight-rules)
 
 ## Rails
 

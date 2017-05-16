@@ -1,4 +1,4 @@
-# Tagging versions
+# 8. Tagging versions
 
 Or, how to capture relevant information about deployments.
 
