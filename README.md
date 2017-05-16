@@ -7,7 +7,6 @@ This holds *all* of our [best practices](about.md).
 
 1. [Setup](git/setup.md)
 1. [The Purpose of Git (or: Philosophy of Git)](git/purpose-of-git.md)
-2. [Pull Requests](git/pull-requests.md)
 3. [Merge Strategy](git/merge-strategy.md)
 4. [Squashing](git/squashing.md)
 5. [Merge Commit Format](git/merge-commit-format.md)
