@@ -1,45 +1,63 @@
 ## [Home](../README.md)
 
-## Squashing Commits
+## 4. Squashing Commits
 
-At RoleModel we recommend the squashing of commits on a feature branch before merging.  This provides the following benefits:
+At RoleModel we generally recommend the squashing of commits on a feature branch
+before merging. This provides the following benefits:
 
-1. Single commit to reference task and PR numbers (see [Merge Strategy](merge-strategy.md))
-2. Ease of rebasing features when included in other branches like release branches (avoids complicated "rebase thrashing")
-3. Single place to provide in depth explanation of the feature (see [Better Communication and Documentation with Git](http://rolemodelsoftware.com/blog/communicating-better-with-git.html))
+1. Single commit to reference task and PR numbers
+   (see [Merge Strategy](merge-strategy.md))
+2. Ease of rebasing features when included in other branches like release
+   branches (avoids complicated "rebase thrashing")
+3. Single place to provide in depth explanation of the feature (see
+   [Commit Messages](commit-messages.md) best practice)
+
+## Tradeoffs
+
+In some cases, there may be two (or more) logically separated changes that you
+want to keep separate. For example, a rule of refactoring is, "First make the
+change easy, and then make the easy change"--which really is two logical steps
+that are often relatively separate. In that case, using two (or more) commits is
+acceptable. The important things are that each commit merged into a release
+branch is (1) logically separated from other commits and (2) well described.
+
+Generally speaking, though, it usually makes the most sense to squash all of the
+code in a feature branch together.
 
 ## Example
 
-Here is an example that we'll squash.  Let's assume we have the follow state to our git repo.
+Here is an example that we'll squash. Let's assume we have the following state
+in our git repository.
 
 ```
-$ git log --oneline --graph
-* 1f80132 recommend advanced notice for extended time off
-* 57ae0ea Change Skype standup to Slack standup
-* 4f91fe4 Fix standup link
-* 5eb055d Change Skype Standup document to focus on Slack
-*   7aca5e2 Add Rails upgrade checklist
-|\
-| * 4e1f379 Add start of Rails upgrade checklist
+$ git log --decorate --oneline --graph
+* b9f319c (HEAD -> new-branch, origin/new-branch) Update API version
+* cab2298 git-ignore more files
+* 08139c2 (origin/release-v12, release-v12) [TR#564] Add company codes as message filter parameter
+* c46bd09 [TR#672] Create dev API server
+* 19ccdc5 [TR#571] Add simple mock-json test for multi-company feature
+* c943c35 [TR#650] Improve testing approach for API responses
+* 851fcf4 [TR#576] Add saved filters privilege
+...
 ```
 
-From that output we can see that `5eb055d` is the first commit of our branch.  We'll use that in our command to initiate the rebase:
+From that output we can see that we have two commits unique to our feature
+branch. If we rebase onto the `release-v12` branch, we will replay those two
+commits onto the current `HEAD` of `release-v12`. By itself this would be
+boring, leaving us where we started. But with the `-i` (or `--interactive`)
+switch, we can change our instructions to the rebase operation.
 
 ```
-$ git rebase -i 5eb055d^
+$ git rebase -i release-v12
 ```
-
-You can rebase that as "rebase interactively starting with the base of parent comment of `5eb055d`".  This means `5eb055d` and all later commits will be included in our rebase.
 
 Running this command will open your editor with something that looks like this:
 
 ```
-pick 5eb055d Change Skype Standup document to focus on Slack
-pick 4f91fe4 Fix standup link
-pick 57ae0ea Change Skype standup to Slack standup
-pick 1f80132 recommend advanced notice for extended time off
+pick cab2298 git-ignore more files
+pick b9f319c Update API version
 
-# Rebase 7aca5e2..1f80132 onto 7aca5e2
+# Rebase 08139c2..b9f319c onto 08139c2
 #
 # Commands:
 #  p, pick = use commit
@@ -50,47 +68,43 @@ pick 1f80132 recommend advanced notice for extended time off
 #  x, exec = run command (the rest of the line) using shell
 ```
 
-This shows all the commits that will be replayed.  To squash everything into a single commit we just change every commit after the first to squash:
+This shows all the commits that will be replayed. To squash everything into a
+single commit we just change every commit after the first to `squash`.
+(Abbreviating to `s` works too.)
 
 ```
-pick 5eb055d Change Skype Standup document to focus on Slack
-squash 4f91fe4 Fix standup link
-squash 57ae0ea Change Skype standup to Slack standup
-squash 1f80132 recommend advanced notice for extended time off
+pick cab2298 git-ignore more files
+squash b9f319c Update API version
 ```
 
-Save and close the file.  That will trigger git to open your editor to edit the commit message:
+(Power tip: if you use vim or a sufficiently vim-like editor, the following
+incantation will accomplish this change: `:2,$s/^pick/squash/`)
+
+Save and close the file. That will trigger git to open your editor to edit the
+commit message:
 
 ```
-# This is a combination of 4 commits.
+# This is a combination of 2 commits.
 # The first commit's message is:
-Change Skype Standup document to focus on Slack
+git-ignore more files
 
 # This is the 2nd commit message:
 
-Fix standup link
-
-# This is the 3rd commit message:
-
-Change Skype standup to Slack standup
-
-# This is the 4th commit message:
-
-recommend advanced notice for extended time off
+Update API version
 ```
 
-Edit this to be the final commit message according to [our standards](merge-commit-format.md), which may look something like:
+Edit this to be the final commit message according
+to [our standards](commit-messages.md).
+
+Save and close the file. You can now see the single commit in the log.
 
 ```
-Refactor Standup document to reference Slack [TR #435] (GH #45)
-
-Also added requirements for a `timeoff` section to the checkin format.
-```
-
-Save and close the file.  You can now see the single commit in the log.
-
-```
-$ git log --oneline --graph
-* 6fd7f35 Refactor Standup document to reference Slack [TR #435] (GH #45)
-*   7aca5e2 Add Rails upgrade checklist
+$ git log --decorate --oneline --graph
+* 6fd7f35 (HEAD -> new-branch, origin/new-branch) [TR#678] <My final commit message>
+* 08139c2 (origin/release-v12, release-v12) [TR#564] Add company codes as message filter parameter
+* c46bd09 [TR#672] Create dev API server
+* 19ccdc5 [TR#571] Add simple mock-json test for multi-company feature
+* c943c35 [TR#650] Improve testing approach for API responses
+* 851fcf4 [TR#576] Add saved filters privilege
+...
 ```
