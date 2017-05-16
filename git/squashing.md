@@ -6,7 +6,7 @@ At RoleModel we generally recommend the squashing of commits on a feature branch
 before merging. This provides the following benefits:
 
 1. Single commit to reference task and PR numbers
-   (see [Merge Strategy](merge-strategy.md))
+   (see [Merge Strategies](merge-strategies.md))
 2. Ease of rebasing features when included in other branches like release
    branches (avoids complicated "rebase thrashing")
 3. Single place to provide in depth explanation of the feature (see
