@@ -126,7 +126,31 @@ $ git fetch
 $ git checkout release
 ```
 
-### Rebasing feature branches
+### Syncing with other developers
+
+Finally, tell the other developers on the project to reset their local release
+branches to the remote release branch, since the history of the remote release
+branch has changed. Assuming the developer has no unpushed commits on their
+local release branch:
+
+```
+$ git checkout release
+$ git fetch
+$ git reset --hard origin/release
+```
+
+Otherwise, if they do have unpushed commits on their local release branch, the
+following will work in most cases (but you can `git show origin/release@{1}` or
+even `git log origin/release@{1}..` to see which commits you're about to rebase
+onto `origin/release`; do `git reflog --help` for more info):
+
+```
+$ git checkout release
+$ git fetch
+$ git rebase --onto origin/release origin/release@{1}
+```
+
+## Rebasing feature branches
 
 In addition when this rebase happens all outstanding **feature branches** will
 need to be rebased using `git rebase --onto`.  See this [blog
