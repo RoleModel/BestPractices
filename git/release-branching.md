@@ -61,14 +61,8 @@ Feature branches are created off of the release branch they will be merged
 into.  Work on a branch should be scoped to a single ticket or sub task and
 broken into logical commits.
 
-After code review is approved on a branch, it should be squashed into a single
-commit following the merge commit formatting.  This is done for a couple of
-reasons:
-
-1. Formatting as a merge commit is done as the actual merge commits will be
-   lost when the release branch is rebased on master.
-2. Squashing commits means that all the "thrashing" that happens on PR will not
-   need to be resolved when rebasing.
+After code review is approved on a branch, the commits should be squashed
+according to the [Squashing Commits](squashing.md) best practice.
 
 ## Hotfixes
 
