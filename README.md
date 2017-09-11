@@ -31,8 +31,9 @@ This holds *all* of our [best practices](about.md).
 ## Support
 
 1. [Trello](support/using_trello_for_support.md)
-1. [Professionalism](support/professionalism.md)
-1. [Slack Standup](support/slack_standup.md)
+2. [Professionalism](support/professionalism.md)
+3. [Slack Standup](support/slack_standup.md)
+4. [Project README](support/project_readme.md)
 
 ## DevOps
 
