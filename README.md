@@ -43,3 +43,7 @@ This holds *all* of our [best practices](about.md).
 
 1. [Core Project Presentations](presentations/core_presentation.md)
 2. [Chow and Pow Wow](presentations/chow_and_pow_wow.md)
+
+## Project Management
+
+1. [Managing Project Budgets] 
