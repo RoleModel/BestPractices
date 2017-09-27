@@ -46,4 +46,4 @@ This holds *all* of our [best practices](about.md).
 
 ## Project Management
 
-1. [Managing Project Budgets] (project_management/managing_project_budgets.md)
+1. [Managing Project Budgets](project_management/managing_project_budgets.md)
