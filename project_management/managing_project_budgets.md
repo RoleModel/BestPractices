@@ -2,6 +2,8 @@
 
 The Project Manager (PM) will check the project’s budget every day to check for accurate postings and to stay aware of developing trends.
 
+At regular intervals, such as 25%, 50%, and 75% of budget spent, the PM should confer with the internal team to assess whether the project feels that it is 25%, 50%, etc. complete. If the team believes the project isn't as far along as the budget indicates, the PM should arrange a meeting with the team's craftsman and members of the Leadership Team to discuss possible remedies.
+
 For roughly the first half of a project running six weeks or less (e.g. a Planning & Exploration project), the PM will share the budget data with the entire team several times each week (e.g. Monday, Wednesday, and Friday). For the second half of a short project, the PM may choose to share the budget data daily with the entire team.
 
 During a long-running project (greater than six weeks), the PM will share the budget data with the entire team at least once per week during most of the project. When there are two weeks left in the project, the PM will share the budget data with the entire team several times each week (e.g. Monday, Wednesday, and Friday), or may choose to share the budget data daily.
