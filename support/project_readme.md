@@ -76,6 +76,24 @@ bundle install
 * [App Status Page](http://app.<applicationname>.com/_ping) will give you information about what is running.
 * Alternatively, you can ssh in and check that the application server and web server are both running.
 
+# Testing Strategy
+## Testing approach
+### End User tests
+Due to the nature of this application, End User tests are...
+
+### Unit tests
+Due to the nature of this application, unit tests are prominent and handle most of the confidence building and documentation needs of the system below the user interface.
+
+### Other tests
+At this point, no other tests are being employed.
+However, one might consider performance tests or other categories and describe the reasons here
+
+## Testing tools
+Which tools are we using?
+
+## Continuous integration
+No CI has been set up yet (though we recommend Sempahore in most cases).  When you set it up, tell what you need to know here
+
 # Branching strategy
 To begin a new feature run, `git checkout -b <branchname>`.
 When finished with the feature and the code has been reviewed, the commits should be squashed before merging. See [RoleModel Best Practices](https://github.com/RoleModel/BestPractices) for more information.
