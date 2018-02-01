@@ -46,6 +46,34 @@ This holds *all* of our [best practices](about.md).
 
 ## Project Management
 
-0. [Why "Project Management Best Practices?"](project_management/why_best_practices.md)
-1. [Managing Project Budgets](project_management/managing_project_budgets.md)
+[Why "Project Management Best Practices?"](project_management/why_best_practices.md)
 
+### The Board
+- Creating epic and story cards **_not started_**
+- Reviewing board cards **_not started_**
+- Archive board columns **_waiting in Drive for initial review_**
+### The Customer
+- Keeping customer informed **_not started_**
+- Customer approval of cards/stories **_waiting in Drive for initial review_**
+### The Team
+- Informing team of time away or otherwise unavailable **_not started_**
+-	Communicating within team **_not started_**
+-	Keep as much communication as possible within Trello **_not started_**
+### Meetings
+-	Running a standup meeting **_waiting in Drive for initial review_**
+-	Preparing for an Iteration Meeting **_waiting in Drive for initial review_**
+-	Running an Iteration Meeting **_waiting in Drive for initial review_**
+-	Internal project retrospective **_not started_**
+-	Running PM-led meetings **_not started_**
+-	Conducting a project retrospective **_not started_**
+### Deployments
+-	Planning for Production Deployment **_waiting in Drive for initial review_**
+-	Deployment rollback **_waiting in Drive for initial review_**
+### Project Processes
+-	Sales to P&E hand-off **_not started, not on PMM board_**
+-	Using the Proven Approach Checklist **_not started, not on PMM board_**
+-	Approaching the Walking Skeleton **_not started, not on PMM board_**
+-	Starting a new project **_not started_**
+-	Producing estimates **_under development in Drive_**
+-	[Managing project budgets](project_management/managing_project_budgets.md) **_waiting in git for approval_**
+-	Client & Project file organization **_waiting in Drive for initial review_**
