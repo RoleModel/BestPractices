@@ -19,9 +19,9 @@ _NOTE: Total presentation should be between 50 minutes and 90 minutes.  Dependin
 ## Customer Value Add _(10-20 minutes)_
 
 * What have we delivered to the customer?
- * Demonstration of how it works (or what it looks like in the case of unimplemented design)
- * Other artifacts or summary of things we have done (e.g. usability test with N users) and how it added value
- * If history, what did it look like “iteration 1”, “iteration 2”, …?
+  * Demonstration of how it works (or what it looks like in the case of unimplemented design)
+  * Other artifacts or summary of things we have done (e.g. usability test with N users) and how it added value
+  * If history, what did it look like “iteration 1”, “iteration 2”, …?
 * What is imminent?
 * What is in the near future?
 * What is in the far future?
@@ -29,13 +29,13 @@ _NOTE: Total presentation should be between 50 minutes and 90 minutes.  Dependin
 ## Technical Value Add _(10-20 minutes)_
 
 * Familiar tools
- * Which are working well (and why)?
- * Which are falling short (or we suspected would) and why?
- * How have we improved our use?
+  * Which are working well (and why)?
+  * Which are falling short (or we suspected would) and why?
+  * How have we improved our use?
 * New(er) tools
- * What problem are we attempting to address with them?
- * Which are working well (and why)?
- * Which are falling short (or we suspected would) and why?
+  * What problem are we attempting to address with them?
+  * Which are working well (and why)?
+  * Which are falling short (or we suspected would) and why?
 * What technology challenges are we still facing?
 * What are we doing to overcome these challenges?
 
