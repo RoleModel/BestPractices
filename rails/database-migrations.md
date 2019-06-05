@@ -108,7 +108,7 @@ $ bin/rails db:migrate
 ```
 
 A few things to note about this data migration:
-- The `MoveTags` migration defines to child classes: `MoveTags::Tag` and `MoveTags::BlogPost`. These classes are completely different than the classes residing in `app/models`. You can even delete the now unused `Tag` class in `app/models` and this migration will still run!
+- The `MoveTags` migration defines two child classes: `MoveTags::Tag` and `MoveTags::BlogPost`. These classes are completely different than the classes residing in `app/models`. You can even delete the now unused `Tag` class in `app/models` and this migration will still run!
 - For brevity, this example doesn't worry about dropping the `tags` table, and the `down` method should be expanded to move the tags from blog posts back to tags.
 - Logging is your friend when doing data migrations. Do it early and do it often.
 
