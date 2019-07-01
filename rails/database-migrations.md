@@ -66,9 +66,9 @@ Write the migration this way:
 class MoveTags < ActiveRecord::Migration[5.2]
   # Inherit from ActiveRecord::Base instead of ApplicationRecord since the
   # ApplicationRecord is subject to changes as the app changes.
-  class Tag < ActiveRecord::Base; end
+  class Tag < ActiveRecord::Base; end # rubocop:disable Rails/ApplicationRecord
 
-  class BlogPost < ActiveRecord::Base
+  class BlogPost < ActiveRecord::Base # rubocop:disable Rails/ApplicationRecord
     has_many :tags
   end
 
