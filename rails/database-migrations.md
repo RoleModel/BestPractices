@@ -1,4 +1,4 @@
-# DB Migrations Best Practices
+# Database Migration Best Practices
 
 ## Principles
 
@@ -113,26 +113,52 @@ A few things to note about this data migration:
 - Logging is your friend when doing data migrations. Do it early and do it often.
 
 ### Heroku review app setup
-For Heroku review apps, use the `postdeploy` script to load the database schema and seed the DB with example data. Use the `release` phase in the `Procfile` to run migrations. This is because `postdeploy` _only runs once_ when the review app is created, whereas the `release` phase _runs on every deploy_ to the review app.
+On Heroku, the `release` phase command runs on _every_ deploy, and the `postdeploy` script only runs once when the app is created. The `release` phase runs _before_ the `postdeploy` command.
 
-Running `db:migrate` in `postdeploy` is not ideal for two reasons:
-- It takes longer for Heroku to set up review apps because it has to run every migration from the beginning of time. As the months roll by and more and more migrations are added, it starts to add up.
-- It's more brittle. If you follow my recommendation of never using external code in a migration, you might never run into this problem. But as months pass, versions of Rails change, and developers make mistakes, it becomes more laborious to keep a migration from years ago working. A migration is for transitioning a database from one version to the next. Once everyone on your team has run it and you're out of the rollback window, its useful life is over and it's only good for reference.
+So you can divide the database setup responsibilities this way:
+- `release`: run `db:migrate` only if database schema is already setup
+- `postdeploy`: run `db:schema:load` to setup schema then run `db:seed` or import a database dump of testing data.
 
-Here's an example of how to use Heroku's config files (see Heroku's documentation for the latest syntax):
+#### Release Phase
 
-**app.json**
-```
-{
-  "name": "Example Heroku Review App",
-  "scripts": {
-    "postdeploy": "bundle exec rake db:schema:load db:seed"
-  },
-}
+**bin/heroku_release**
+```bash
+#!/usr/bin/env bash
+#
+# Usage: bin/heroku_release
+set -euo pipefail
+
+schema_version=$(bin/rails db:version | { grep "^Current version: [0-9]\\+$" || true; } | tr -s ' ' | cut -d ' ' -f3)
+
+if [ -z "$schema_version" ]; then
+  printf "[Release Phase]: ERROR: Database schema version could not be determined. Does the database exist?\n"
+  exit 1
+fi
+
+if [ "$schema_version" -ne "0" ]; then
+  printf "\n[Release Phase]: Running db:migrate\n"
+  bin/rails db:migrate
+else
+  printf "\n[Release Phase]: Skipping db:migrate since database schema is not setup yet.\n"
+fi
 ```
 
 **Procfile**
 ```
 web: bundle exec puma -C config/puma.rb
-release: bundle exec rake db:migrate
+release: bin/heroku_release
 ```
+
+#### Post Deploy Phase
+**app.json**
+```
+{
+  "name": "Example Heroku Review App",
+  "scripts": {
+    "postdeploy": "bin/rails db:schema:load db:seed"
+  },
+}
+```
+
+**Note: Safety First**
+Running `db:schema:load` against a production app would destroy all its data, so I'm keeping it completely out of the release phase script, just in case the script is ever accidentally changed in a way that would cause `db:schema:load` to run. Running `db:schema:load` in `postdeploy` ensures it will never run against a production app.
