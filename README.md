@@ -22,6 +22,7 @@ This holds *all* of our [best practices](about.md).
 2. [Gems](rails/gems.md)
 3. [Upgrade Checklist](rails/upgrade-checklist.md)
 4. [ES6](rails/es6.md)
+5. [Database Migrations](rails/database-migrations.md)
 
 ## Testing
 
