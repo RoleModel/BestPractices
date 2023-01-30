@@ -3,7 +3,7 @@
 ## Principles
 
 ### Use the strong_migrations library
-[Strong Migrations](https://github.com/ankane/strong_migrations) helps catch many common database migration mistakes, especially when using Postgres. Most of the checks are aimed at avoiding blocks to reads or writes. This is important for a production database with lots of data but no so much for an MVP. 
+[Strong Migrations](https://github.com/ankane/strong_migrations) helps catch many common database migration mistakes, especially when using Postgres. Most of the checks are aimed at avoiding blocks to reads or writes. This is important for a production database with lots of data but not so much for an MVP. 
 
 ### Use Rails migrations for simple data migrations
 Using Rails' `db:migrate` to migrate data has many advantages over custom scripts:
