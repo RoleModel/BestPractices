@@ -93,7 +93,7 @@ to think about this issue.
 
 Next, merge your branch into the release branch, typically with the `--ff-only`
 option to `git merge`. More details can be found in
-the [Merge Strategy](merge-strategy.md) best practice.
+the [Merge Strategies](merge-strategies.md) best practice.
 
 #### Push
 
@@ -114,6 +114,14 @@ correctly marked as "merged".
 Finally, your feature is done and merged into the release branch. Delete your
 feature branch, both locally and on the `origin` remote, so that it doesn't
 linger and clutter the list of open branches.
+
+#### Update
+
+Before starting a new feature update `master` using:
+
+```
+git rebase origin/master
+```
 
 ### Appendix: git command reference
 
