@@ -27,4 +27,4 @@ You can find the source code for Jekyll at GitHub:
 
 Make sure you have installed the dependecies using `bundle install`
 
-`bundle exec jekyll serve --livereload` to start a local server with auto refreshing on change.
+`bundle exec jekyll serve` to start a local server with auto refreshing on change.

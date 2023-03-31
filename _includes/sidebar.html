@@ -12,18 +12,28 @@
       <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
       <div class="sidebar__item-label">Home</div>
     </a>
-    {%- for path in page_paths -%}
-    {%- assign my_page = site.pages | where: "path", path | first -%}
-    {%- if my_page.title -%}
-    <a class="sidebar__item " href="{{ my_page.url | relative_url }}">
-      <span class="material-symbols-outlined sidebar__item-icon" title="{{ my_page.icon | escape }}">{{ my_page.icon |
+    {%- for page in site.static_pages -%}
+    {%- if page.title -%}
+    <a class="sidebar__item " href="{{ page.url | relative_url }}">
+      <span class="material-symbols-outlined sidebar__item-icon" title="{{ page.icon | escape }}">{{ page.icon |
         escape }}</span>
-      <div class="sidebar__item-label">{{ my_page.title | escape }}</div>
+      <div class="sidebar__item-label">{{ page.title | escape }}</div>
     </a>
     {%- endif -%}
     {%- endfor -%}
 
     <div class="sidebar__section-title">Topics</div>
+    {%- for page in site.pages -%}
+    {%- if page.title -%}
+    <a class="sidebar__item " href="{{ page.url | relative_url }}">
+      <span class="material-symbols-outlined sidebar__item-icon" title="{{ page.icon | escape }}">{{ page.icon |
+        escape }}</span>
+      <div class="sidebar__item-label">{{ page.title | escape }}</div>
+    </a>
+    {%- endif -%}
+    {%- endfor -%}
+
+    <!-- <div class="sidebar__section-title">Topics</div>
     <a class="sidebar__item " href="/">
       <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
       <div class="sidebar__item-label">Git</div>
@@ -47,6 +57,6 @@
     <a class="sidebar__item " href="/">
       <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
       <div class="sidebar__item-label">Presentations</div>
-    </a>
+    </a> -->
   </div>
 </div>
