@@ -4,15 +4,11 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+The Best Practices of RoleModel Software... well, kind of.  More accurately it is the Best Practices that we have recorded.
+When we say `Best Practices`, we mean things we decided are important to employ our craft well at this point and that
+we would like everyone who works with RoleModel to know and follow... or improve.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+This is a capture of "The RoleModel Way", well at least the ones we have written down and reviewed.
+It is a living document and expected that anyone at RoleModel can submit pull requests - which are encouraged.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+However, before anything is merged, two Craftsmen need to approve it.
