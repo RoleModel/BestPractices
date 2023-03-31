@@ -1,6 +1,8 @@
-## [Home](../README.md)
-
-## Rails Upgrade Checklist
+---
+layout: post
+title:  "Rails Upgrade Checklist"
+date:   2017-05-25 00:00:03 -0400
+---
 
 Checklist of things to check when upgrading a Rails app.
 

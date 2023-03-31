@@ -1,4 +1,10 @@
-# Using Code Linters on Rails
+---
+layout: post
+title:  "Linter Config"
+date:   2017-05-25 00:00:06 -0400
+---
+
+## Using Code Linters on Rails
 
 ## Rake Task
 A Rake Task can be set up to run all of the linters contained in this document.
