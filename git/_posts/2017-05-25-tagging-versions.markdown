@@ -1,4 +1,8 @@
-# 8. Tagging versions
+---
+layout: post
+title:  "Tagging Versions"
+date:   2017-05-25 00:00:09 -0400
+---
 
 Or, how to capture relevant information about deployments.
 
@@ -85,7 +89,7 @@ to the server with `git push --tags`.
 ## 4. Tagging a deployment
 
 Assuming your project follows
-the [Release based Branching Strategy](release-branching.md) best practice,
+the [Release based Branching Strategy](release-branching) best practice,
 tagging a deployment is simple, whether it's a regular deployment or a hotfix.
 As soon as the release branch or hotfix is merged into master, tag the latest
 commit on master, like so:

@@ -1,6 +1,8 @@
-## [Home](../README.md)
-
-## 6. Linear History
+---
+layout: post
+title:  "Linear History"
+date:   2017-05-25 00:00:06 -0400
+---
 
 At RoleModel we commend the practice of keeping git histories linear. This
 document discusses why.
@@ -22,9 +24,9 @@ The other view is to rely on git's ability to _rebase_ commits onto another
 commit, which effectively replays the commits onto a new starting point. Using
 rebase allows us to have a _linear_ (or at least linearizable) history. You can
 see an example of what linear vs. non-linear history looks like in
-the [Merge Strategies](merge-strategies.md#background) best practice.
+the [Merge Strategies](merge-strategies#background) best practice.
 
-As an aside, those who view the [purpose of git](purpose-of-git.md) as a log
+As an aside, those who view the [purpose of git](purpose-of-git) as a log
 of what happened (rather than a logical history) eschew the use of history
 rewriting techniques like `git rebase`, and so take the merge view.
 

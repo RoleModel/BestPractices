@@ -1,6 +1,8 @@
-## [Home](../README.md)
-
-## 1. The Purpose of Git
+---
+layout: post
+title:  "The Purpose of Git"
+date:   2017-05-25 00:00:01 -0400
+---
 
 ### Or: Philosophy of Git
 

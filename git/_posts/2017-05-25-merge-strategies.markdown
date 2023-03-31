@@ -1,11 +1,13 @@
-## [Home](../README.md)
-
-## 5. Merge Strategies
+---
+layout: post
+title:  "Merge Strategies"
+date:   2017-05-25 00:00:05 -0400
+---
 
 Once your feature branch is approved by a reviewer and ready to merge, how do
-you merge it into the [release branch](release-branching.md)?
+you merge it into the [release branch](release-branching)?
 
-The [Git Development Workflow](development-workflow.md) best practice
+The [Git Development Workflow](development-workflow) best practice
 describes the process at a high level, including rebasing, squashing, merging,
 pushing, and cleaning up. This document provides more detail about the merge
 step.
@@ -99,13 +101,13 @@ For that reason, we discourage Strategy 1. Although such merges tend to be
 easier to create since no rebasing is required, they are in almost every case
 harder for humans to understand and reason about. This is primarily because they
 are not linearizable. (You can read more about the tradeoffs of linear histories
-in the [Linear History](linear-history.md) best practice.)
+in the [Linear History](linear-history) best practice.)
 
 We encourage the use of Strategy 3. Just as FF merges were easier to explain
 above, they are also easier to understand and reason about. They can be more
 complicated to create because you must rebase, but we generally find the cost to
 be worth paying in all but short-lived projects.
-(The [Purpose of Git](purpose-of-git.md) best practice discusses this
+(The [Purpose of Git](purpose-of-git) best practice discusses this
 tradeoff at a more philosophical level.)
 
 Finally, we consider it useful on occasion to use Strategy 2, when it is worth
@@ -144,7 +146,7 @@ git merge --no-ff feature
 ```
 
 To create an FF merge (assuming the above rebase step has already happened and
-the commits are already [squashed](squashing.md) as necessary), say:
+the commits are already [squashed](squashing) as necessary), say:
 
 ```
 git checkout master

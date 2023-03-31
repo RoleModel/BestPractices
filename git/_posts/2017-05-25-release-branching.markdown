@@ -1,6 +1,10 @@
-## [Home](../README.md)
+---
+layout: post
+title:  "Release Branching"
+date:   2017-05-25 00:00:07 -0400
+---
 
-## 7. Release Based Branching Strategy
+## Release Based Branching Strategy
 
 This document outlines the use of a "release branch" to collect features
 intended for a specific release before they are merged into the master branch,
@@ -62,7 +66,7 @@ into.  Work on a branch should be scoped to a single ticket or sub task and
 broken into logical commits.
 
 After code review is approved on a branch, the commits should be squashed
-according to the [Squashing Commits](squashing.md) best practice.
+according to the [Squashing Commits](squashing) best practice.
 
 ## Hotfixes
 
@@ -217,4 +221,3 @@ have a few options:
   `release@{1}` will be the commit the `release` branch pointed to before it
   was rebased. Assuming that's true, `git log release@{1}..feature` will list
   the commits unique to the feature branch, which you can use to find your `F`.
-

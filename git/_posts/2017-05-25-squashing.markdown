@@ -1,16 +1,18 @@
-## [Home](../README.md)
-
-## 4. Squashing Commits
+---
+layout: post
+title:  "Squashing Commits"
+date:   2017-05-25 00:00:04 -0400
+---
 
 At RoleModel we generally recommend the squashing of commits on a feature branch
 before merging. This provides the following benefits:
 
 1. Single commit to reference task and PR numbers
-   (see [Merge Strategies](merge-strategies.md))
+   (see [Merge Strategies](merge-strategies))
 2. Ease of rebasing features when included in other branches like release
    branches (avoids complicated "rebase thrashing")
 3. Single place to provide in depth explanation of the feature (see
-   [Commit Messages](commit-messages.md) best practice)
+   [Commit Messages](commit-messages) best practice)
 
 ## Tradeoffs
 
@@ -56,7 +58,6 @@ Running this command will open your editor with something that looks like this:
 ```
 pick cab2298 git-ignore more files
 pick b9f319c Update API version
-
 # Rebase 08139c2..b9f319c onto 08139c2
 #
 # Commands:
@@ -87,14 +88,12 @@ commit message:
 # This is a combination of 2 commits.
 # The first commit's message is:
 git-ignore more files
-
 # This is the 2nd commit message:
-
 Update API version
 ```
 
 Edit this to be the final commit message according
-to [our standards](commit-messages.md).
+to [our standards](commit-messages).
 
 Save and close the file. You can now see the single commit in the log.
 

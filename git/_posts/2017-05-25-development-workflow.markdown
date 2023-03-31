@@ -1,6 +1,8 @@
-## [Home](../README.md)
-
-## 2. Git Development Workflow
+---
+layout: post
+title:  "Git Development Workflow"
+date:   2017-05-25 00:00:02 -0400
+---
 
 This document describes the high-level process of using git as part of the
 software development process, including development commits, rewriting history,
@@ -15,7 +17,7 @@ supercede general best practices.
 
 ### Create a branch
 
-Start by creating a branch from the [release branch](release-branching.md) or
+Start by creating a branch from the [release branch](release-branching) or
 from the master branch if your project is not using the release branch strategy.
 Switch to your new branch.
 
@@ -38,7 +40,7 @@ if you bias towards many small commits rather than committing at the end.
 
 Next, tell a logical story of how this feature came to be, in preparation for
 your reviewer seeing your code. As described
-in [The Purpose of Git](purpose-of-git.md), we don't recommend using git as a
+in [The Purpose of Git](purpose-of-git), we don't recommend using git as a
 log of _what happened_ but rather as a _readable history_. At a high level, the
 difference is that the latter will contain cleanly separated and well described
 commits.
@@ -46,7 +48,7 @@ commits.
 Unless you were disciplined with your development process and already have a
 good story in your commit messages, you will need to rewrite history. Our
 general recommendation is to use `git rebase -i` for
-this. [Commit Messages](commit-messages.md) talks more about what a good
+this. [Commit Messages](commit-messages) talks more about what a good
 history looks like and includes a tutorial of using `git rebase -i`. Just
 remember: the point is to explain what you did, and why, to your reviewer, so
 that he doesn't get a large glob of changes with no explanation.
@@ -77,23 +79,23 @@ clean merging: rebase, squash, merge, push, and clean up.
 
 #### Rebase
 
-To ensure a [linear history](linear-history.git), it's important to rebase
+To ensure a [linear history](linear-history), it's important to rebase
 your branch onto the `HEAD` of the
-current [release branch](release-branching.md). First, fetch the latest code
+current [release branch](release-branching). First, fetch the latest code
 from `origin`. Then rebase your code onto it.
 
 #### Squash
 
-Once your branch is rebased, [squash your commits](squashing.md). In most
+Once your branch is rebased, [squash your commits](squashing). In most
 cases, a feature is a good granularity for commits at this level. Again,
-the [Commit Messages](commit-messages.md) best practice provides a good way
+the [Commit Messages](commit-messages) best practice provides a good way
 to think about this issue.
 
 #### Merge
 
 Next, merge your branch into the release branch, typically with the `--ff-only`
 option to `git merge`. More details can be found in
-the [Merge Strategies](merge-strategies.md) best practice.
+the [Merge Strategies](merge-strategies) best practice.
 
 #### Push
 

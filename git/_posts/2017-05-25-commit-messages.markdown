@@ -1,9 +1,13 @@
-## [Home](../README.md)
+---
+layout: post
+title:  "Commit Messages"
+date:   2017-05-25 00:00:03 -0400
+---
 
-## 3. Commit Message Format
+## Commit Message Format
 
 If [the purpose of git is to record a logical history of what
-happened](purpose-of-git.md), then it's essential to have good commit messages,
+happened](purpose-of-git), then it's essential to have good commit messages,
 since they are the substance of the history.
 
 To motivate and describe what constitutes a "good" commit message, we have
@@ -43,7 +47,6 @@ Here's a template to describe what we mean:
 
 ```
 <title of card or summary of feature> [<board abbreviation> #<card number>] (<source control abbreviation> #<pull request number>)
-
 <highlights of feature change if any>
 ```
 
@@ -51,7 +54,6 @@ For example:
 
 ```
 Return 404 on permissions API when no access [TR #45] (GH #4)
-
 If a user cannot access a study at all we want to be able communicate that to API clients, thus we will return a 404.
 ```
 

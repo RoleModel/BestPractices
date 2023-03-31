@@ -1,6 +1,10 @@
-## [Home](../README.md)
+---
+layout: post
+title:  "Git Setup"
+date:   2017-05-25 00:00:00 -0400
+---
 
-## 0. Setting up git
+## Setting up git
 
 If git is not installed, it can be installed via your operating system's package
 manager (e.g. Homebrew on MacOS).
