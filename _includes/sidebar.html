@@ -1,0 +1,52 @@
+{%- assign default_paths = site.pages | map: "path" -%}
+{%- assign page_paths = site.header_pages | default: default_paths -%}
+<div class="sidebar-primary sidebar--drawer ">
+  <a class="sidebar__brand" href="/">
+    <img
+      src="https://rolemodelsoftware.com/assets/rolemodel-logo--blue-5b7cee4303f5b115050586117bad8960640884812d1d51ee4b58817598c896da.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a>
+    {%- for path in page_paths -%}
+    {%- assign my_page = site.pages | where: "path", path | first -%}
+    {%- if my_page.title -%}
+    <a class="sidebar__item " href="{{ my_page.url | relative_url }}">
+      <span class="material-symbols-outlined sidebar__item-icon" title="{{ my_page.icon | escape }}">{{ my_page.icon |
+        escape }}</span>
+      <div class="sidebar__item-label">{{ my_page.title | escape }}</div>
+    </a>
+    {%- endif -%}
+    {%- endfor -%}
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.v-stack {
+  display: grid;
+}
+
+.h-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
+
+  &.flex {
+    display: flex;
+
+    > * {
+      flex: 1;
+    }
+  }
+}

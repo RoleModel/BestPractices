@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+{%- include head.html -%}
+
+<body class="app-with-sidebar">
+  {%- include sidebar.html -%}
+  <div class="app-body">
+    {%- include header.html -%}
+    <div class="app__content">
+      {{ content }}
+    </div>
+  </div>
+</body>
+
+</html>
