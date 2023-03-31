@@ -1,14 +1,22 @@
 /**
  * Syntax highlighting styles
  */
-.highlight {
-  background: #fff;
+
+.highlighter-rouge {
+  background-color: var(--op-color-neutral-plus-seven);
+  color: var(--op-color-neutral-on-plus-seven);
   padding: var(--op-space-x-small);
   overflow: auto;
+}
 
-  .highlighter-rouge & {
-    background: #eef;
-  }
+.language-plaintext.highlighter-rouge {
+  padding: var(--op-space-3x-small);
+}
+
+// TODO: support dark mode
+.highlight {
+  background-color: var(--op-color-neutral-plus-seven);
+  color: var(--op-color-neutral-on-plus-seven);
 
   .c     { color: #998; font-style: italic } // Comment
   .err   { color: #a61717; background-color: #e3d2d2 } // Error
