@@ -1,4 +1,10 @@
-# Chow and Pow Wow Agenda
+---
+layout: post
+title:  "Chow and Pow Wow"
+date:   2017-05-25 00:00:01 -0400
+---
+
+## Agenda
 
 ## Talks
 

@@ -1,5 +1,8 @@
-Core Project Presentations
-==========================
+---
+layout: post
+title:  "Core Project Presentations"
+date:   2017-05-25 00:00:02 -0400
+---
 
 In order to increase the continuous learning of our team, and provide fodder for our marketing, we encourage Core Project Presentations
 
