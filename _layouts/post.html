@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article class="card margin-top-md" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="card margin-y-md" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="card__header">
     <h1 itemprop="name headline">{{ page.title | escape }}</h1>
     <p class="post-meta">
@@ -20,7 +20,5 @@ layout: default
     {{ content }}
   </div>
 
-  <div class="card__footer">
-    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-  </div>
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
