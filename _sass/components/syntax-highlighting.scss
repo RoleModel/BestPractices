@@ -3,16 +3,90 @@
  */
 
 .highlighter-rouge {
+  --op-highlighter-background-color: var(--op-color-neutral-plus-six);
+  --op-highlighter-text-color: var(--op-color-neutral-on-plus-six);
+
   margin-bottom: var(--op-space-small);
-  overflow: auto;
-  box-shadow: var(--op-border-all) var(--op-border-color);
   border-radius: var(--op-radius-small);
   padding: var(--op-space-x-small);
+  position: relative;
+
+  background-color: var(--op-highlighter-background-color);
+  color: var(--op-highlighter-text-color);
 
   &.language-plaintext {
     padding: var(--op-space-3x-small) var(--op-space-2x-small);
   }
 }
+
+div.highlight {
+  overflow: auto;
+}
+
+%language-badge {
+  margin-top: var(--op-space-2x-large);
+
+  &::before {
+    --language-badge-padding: var(--op-space-2x-small);
+    --language-badge-height: 1.8rem;
+
+    content: "";
+    position: absolute;
+    right: var(--language-badge-height);
+    top: calc(-1 * ((2 * var(--language-badge-padding)) + var(--language-badge-height)));
+
+    border-top-left-radius: var(--op-radius-medium);
+    border-top-right-radius: var(--op-radius-medium);
+
+    background-color: var(--op-highlighter-background-color);
+    color: var(--op-highlighter-text-color);
+    padding: var(--language-badge-padding);
+
+    font-size: var(--op-font-x-small);
+    font-weight: var(--op-font-weight-bold);
+  }
+}
+
+div.language-ruby {
+  @extend %language-badge;
+
+  &::before {
+    content: "Ruby";
+  }
+}
+
+div.language-plaintext {
+  @extend %language-badge;
+
+  &::before {
+    content: "Text";
+  }
+}
+
+div.language-bash {
+  @extend %language-badge;
+
+  &::before {
+    content: "Bash";
+  }
+}
+
+div.language-js {
+  @extend %language-badge;
+
+  &::before {
+    content: "JS";
+  }
+}
+
+div.language-json {
+  @extend %language-badge;
+
+  &::before {
+    content: "JSON";
+  }
+}
+
 
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
