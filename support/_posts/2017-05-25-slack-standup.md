@@ -1,6 +1,8 @@
-## [Home](../README.md)
-
-## Slack Standup
+---
+layout: post
+title:  "Slack Standup"
+date:   2017-05-25 00:00:03 -0400
+---
 
 We are always looking for ways to improve our internal processes and communication in our teams and the company at large. To facilitate that across the company we have a dedicated channel on Slack, [#checkin](https://rolemodelsoftware.slack.com/messages/checkin/).
 

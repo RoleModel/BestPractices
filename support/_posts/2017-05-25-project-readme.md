@@ -1,6 +1,10 @@
-[Home](../README.md)
+---
+layout: post
+title:  "Project README"
+date:   2017-05-25 00:00:04 -0400
+---
 
-# Project README Best Practices
+## Project README Best Practices
 
 ### Project lifecycle and the README
 

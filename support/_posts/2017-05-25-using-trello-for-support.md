@@ -1,3 +1,8 @@
+---
+layout: post
+title:  "Trello"
+date:   2017-05-25 00:00:01 -0400
+---
 
 Trello Structure
 

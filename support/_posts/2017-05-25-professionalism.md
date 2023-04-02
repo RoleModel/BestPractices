@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Professionalism"
+date:   2017-05-25 00:00:02 -0400
+---
+
 Helping the customer manage their support budget
 
 * Estimate task
