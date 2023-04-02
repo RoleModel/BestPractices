@@ -3,7 +3,11 @@
 # only Main files contain this front matter, not partials.
 ---
 
-// TODO: figure out a way to make this local.
+// There is no easy way to pull in dependencies from a package.json due to how
+// Jekyll works. You cannot pull in the sass version when using a cdn since the import
+// doesn't get inlined, just referenced.
+// Pulling in the css works but we won't be able to extend, add to placeholder selectors,
+// or use the breakpoint variables.
 @import 'https://cdn.jsdelivr.net/npm/@rolemodel/optics@0.3.1/dist/css/optics.css';
 
 // Misc
