@@ -1,6 +1,8 @@
-## [Home](../README.md)
-
-# Centralized Logging
+---
+layout: post
+title:  "Centralized Logging"
+date:   2017-05-25 00:00:01 -0400
+---
 
 Logging to a central server is done through *syslog*. We are using *papertrail* to host our logs.
 
