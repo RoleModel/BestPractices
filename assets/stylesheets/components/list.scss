@@ -46,3 +46,12 @@
   height: var(--op-border-width);
   box-shadow: var(--op-border-top) var(--op-border-color);
 }
+
+.list-item-title {
+  font-size: var(--op-font-large);
+  font-weight: var(--op-font-weight-semi-bold);
+}
+
+.list-item-subtitle {
+  font-size: var(--op-font-small);
+}
