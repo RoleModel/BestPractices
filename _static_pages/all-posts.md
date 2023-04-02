@@ -2,7 +2,7 @@
 layout: page
 title: All Posts
 icon: feed
-permalink: /about/
+permalink: /all-posts/
 ---
 
 {%- if site.posts.size > 0 -%}
