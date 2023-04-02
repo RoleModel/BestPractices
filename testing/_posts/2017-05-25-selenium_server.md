@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Selenium Server"
+date:   2017-05-25 00:00:02 -0400
+---
+
 ## Selenium Server Setup and Testing
 
 Using Selenium Server and a guest virtual machine requires a lot of setup and configuration. The following sections describe the configuration and test execution process when using Selenium Server.
@@ -11,14 +17,14 @@ The following steps describe the process for configuring an Internet Explorer 9 
 2. Import the virtual machine with VirtualBox.
 
 3. Configure your VirtualBox preferences host-only adapter.
-    ![](/testing/virtualbox_hostonly.png)
+    ![](/assets/images/virtualbox_hostonly.png)
 
-    ![](/testing/virtualbox_hostonly_config.png)
+    ![](/assets/images/virtualbox_hostonly_config.png)
 
 4. Change the virtual machine network configuration.
-    ![](/testing/guest_machine_adapter_1.png)
+    ![](/assets/images/guest_machine_adapter_1.png)
 
-    ![](/testing/guest_machine_adapter_2.png)
+    ![](/assets/images/guest_machine_adapter_2.png)
 
 5. Boot the virtual machine.
 
@@ -29,7 +35,7 @@ The following steps describe the process for configuring an Internet Explorer 9 
     - Download the `IEDriver` from [here](http://www.seleniumhq.org/download/) and extract it to `C:\selenium`
     - Modify your `%PATH%` to include `C:\selenium`
 
-    ![](/testing/windows_path.png)
+    ![](/assets/images/windows_path.png)
 
 7. Configure port-forwarding on the virtual machine.
     - Open PowerShell running as an Administrator
@@ -42,15 +48,15 @@ The following steps describe the process for configuring an Internet Explorer 9 
           $ netsh interface portproxy add v4tov4 listenport=3001 listenaddress=localhost connectport=3001 connectaddress=10.100.1.1
           ```
 
-    ![](/testing/windows_portforward_config.png)
+    ![](/assets/images/windows_portforward_config.png)
 
 8. Disable Windows Firewall on all profiles.
 
-    ![](/testing/windows_firewall.png)
+    ![](/assets/images/windows_firewall.png)
 
 9. In Windows Network and Sharing Center, configure the Local network settings.
 
-    ![](/testing/windows_local_network.png)
+    ![](/assets/images/windows_local_network.png)
 
 10. Verify the machines are connected by pinging the guest virtual machine
     - From your computer

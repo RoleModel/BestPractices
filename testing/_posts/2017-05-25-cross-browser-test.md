@@ -1,4 +1,8 @@
-## Cross-browser Testing
+---
+layout: post
+title:  "Cross-browser Testing"
+date:   2017-05-25 00:00:01 -0400
+---
 
 Testing applications across multiple browsers has become necessary given the differing behaviors and support for different HTML, CSS, and JavaScript features with the majority of browsers. Tools like [Selenium](http://www.seleniumhq.org/) have arisen to allow an ease of testing multiple browsers using drivers, but even this has some limitations and added complexity.
 
@@ -26,6 +30,7 @@ These steps are only for testing your suite locally (web server and database ser
 
 ### Running Tests Against BrowserStack
 
+<!-- TODO: this link is broken -->
 In a `bash` terminal window, run any of these commands to start running the suite or a set of tests against BrowserStack. Browser configurations are [here](/spec/browsers.json).
 
   Runs the full suite of `:javascript`/`@javascript` tagged scenarios against Internet Explorer 9
