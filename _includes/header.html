@@ -1,7 +1,27 @@
 <header class="app__header" role="banner">
-  <div class="app__header-navigation"></div>
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
   <div class="app__header-title">
     <span>{{ site.title | escape }}</span>
   </div>
   <div class="app__header-actions"></div>
 </header>
+
+<script>
+  document.getElementById("app-body").addEventListener('click', () => {
+    const menu = document.getElementById("sidebar-menu")
+    if ([...menu.classList].includes('sidebar--open')) {
+      menu.classList.remove('sidebar--open')
+    }
+  })
+
+  document.querySelectorAll('.sidebar-menu-button').forEach(button => {
+    button.addEventListener('click', () => {
+      setTimeout(() => {
+        const menu = document.getElementById("sidebar-menu")
+        menu.classList.toggle('sidebar--open')
+      }, 1)
+    })
+  })
+</script>

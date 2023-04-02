@@ -3,7 +3,7 @@
 
   display: grid;
   align-items: center;
-  gap: var(--op-space-small);
+  gap: var(--op-space-x-small);
   grid-template-columns: 1fr auto 1fr;
   grid-template-rows: auto;
 
@@ -41,4 +41,10 @@
   background-color: var(--op-color-primary-base);
   color: var(--op-color-primary-on-base);
   text-decoration: none;
+}
+
+@media (width <= 768px) { // $breakpoint-small
+  .app-with-sidebar {
+    grid-template-columns: 1fr;
+  }
 }

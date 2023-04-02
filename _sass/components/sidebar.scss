@@ -1,0 +1,26 @@
+.sidebar-menu-button {
+  display: none;
+}
+
+@media (width <= 768px) { // $breakpoint-small
+  .sidebar-primary.sidebar--drawer.sidebar--mobile-friendly {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    left: calc(-1 * var(--_op-sidebar-drawer-width));
+
+    &.sidebar--open {
+      left: 0;
+    }
+  }
+
+  .sidebar-menu-button {
+    display: block;
+    cursor: pointer;
+  }
+
+  .sidebar-menu-button-container {
+    padding: 0 var(--op-space-large);
+  }
+}
