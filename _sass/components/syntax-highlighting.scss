@@ -87,6 +87,29 @@ div.language-json {
   }
 }
 
+div.language-scss {
+  @extend %language-badge;
+
+  &::before {
+    content: "SCSS";
+  }
+}
+
+div.language-css {
+  @extend %language-badge;
+
+  &::before {
+    content: "CSS";
+  }
+}
+
+div.language-html {
+  @extend %language-badge;
+
+  &::before {
+    content: "HTML";
+  }
+}
 
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
