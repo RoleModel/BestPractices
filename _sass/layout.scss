@@ -11,6 +11,8 @@
   color: var(--op-color-primary-on-plus-seven);
   padding: 0 var(--op-space-large);
   height: var(--header-height);
+
+  box-shadow: 0 0.1rem 0.6rem 0 var(--op-color-neutral-plus-three);
 }
 
 .app__header-navigation {
