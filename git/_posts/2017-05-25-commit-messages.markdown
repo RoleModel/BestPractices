@@ -71,3 +71,4 @@ ensure the link will work in the future.
 |  JI - Jira      |  GL - Gitlab
 |  LK - LeanKit   |  BB - BitBucket
 |  KB - Kanbanery |
+{: .table }
