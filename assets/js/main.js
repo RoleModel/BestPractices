@@ -16,4 +16,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1)
     })
   })
+
+  // Copy Button
+
+  const codeBlocks = document.querySelectorAll('div.highlighter-rouge, div.listingblock > div.content, figure.highlight')
+  const copyHtml = '<span class="material-symbols-outlined">content_copy</span>'
+  const copiedHtml = '<span class="material-symbols-outlined">check</span>'
+
+  codeBlocks.forEach(codeBlock => {
+    const copyButton = document.createElement('button')
+    let timeout = null
+    copyButton.type = 'button'
+    copyButton.classList = 'btn-secondary btn--no-border btn--small btn--icon btn--copy'
+    copyButton.ariaLabel = 'Copy code to clipboard'
+    copyButton.innerHTML = copyHtml
+    codeBlock.prepend(copyButton)
+
+    copyButton.addEventListener('click', function () {
+      if(timeout === null) {
+        const code = (codeBlock.querySelector('pre:not(.lineno, .highlight)') || codeBlock.querySelector('code')).innerText
+        window.navigator.clipboard.writeText(code)
+
+        copyButton.innerHTML = copiedHtml
+
+        timeout = setTimeout(function () {
+          copyButton.innerHTML = copyHtml
+          timeout = null
+        }, 4000)
+      }
+    })
+  })
 })
