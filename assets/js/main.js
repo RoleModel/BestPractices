@@ -46,4 +46,32 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   })
+
+  // Table of Contents Scroll
+  const article = document.querySelector('.post-body article')
+  const anchors = article?.querySelectorAll('h1:not([itemprop="name headline"]), h2, h3, h4, h5, h6')
+  const links = document.querySelectorAll('.table-of-contents .table-of-contents__item')
+
+  const appBody = document.querySelector('.app-body')
+
+  console.log('anchors', anchors)
+
+  appBody.addEventListener('scroll', _event => {
+    if (typeof (anchors) != 'undefined' && anchors != null && typeof (links) != 'undefined' && links != null) {
+      let scrollTop = appBody.scrollTop;
+
+      // highlight the last scrolled-to: set everything inactive first
+      links.forEach((link, index) => {
+        link.classList.remove("active");
+      })
+
+      // then iterate backwards, on the first match highlight it and break
+      for (var i = anchors.length - 1; i >= 0; i--) {
+        if (scrollTop > anchors[i].offsetTop - 10) {
+          links[i].classList.add('active');
+          break;
+        }
+      }
+    }
+  })
 })

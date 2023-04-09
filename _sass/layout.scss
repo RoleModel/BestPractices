@@ -1,6 +1,8 @@
-.app__header {
-  --header-height: 6rem;
+.app-body {
+  scroll-padding-top: var(--header-height);
+}
 
+.app__header {
   display: grid;
   align-items: center;
   gap: var(--op-space-x-small);
@@ -49,4 +51,8 @@
   .app-with-sidebar {
     grid-template-columns: 1fr;
   }
+}
+
+.app__content {
+  max-width: 110rem; // 1100px
 }

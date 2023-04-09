@@ -29,11 +29,29 @@ logo: /assets/images/logo.svg
 
 plugins:
  - jekyll-seo-tag
+ - jekyll-toc
 
 # Build settings
 collections:
   static_pages:
     output: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      toc: true
+
+toc:
+  min_level: 1
+  max_level: 6
+  ordered_list: false
+  no_toc_section_class: no_toc_section
+  list_id: table-of-contents
+  list_class: table-of-contents__nav
+  sublist_class: 'table-of-contents__sub-nav'
+  item_class: table-of-contents__item
+  item_prefix: table-of-contents-
 
 # Exclude from processing.
 # The following items will not be processed, by default.

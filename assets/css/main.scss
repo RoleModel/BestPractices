@@ -10,6 +10,13 @@
 // or use the breakpoint variables.
 @import 'https://cdn.jsdelivr.net/npm/@rolemodel/optics@0.3.1/dist/css/optics.css';
 
+:root {
+  --header-height: 6rem;
+
+  --op-color-on-background-alt: var(--op-color-neutral-on-plus-eight-alt);
+  --op-letter-spacing-title: 0.2rem;
+}
+
 // Misc
 @import 'layout';
 @import 'utilities';
@@ -19,3 +26,16 @@
 @import 'components/list';
 @import 'components/sidebar';
 @import 'components/syntax-highlighting';
+@import 'components/table-of-contents';
+
+.post-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--op-space-medium);
+}
+
+@media (width <= 1100px) {
+  .post-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
