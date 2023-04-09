@@ -1,0 +1,26 @@
+.post-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--op-space-medium);
+}
+
+@media (width <= 1100px) {
+  .post-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--op-space-x-small);
+}
+
+.post-meta__date {
+  font-size: var(--op-font-large);
+}
+
+.post-meta__data {
+  margin: 0;
+  font-size: var(--op-font-small);
+}
