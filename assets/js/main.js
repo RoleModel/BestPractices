@@ -47,14 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // Anchor Links
+  const anchorJS = new AnchorJS() // Imported via CDN
+  anchorJS.add('h1:not([itemprop="name headline"]), h2, h3, h4, h5, h6')
+
   // Table of Contents Scroll
   const article = document.querySelector('.post-body article')
   const anchors = article?.querySelectorAll('h1:not([itemprop="name headline"]), h2, h3, h4, h5, h6')
   const links = document.querySelectorAll('.table-of-contents .table-of-contents__item')
 
   const appBody = document.querySelector('.app-body')
-
-  console.log('anchors', anchors)
 
   appBody.addEventListener('scroll', _event => {
     if (typeof (anchors) != 'undefined' && anchors != null && typeof (links) != 'undefined' && links != null) {
