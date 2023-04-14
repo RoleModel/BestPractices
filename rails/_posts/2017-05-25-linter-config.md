@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Linter Config"
-date:   2017-05-25 00:00:06 -0400
+date:   2016-06-24 00:00:00 -0400
+author: Wes Rich, Caleb Woods
+approver: Caleb Woods
+order: 6
 ---
 
 ## Using Code Linters on Rails

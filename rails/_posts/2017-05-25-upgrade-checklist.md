@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Rails Upgrade Checklist"
-date:   2017-05-25 00:00:03 -0400
+date:   2015-06-29 00:00:00 -0400
+author: Caleb Woods
+approver: Ken Auer
+order: 3
 ---
 
 Checklist of things to check when upgrading a Rails app.

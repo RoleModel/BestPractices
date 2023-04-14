@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Database Migrations"
-date:   2017-05-25 00:00:05 -0400
+date:   2021-01-11 00:00:00 -0400
+author: Ben Einwechter, Reed Law
+approver: Caleb Woods, Kyle Smith, Ben Einwechter, Wes Rich, John Calvin Young
+order: 5
 ---
 
 ## Principles

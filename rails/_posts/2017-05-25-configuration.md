@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Configuration"
-date:   2017-05-25 00:00:01 -0400
+date:   2013-10-25 00:00:00 -0400
+author: Caleb Woods
+approver: Ken Auer
+order: 1
 ---
 
 ### Methodology
