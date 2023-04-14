@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Chow and Pow Wow"
-date:   2017-05-25 00:00:01 -0400
+date:   2017-01-23 00:00:00 -0400
+author: Caleb Woods
+approver: Jeff Terrell
+order: 2
 ---
 
 ## Agenda

@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Core Project Presentations"
-date:   2017-05-25 00:00:02 -0400
+date:   2017-01-23 00:00:00 -0400
+author: Caleb Woods
+approver: Jeff Terrell
+order: 1
 ---
 
 In order to increase the continuous learning of our team, and provide fodder for our marketing, we encourage Core Project Presentations
