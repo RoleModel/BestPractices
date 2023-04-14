@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Trello"
-date:   2017-05-25 00:00:01 -0400
+date:   2014-07-19 00:00:00 -0400
+author: Graham Langdon
+approver: Caleb Woods
+order: 1
 ---
 
 Trello Structure

@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Professionalism"
-date:   2017-05-25 00:00:02 -0400
+date:   2014-07-19 00:00:00 -0400
+author: Graham Langdon
+approver: Caleb Woods
+order: 2
 ---
 
 Helping the customer manage their support budget

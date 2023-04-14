@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Slack Standup"
-date:   2017-05-25 00:00:03 -0400
+date:   2014-10-29 00:00:00 -0400
+author: Caleb Woods
+approver: Graham Langdon
+order: 3
 ---
 
 We are always looking for ways to improve our internal processes and communication in our teams and the company at large. To facilitate that across the company we have a dedicated channel on Slack, [#checkin](https://rolemodelsoftware.slack.com/messages/checkin/).

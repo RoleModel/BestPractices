@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Project README"
-date:   2017-05-25 00:00:04 -0400
+date:   2017-09-11 00:00:00 -0400
+author: Tim Irwin, Jeff Terrell, Ken Auer
+approver: Ken Auer, Caleb Woods
+order: 4
 ---
 
 ## Project README Best Practices
