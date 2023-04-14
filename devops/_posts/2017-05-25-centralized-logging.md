@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Centralized Logging"
-date:   2017-05-25 00:00:01 -0400
+date:   2015-06-05 00:00:00 -0400
+author: Ben Wyrosdick
+approver: Caleb Woods
+order: 1
 ---
 
 Logging to a central server is done through *syslog*. We are using *papertrail* to host our logs.
