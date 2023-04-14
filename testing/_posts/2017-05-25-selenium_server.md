@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Selenium Server"
-date:   2017-05-25 00:00:02 -0400
+date:   2017-03-09 00:00:00 -0400
+author: Sam Neely
+approver: Caleb Woods, Jeff Terrell
+order: 2
 ---
 
 ## Selenium Server Setup and Testing
