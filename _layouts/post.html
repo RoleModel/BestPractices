@@ -5,7 +5,7 @@ layout: default
 <div class="post-body">
   <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
     <header class="card__header">
-      <h1 itemprop="name headline">{{ page.title | escape }}</h1>
+      <h1 class='post-title' itemprop="name headline">{{ page.title | escape }}</h1>
       <div class="post-meta">
         {%- if page.date -%}
         <time class="post-meta__date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">

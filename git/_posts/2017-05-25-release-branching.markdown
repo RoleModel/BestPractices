@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Release Branching"
-date:   2017-05-25 00:00:07 -0400
+date:   2015-11-10 00:00:00 -0400
+author: Caleb Woods, Jeff Terrell
+approver: Ken Auer, Caleb Woods
+order: 8
 ---
 
 ## Release Based Branching Strategy

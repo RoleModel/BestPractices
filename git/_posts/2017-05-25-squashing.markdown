@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Squashing Commits"
-date:   2017-05-25 00:00:04 -0400
+date:   2015-11-10 00:00:00 -0400
+author: Caleb Woods, Jeff Terrell
+approver: Ken Auer, Caleb Woods
+order: 5
 ---
 
 At RoleModel we generally recommend the squashing of commits on a feature branch

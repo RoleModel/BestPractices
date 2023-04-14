@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Tagging Versions"
-date:   2017-05-25 00:00:09 -0400
+date:   2017-05-25 00:00:00 -0400
+author: Jeff Terrell
+approver: Caleb Woods
+order: 10
 ---
 
 Or, how to capture relevant information about deployments.

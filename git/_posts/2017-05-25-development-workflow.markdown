@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Git Development Workflow"
-date:   2017-05-25 00:00:02 -0400
+date:   2017-05-25 00:00:00 -0400
+author: Jeff Terrell, Reed Law
+approver: Caleb Woods
+order: 3
 ---
 
 This document describes the high-level process of using git as part of the

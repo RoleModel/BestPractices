@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Linear History"
-date:   2017-05-25 00:00:06 -0400
+date:   2017-05-25 00:00:00 -0400
+author: Jeff Terrell
+approver: Caleb Woods
+order: 7
 ---
 
 At RoleModel we commend the practice of keeping git histories linear. This

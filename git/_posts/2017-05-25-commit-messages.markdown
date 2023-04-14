@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Commit Messages"
-date:   2017-05-25 00:00:03 -0400
+date:   2017-05-25 00:00:00 -0400
+author: Jeff Terrell
+approver: Caleb Woods
+order: 4
 ---
 
 ## Commit Message Format

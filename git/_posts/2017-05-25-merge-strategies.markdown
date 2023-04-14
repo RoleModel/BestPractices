@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Merge Strategies"
-date:   2017-05-25 00:00:05 -0400
+date:   2017-05-25 00:00:00 -0400
+author: Jeff Terrell
+approver: Caleb Woods
+order: 6
 ---
 
 Once your feature branch is approved by a reviewer and ready to merge, how do
