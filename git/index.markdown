@@ -3,6 +3,7 @@ layout: page
 title: Git
 icon: code
 permalink: /git/
+topic: true
 ---
 
 <div class='list'>

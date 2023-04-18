@@ -3,6 +3,7 @@ layout: page
 title: Support
 icon: support_agent
 permalink: /support/
+topic: true
 ---
 
 <div class='list'>

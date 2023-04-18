@@ -3,6 +3,7 @@ layout: page
 title: Testing
 icon: bug_report
 permalink: /testing/
+topic: true
 ---
 
 <div class='list'>

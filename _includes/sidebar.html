@@ -25,16 +25,23 @@
     {%- endif -%}
     {%- endfor -%}
 
-    <div class="sidebar__section-title">Topics</div>
-    {%- for node in site.pages -%}
-    {%- if node.title -%}
     {%- assign current_url = page.url | split: '/' -%}
-    {%- assign node_url = node.url | split: '/' -%}
-    <a class="sidebar__item {% if current_url[1] == node_url[1] %}active{% else %}{% endif %}"
-      href="{{ node.url | relative_url }}">
-      <span class="material-symbols-outlined sidebar__item-icon" title="{{ node.icon | escape }}">{{ node.icon |
+    <a class="sidebar__item {% if current_url[1] == 'all-posts' %}active{% else %}{% endif %}" href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    {% assign topics = site.pages | where: 'topic', true %}
+    {%- for topic in topics -%}
+    {%- if topic.title -%}
+    {%- assign current_url = page.url | split: '/' -%}
+    {%- assign topic_url = topic.url | split: '/' -%}
+    <a class="sidebar__item {% if current_url[1] == topic_url[1] %}active{% else %}{% endif %}"
+      href="{{ topic.url | relative_url }}">
+      <span class="material-symbols-outlined sidebar__item-icon" title="{{ topic.icon | escape }}">{{ topic.icon |
         escape }}</span>
-      <div class="sidebar__item-label">{{ node.title | escape }}</div>
+      <div class="sidebar__item-label">{{ topic.title | escape }}</div>
     </a>
     {%- endif -%}
     {%- endfor -%}

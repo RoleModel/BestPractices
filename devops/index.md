@@ -3,6 +3,7 @@ layout: page
 title: DevOps
 icon: dns
 permalink: /devops/
+topic: true
 ---
 
 <div class='list'>

@@ -3,6 +3,7 @@ layout: page
 title: Presentations
 icon: co_present
 permalink: /presentations/
+topic: true
 ---
 
 <div class='list'>

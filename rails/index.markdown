@@ -3,6 +3,7 @@ layout: page
 title: Rails
 icon: train
 permalink: /rails/
+topic: true
 ---
 
 <div class='list'>
