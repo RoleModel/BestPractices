@@ -1,0 +1,65 @@
+---
+layout: page
+title: All Posts
+icon: feed
+---
+
+<!-- This loops through the paginated posts -->
+<div class='list'>
+  {% for post in paginator.posts %}
+  {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+  <a href="{{ post.url | relative_url }}" class='list-item'>
+    <div class='list-item__content'>
+      <div class='list-item-title'>{{ post.title | escape }}</div>
+      <div class='list-item-subtitle'>{{ post.date | date: date_format }}</div>
+    </div>
+    {%- if site.show_excerpts -%}
+    {{ post.excerpt }}
+    {%- endif -%}
+    <div class='btn-secondary btn--icon btn--small'>
+      <span class='material-symbols-outlined'>navigate_next</span>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+  <a class="btn btn--no-border btn--small" href="{{ paginator.previous_page_path | relative_url }}">
+    <span class="material-symbols-outlined">chevron_left</span>
+    Prev
+  </a>
+  {% else %}
+  <span class="btn btn--no-border btn--small btn--disabled">
+    <span class="material-symbols-outlined">chevron_left</span>
+    Prev
+  </span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+  {% if page == paginator.page %}
+  <span class="btn-secondary btn--small btn--pagination">
+    {{ page }}
+  </span>
+  {% elsif page == 1 %}
+  <a href="{{ '/all-posts' | relative_url }}" class="btn btn--no-border btn--small btn--pagination">{{ page }}</a>
+  {% else %}
+  <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
+    class="btn btn--no-border btn--small btn--pagination">{{ page }}</a>
+  {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+  <a class="btn btn--no-border btn--small" href="{{ paginator.next_page_path | relative_url }}">
+    Next
+    <span class="material-symbols-outlined">chevron_right</span>
+  </a>
+  {% else %}
+  <span class="btn btn--no-border btn--small btn--disabled">
+    Next
+    <span class="material-symbols-outlined">chevron_right</span>
+  </span>
+  {% endif %}
+</div>
+{% endif %}

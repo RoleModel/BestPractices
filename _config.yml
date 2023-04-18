@@ -30,11 +30,15 @@ logo: /assets/images/logo.svg
 plugins:
  - jekyll-seo-tag
  - jekyll-toc
+ - jekyll-paginate
 
 # Build settings
 collections:
   static_pages:
     output: true
+
+paginate: 10
+paginate_path: "/all-posts/page:num/"
 
 defaults:
   - scope:

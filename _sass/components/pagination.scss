@@ -1,0 +1,10 @@
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.btn--pagination {
+  width: var(--__op-btn-height);
+  min-width: var(--__op-btn-height);
+  padding: 0;
+}
