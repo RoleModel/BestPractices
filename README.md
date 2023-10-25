@@ -19,10 +19,15 @@ This holds *all* of our [best practices](about.md).
 ## Rails
 
 1. [Configuration](rails/configuration.md)
-2. [Gems](rails/gems.md)
-3. [Upgrade Checklist](rails/upgrade-checklist.md)
-4. [ES6](rails/es6.md)
-5. [Database Migrations](rails/database-migrations.md)
+2. [Upgrade Checklist](rails/upgrade-checklist.md)
+3. [ES6](rails/es6.md)
+4. [Database Migrations](rails/database-migrations.md)
+
+## Patterns
+
+1. [Authorization](patterns/authorization.md)
+2. [Forms](patterns/forms.md)
+3. [Search](patterns/search.md)
 
 ## Testing
 
