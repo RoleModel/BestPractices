@@ -2,7 +2,7 @@
 
 ## Why
 
-Forms are crucial to nearly all apps.  They tend to comprise much of an app's view layer complexity.  For that reason, consist design & user interaction is very important.
+Forms are crucial to nearly all apps.  They tend to comprise much of an app's view layer complexity.  For that reason, consistent design & user interaction is very important.
 
 ## Tools
 
