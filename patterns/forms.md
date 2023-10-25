@@ -18,12 +18,13 @@ Forms are crucial to nearly all apps.  They tend to comprise much of an app's vi
 
 1. Passing lots of configuration options into input helpers. In most cases, `f.input :attr_name` should be sufficient.
    * If you find yourself passing the same options over and over again, those options probably belong in `config/initializers/simpleform.rb`
+   * consider implementing a custom input `f.input :total_cost, as: :currency`
 2. Explicitly setting the form action (`url` option)
    * <!-- TODO: explain (tldr; resource routing/ RESTful controllers, etc) -->
 3. Custom Stimulus controllers used on only 1 form
    * This boils down to consistency.  Forms are often where we want to leverage JavaScript to enhance the user experience.  However, custom behavior should feel consistent between forms & Stimulus is flexible enough that you should be able to reuse the same controller between forms. So long as your forms adhere to the other patterns mentioned in this document.
 4. `turbo: false`
-   * Turbo is a core component of modern Rails apps.  Turning it off is an indicator that something is broken.
+   * Turbo is a core component of modern Rails apps.  Turning it off is an indication that something is broken.
 
 ## Resources
 
