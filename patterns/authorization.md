@@ -49,7 +49,9 @@ class PostsController < ApplicationController
 end
 ```
 
-### Use policies instead of roles
+### Use policies instead of repetitive guard logic
+
+Policies provide a single source of truth.
 
 🟥 Bad
 ```slim
@@ -63,4 +65,54 @@ end
   = render 'accountant'
 ```
 
+If authorization rules change for accountants, using policies ensures the accountants resource always performs the same checks.
 
+### Filter permitted params with policies
+
+Both Pundit and Action Policy provide mechanisms to restrict access to mass-assignment of model attributes.
+
+🟥 Bad
+```ruby
+class UsersController < ApplicationController
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
+  def user_params
+    if user.admin?
+      params.require(:user).permit(:name, :email, :role)
+    else
+      params.require(:user).permit(:name)
+    end
+  end
+end
+```
+
+🟩 Good
+```ruby
+class UserPolicy < ApplicationPolicy
+  def permitted_attributes
+    if user.admin?
+      %i[name email role]
+    else
+      [:name]
+    end
+  end
+end
+
+class UsersController < ApplicationController
+  def update
+    @user = User.find(params[:id])
+    if @user.update(permitted_attributes(@user))
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+end
+```
