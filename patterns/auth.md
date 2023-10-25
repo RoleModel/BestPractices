@@ -12,7 +12,7 @@ Authorization answers the question: am I allowed to do that? Not wanting to intr
 
 ## Better Policies
 
-### Keep authorization logic outside of controllers
+### Keep authorization logic in policy
 
 🟥 Bad
 ```ruby
@@ -39,7 +39,7 @@ end
 
 class PostsController < ApplicationController
   def destroy
-    post = aouthorize Post.find(params[:id])
+    post = authorize Post.find(params[:id])
     if post.destroy	
       redirect_to posts_path
     else
@@ -48,4 +48,19 @@ class PostsController < ApplicationController
   end
 end
 ```
+
+### Use policies instead of roles
+
+🟥 Bad
+```slim
+- if current_user.admin?
+  = render 'accountant'
+```
+
+🟩 Good
+```slim
+- if policy(:accountant).show?
+  = render 'accountant'
+```
+
 
