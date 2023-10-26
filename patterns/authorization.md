@@ -49,7 +49,7 @@ class PostsController < ApplicationController
 end
 ```
 
-### Use policies instead of repetitive guard logic
+### Use resource policies in views
 
 Policies provide a single source of truth.
 
@@ -60,6 +60,7 @@ Policies provide a single source of truth.
 ```
 
 🟩 Good
+
 ```slim
 - if policy(:accountant).show?
   = render 'accountant'
@@ -116,3 +117,5 @@ class UsersController < ApplicationController
   end
 end
 ```
+
+This might not look much different but it helps separate layers and provides a central place for all authorization code.
