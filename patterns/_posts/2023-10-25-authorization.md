@@ -1,3 +1,12 @@
+---
+layout: post
+title:  "Authorization"
+date:   2023-10-25 00:00:00 -0400
+author: Andy Cohen, Reed Law
+approver: Andy Cohen, Reed Law
+order: 1
+---
+
 # Authorization
 
 ## Rationale
@@ -20,7 +29,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     if post.user_id == current_user.id
-      post.destroy	
+      post.destroy
       redirect_to posts_path
     else
       redirect_to posts_path, alert: 'Forbidden'
@@ -40,7 +49,7 @@ end
 class PostsController < ApplicationController
   def destroy
     post = authorize Post.find(params[:id])
-    if post.destroy	
+    if post.destroy
       redirect_to posts_path
     else
       redirect_to posts_path, alert: 'Forbidden'
