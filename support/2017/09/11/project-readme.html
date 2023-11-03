@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Project README | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Project README" />
+<meta name="author" content="Tim Irwin, Jeff Terrell, Ken Auer" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Project README Best Practices" />
+<meta property="og:description" content="Project README Best Practices" />
+<link rel="canonical" href="https://rolemodel.design/support/2017/09/11/project-readme.html" />
+<meta property="og:url" content="https://rolemodel.design/support/2017/09/11/project-readme.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-09-11T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Project README" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Tim Irwin, Jeff Terrell, Ken Auer"},"dateModified":"2017-09-11T04:00:00+00:00","datePublished":"2017-09-11T04:00:00+00:00","description":"Project README Best Practices","headline":"Project README","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/support/2017/09/11/project-readme.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Tim Irwin, Jeff Terrell, Ken Auer"},"url":"https://rolemodel.design/support/2017/09/11/project-readme.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item active"
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Project README</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2017-09-11T04:00:00+00:00" itemprop="datePublished">Sep 11, 2017
+        </time><p class="post-meta__data">Author: Tim Irwin, Jeff Terrell, Ken Auer</p><p class="post-meta__data">Approver: Ken Auer, Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h2 id="project-readme-best-practices">Project README Best Practices</h2>
+
+<h3 id="project-lifecycle-and-the-readme">Project lifecycle and the README</h3>
+
+<p>Project-level events are often natural times to think about the README.</p>
+
+<ul>
+  <li>
+    <p>When a project is created, review the README template (see below) for inspiration.</p>
+  </li>
+  <li>
+    <p>When a person leaves a project or the project is put on hold (e.g. after a planning and exploration phase), that person should review the README to ensure learning is appropriately captured.</p>
+  </li>
+  <li>
+    <p>When a person joins a project, they should change any confusing parts of the README and add any missing information.</p>
+  </li>
+</ul>
+
+<h3 id="additional-documentation">Additional Documentation</h3>
+
+<p>Any additional documentation outside of the README should be in a <code class="language-plaintext highlighter-rouge">docs/</code> subdirectory. Those files should include documentation for setting up certificates (<code class="language-plaintext highlighter-rouge">certificates.md</code>), integration with payment gateways (<code class="language-plaintext highlighter-rouge">ecommerce.md</code>), security concerns (<code class="language-plaintext highlighter-rouge">security_concerns.md</code>), a project history (<code class="language-plaintext highlighter-rouge">project_history.md</code>), an application change log (<code class="language-plaintext highlighter-rouge">change_log.md</code>), a dictionary (<code class="language-plaintext highlighter-rouge">terms.md</code>), and a frequently asked questions section (<code class="language-plaintext highlighter-rouge">faq.md</code>). Other markdown files may become necessary (or useful), but all files should be linked from within the <code class="language-plaintext highlighter-rouge">README.md</code> file.</p>
+
+<p>Some projects, especially those with a high expected degree of turnover or architecture collaboration across teams, may also benefit from the approach outlined here: <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">Documenting Architecture Decisions</a>.</p>
+
+<h3 id="readmemd-template">README.md template</h3>
+
+<p>The remainder of this document is a template for new READMEs, with a variety of useful sections. Not all sections will make sense for every project, but the template is intended to help remind people of categories of useful information to include. (Note before copying that triple-backtick lines have been escaped to avoid presentation issues when viewing this best practice, but the escaping should be removed in a real README.md file.)</p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Overview
+## Name and aliases
+The project is named "&lt;name&gt;". Some will refer to it as "&lt;alias1&gt;" or "&lt;alias2&gt;".
+
+## Purpose
+The system is designed to solve the problem of ... Users had the problem, but this system resolves it by ...
+
+## Technologies
+### Chosen
+* Ruby on Rails
+* Postgres
+* nginx
+* unicorn
+
+### Tried and rejected
+* Node.js - Not enough internal experience.
+* Mongo - Needed to use a relational database for reporting.
+* Websphere - Cost
+* webrick - Application servers are using newer technology now.
+
+## Technology relationships
+&lt;insert image here&gt;
+
+## Supported browsers
+The customer states that only Chrome will be used.
+
+# How to set up the project
+## External tool installation
+\```
+brew update --system
+brew upgrade ruby-build
+git clone http://github.com/RoleModel/&lt;project&gt;
+cd &lt;project&gt;
+rbenv install
+gem install bundler
+bundle install
+\```
+
+## How to run locally
+`rails s`
+
+## How to run tests
+`rake`
+
+## Editor plugins
+* Rubocop linter
+
+## Troubleshooting information
+* [App Status Page](http://app.&lt;applicationname&gt;.com/_ping) will give you information about what is running.
+* Alternatively, you can ssh in and check that the application server and web server are both running.
+
+# Testing Strategy
+## Testing approach
+### End User tests
+Due to the nature of this application, End User tests are...
+
+### Unit tests
+Due to the nature of this application, unit tests are prominent and handle most of the confidence building and documentation needs of the system below the user interface.
+
+### Other tests
+At this point, no other tests are being employed.
+However, one might consider performance tests or other categories and describe the reasons here
+
+## Testing tools
+Which tools are we using?
+
+## Continuous integration
+No CI has been set up yet (though we recommend Sempahore in most cases).  When you set it up, tell what you need to know here
+
+# Branching strategy
+To begin a new feature run, `git checkout -b &lt;branchname&gt;`.
+When finished with the feature and the code has been reviewed, the commits should be squashed before merging. See [RoleModel Best Practices](https://github.com/RoleModel/BestPractices) for more information.
+
+# List of background processes
+* Nightly database backup and export
+* Monthly invoicing on last business day of the month
+
+# Links to:
+## [Git repo](http://github.com/RoleModel/)
+## [Task management system](http://trello.com)
+## [Staging](http://staging.&lt;applicationname&gt;.com)
+## [Production](http://app.&lt;applicationname&gt;.com)
+## External services
+* [HoneyBadger](http://honeybadger.io)
+* [Skylight](http://skylight.io)
+* [SendGrid](http://sendgrid.com/RoleModel)
+* [Heroku](http://herokuapp.com)
+
+## [CI](http://semaphoreci.com/RoleModel)
+## [Core project presentation](http://docs.google.com)
+## [List of contributors](http://github.com/RoleModel)
+## [Change log](file://./docs/change_log.md)
+
+# Deployment
+## Strategy/process/commands
+`master` is always deployed to production. The `staging` branch is deployed to staging.
+\```
+git checkout master
+git tag 2016-05-16 # &lt;date&gt; YYYY-MM-DD
+git push --tags
+\```
+Deployment is done with [Ansible](http://ansible.com).
+`ansible &lt;command goes here&gt;`
+
+## Description of host(s), DNS, certificate authority
+The application is deployed to Heroku. They are also hosting the DNS. We certificate was received from [Let's Encrypt](https://letsencrypt.org/).
+
+## ssh information
+`ssh user@hostname.com`
+
+# Customer contacts
+* Joe Johnson - 919-555-1212
+* Larry Anderson - 919-555-1213
+
+# Copyright &amp; licensing
+Copyright (c) 2016 Closed Source @CompanyName
+</code></pre></div></div>
+
+    </div>
+
+    <a class="u-url" href="/support/2017/09/11/project-readme.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#project-readme-best-practices">Project README Best Practices</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#project-lifecycle-and-the-readme">Project lifecycle and the README</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#additional-documentation">Additional Documentation</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#readmemd-template">README.md template</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Database Migrations | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Database Migrations" />
+<meta name="author" content="Ben Einwechter, Reed Law" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Principles" />
+<meta property="og:description" content="Principles" />
+<link rel="canonical" href="https://rolemodel.design/rails/2021/01/11/database-migrations.html" />
+<meta property="og:url" content="https://rolemodel.design/rails/2021/01/11/database-migrations.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-11T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Database Migrations" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ben Einwechter, Reed Law"},"dateModified":"2021-01-11T04:00:00+00:00","datePublished":"2021-01-11T04:00:00+00:00","description":"Principles","headline":"Database Migrations","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/rails/2021/01/11/database-migrations.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Ben Einwechter, Reed Law"},"url":"https://rolemodel.design/rails/2021/01/11/database-migrations.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item active"
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Database Migrations</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2021-01-11T04:00:00+00:00" itemprop="datePublished">Jan 11, 2021
+        </time><p class="post-meta__data">Author: Ben Einwechter, Reed Law</p><p class="post-meta__data">Approver: Caleb Woods, Kyle Smith, Ben Einwechter, Wes Rich, John Calvin Young</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h2 id="principles">Principles</h2>
+
+<h3 id="use-the-strong_migrations-library">Use the strong_migrations library</h3>
+<p><a href="https://github.com/ankane/strong_migrations">Strong Migrations</a> helps catch many common database migration mistakes, especially when using Postgres. Most of the checks are aimed at avoiding blocks to reads or writes. This is important for a production database with lots of data but not so much for an MVP.</p>
+
+<h3 id="use-rails-migrations-for-simple-data-migrations">Use Rails migrations for simple data migrations</h3>
+<p>Using Rails’ <code class="language-plaintext highlighter-rouge">db:migrate</code> to migrate data has many advantages over custom scripts:</p>
+
+<ul>
+  <li>Rails schema versioning makes it easy to know the status of each migration.</li>
+  <li>It’s simple for other developers on your team. They only need to <code class="language-plaintext highlighter-rouge">git pull</code> and then run <code class="language-plaintext highlighter-rouge">db:migrate</code>.</li>
+  <li>Deployment pipelines are usually set up to run data migrations, so there are no extra steps to run.</li>
+</ul>
+
+<p>Of course, there are exceptions to this rule. Super complex data migrations may need more involved scripts.</p>
+
+<h3 id="keep-migrations-runnable-for-as-long-as-possible">Keep migrations runnable for as long as possible</h3>
+<p>Migrations that break after only a few git commits are a nightmare for teams. This problem is almost always caused by migration code relying on application code like model associations and methods. A migration runs at a single point in time, whereas application code is always changing, so the two get out of sync.</p>
+
+<p>For example, suppose a migration is added to the master branch which uses an association defined on an ActiveRecord model. Two commits later, the association is removed from the ActiveRecord model, but the migration code isn’t updated.</p>
+
+<p>Now, another developer rebases his feature branch onto master and attempts to run the pending migration.</p>
+
+<p>Failure. To be specific, a <code class="language-plaintext highlighter-rouge">NoMethodError: undefined method</code> failure because the association the migration depended on isn’t defined on the model anymore, so the migration blows up. 😩</p>
+
+<p>You can avoid this problem by following a simple rule:</p>
+
+<blockquote>
+  <p>Migrations may only use code defined within their own class.</p>
+</blockquote>
+
+<p>If you’re migrating data and need helper methods or ActiveRecord associations, define them directly in the migration class itself. See the <strong>Use Cases</strong> section below for an example of how to properly use ActiveRecord associations in a migration.</p>
+
+<h3 id="do-not-use-migrations-to-create-new-data">Do not use migrations to create new data</h3>
+<p>Use <code class="language-plaintext highlighter-rouge">seeds.rb</code> or a rake task to populate necessary app data. Otherwise running <code class="language-plaintext highlighter-rouge">db:schema:load</code> will leave the app’s database without the needed data.</p>
+
+<h3 id="always-test-your-migrations">Always test your migrations</h3>
+<p>Always run the migration, roll it back, and re-run it (<code class="language-plaintext highlighter-rouge">rails db:migrate:redo</code> is handy for this). This prevents accidentally writing irreversible migrations because you forgot to specify all the needed details the <code class="language-plaintext highlighter-rouge">change</code> method needs to calculate the reverse of the operation you’re running.</p>
+
+<p>If a migration by its nature cannot be rolled back, be explicit about it by raising <code class="language-plaintext highlighter-rouge">IrreversibleMigration</code> in the <code class="language-plaintext highlighter-rouge">down</code> method.</p>
+
+<p>Other common gotchas to test for:</p>
+<ul>
+  <li>The migration won’t run on a fresh database because there was something in the local dev db it was relying on.</li>
+  <li>Use realistic production sized data to check for speed.</li>
+</ul>
+
+<h2 id="use-cases">Use Cases</h2>
+
+<h3 id="use-activerecord-associations-in-a-migration">Use ActiveRecord associations in a migration</h3>
+
+<p>Existing model:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Tag</span>
+  <span class="n">belongs_to</span> <span class="ss">:blog_post</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">BlogPost</span>
+  <span class="n">has_many</span> <span class="ss">:tags</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>You decide for performance reasons to move the tags into an array column on the <code class="language-plaintext highlighter-rouge">blog_posts</code> table instead of having them in a separate <code class="language-plaintext highlighter-rouge">tags</code> table.</p>
+
+<p>Write the migration this way:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MoveTags</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">5.2</span><span class="p">]</span>
+  <span class="c1"># Inherit from ActiveRecord::Base instead of ApplicationRecord since the</span>
+  <span class="c1"># ApplicationRecord is subject to changes as the app changes.</span>
+  <span class="k">class</span> <span class="nc">Tag</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># rubocop:disable Rails/ApplicationRecord</span>
+
+  <span class="k">class</span> <span class="nc">BlogPost</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span> <span class="c1"># rubocop:disable Rails/ApplicationRecord</span>
+    <span class="n">has_many</span> <span class="ss">:tags</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">up</span>
+    <span class="n">add_column</span> <span class="ss">:blog_posts</span><span class="p">,</span> <span class="ss">:categories</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">array: </span><span class="kp">true</span>
+
+    <span class="n">say</span><span class="p">(</span><span class="s2">"Moving </span><span class="si">#{</span><span class="no">Tag</span><span class="p">.</span><span class="nf">count</span><span class="si">}</span><span class="s2"> tags to </span><span class="si">#{</span><span class="no">BlogPost</span><span class="p">.</span><span class="nf">count</span><span class="si">}</span><span class="s2"> blog posts"</span><span class="p">)</span>
+
+    <span class="c1"># Use find_each to minimize memory usage when dealing with many records</span>
+    <span class="no">BlogPost</span><span class="p">.</span><span class="nf">find_each</span><span class="p">(</span><span class="ss">batch_size: </span><span class="mi">100</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">blog_post</span><span class="o">|</span>
+      <span class="n">tags</span> <span class="o">=</span> <span class="n">blog_post</span><span class="p">.</span><span class="nf">tags</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:value</span><span class="p">)</span>
+
+      <span class="c1"># You can never have too much logging when migrating data!</span>
+      <span class="n">say</span><span class="p">(</span><span class="s2">"Moving tags </span><span class="si">#{</span><span class="n">tags</span><span class="si">}</span><span class="s2"> to BlogPost </span><span class="si">#{</span><span class="n">blog_post</span><span class="p">.</span><span class="nf">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+      <span class="n">blog_post</span><span class="p">.</span><span class="nf">update!</span><span class="p">(</span><span class="ss">categories: </span><span class="n">tags</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">down</span>
+    <span class="n">remove_column</span> <span class="ss">:blog_posts</span><span class="p">,</span> <span class="ss">:categories</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails db:migrate
+== 20190604160527 MoveTags: migrating =========================================
+-- add_column(:blog_posts, :categories, :string, {:array=&gt;true})
+   -&gt; 0.0006s
+-- Moving 6 tags to 3 blog posts
+-- Moving tags ["tag-0", "tag-1"] to BlogPost 5
+-- Moving tags ["tag-0", "tag-1"] to BlogPost 6
+-- Moving tags ["tag-0", "tag-1"] to BlogPost 7
+== 20190604160527 MoveTags: migrated (0.0259s) ================================
+</code></pre></div></div>
+
+<p>A few things to note about this data migration:</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">MoveTags</code> migration defines two child classes: <code class="language-plaintext highlighter-rouge">MoveTags::Tag</code> and <code class="language-plaintext highlighter-rouge">MoveTags::BlogPost</code>. These classes are completely different than the classes residing in <code class="language-plaintext highlighter-rouge">app/models</code>. You can even delete the now unused <code class="language-plaintext highlighter-rouge">Tag</code> class in <code class="language-plaintext highlighter-rouge">app/models</code> and this migration will still run!</li>
+  <li>For brevity, this example doesn’t worry about dropping the <code class="language-plaintext highlighter-rouge">tags</code> table, and the <code class="language-plaintext highlighter-rouge">down</code> method should be expanded to move the tags from blog posts back to tags.</li>
+  <li>Logging is your friend when doing data migrations. Do it early and do it often.</li>
+</ul>
+
+<h3 id="heroku-review-app-setup">Heroku review app setup</h3>
+<p>On Heroku, the <code class="language-plaintext highlighter-rouge">release</code> phase command runs on <em>every</em> deploy, and the <code class="language-plaintext highlighter-rouge">postdeploy</code> script only runs once when the app is created. The <code class="language-plaintext highlighter-rouge">release</code> phase runs <em>before</em> the <code class="language-plaintext highlighter-rouge">postdeploy</code> command.</p>
+
+<p>So you can divide the database setup responsibilities this way:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">release</code>: run <code class="language-plaintext highlighter-rouge">db:migrate</code> only if database schema is already setup</li>
+  <li><code class="language-plaintext highlighter-rouge">postdeploy</code>: run <code class="language-plaintext highlighter-rouge">db:schema:load</code> to setup schema then run <code class="language-plaintext highlighter-rouge">db:seed</code> or import a database dump of testing data.</li>
+</ul>
+
+<h4 id="release-phase">Release Phase</h4>
+
+<p><strong>bin/heroku_release</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="c">#</span>
+<span class="c"># Usage: bin/heroku_release</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">schema_version</span><span class="o">=</span><span class="si">$(</span>bin/rails db:version | <span class="o">{</span> <span class="nb">grep</span> <span class="s2">"^Current version: [0-9]</span><span class="se">\\</span><span class="s2">+$"</span> <span class="o">||</span> <span class="nb">true</span><span class="p">;</span> <span class="o">}</span> | <span class="nb">tr</span> <span class="nt">-s</span> <span class="s1">' '</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">' '</span> <span class="nt">-f3</span><span class="si">)</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$schema_version</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">printf</span> <span class="s2">"[Release Phase]: ERROR: Database schema version could not be determined. Does the database exist?</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="nb">exit </span>1
+<span class="k">fi
+
+if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$schema_version</span><span class="s2">"</span> <span class="nt">-ne</span> <span class="s2">"0"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">[Release Phase]: Running db:migrate</span><span class="se">\n</span><span class="s2">"</span>
+  bin/rails db:migrate
+<span class="k">else
+  </span><span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">[Release Phase]: Skipping db:migrate since database schema is not setup yet.</span><span class="se">\n</span><span class="s2">"</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p><strong>Procfile</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>web: bundle exec puma -C config/puma.rb
+release: bin/heroku_release
+</code></pre></div></div>
+
+<h4 id="post-deploy-phase">Post Deploy Phase</h4>
+<p><strong>app.json</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "name": "Example Heroku Review App",
+  "scripts": {
+    "postdeploy": "bin/rails db:schema:load db:seed"
+  },
+}
+</code></pre></div></div>
+
+<p><strong>Note: Safety First</strong>
+Running <code class="language-plaintext highlighter-rouge">db:schema:load</code> against a production app would destroy all its data, so I’m keeping it completely out of the release phase script, just in case the script is ever accidentally changed in a way that would cause <code class="language-plaintext highlighter-rouge">db:schema:load</code> to run. Running <code class="language-plaintext highlighter-rouge">db:schema:load</code> in <code class="language-plaintext highlighter-rouge">postdeploy</code> ensures it will never run against a production app.</p>
+
+    </div>
+
+    <a class="u-url" href="/rails/2021/01/11/database-migrations.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#principles">Principles</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#use-the-strong_migrations-library">Use the strong_migrations library</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#use-rails-migrations-for-simple-data-migrations">Use Rails migrations for simple data migrations</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#keep-migrations-runnable-for-as-long-as-possible">Keep migrations runnable for as long as possible</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#do-not-use-migrations-to-create-new-data">Do not use migrations to create new data</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#always-test-your-migrations">Always test your migrations</a></li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#use-cases">Use Cases</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#use-activerecord-associations-in-a-migration">Use ActiveRecord associations in a migration</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#heroku-review-app-setup">Heroku review app setup</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#release-phase">Release Phase</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#post-deploy-phase">Post Deploy Phase</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configuration | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Configuration" />
+<meta name="author" content="Caleb Woods" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Methodology" />
+<meta property="og:description" content="Methodology" />
+<link rel="canonical" href="https://rolemodel.design/rails/2013/10/25/configuration.html" />
+<meta property="og:url" content="https://rolemodel.design/rails/2013/10/25/configuration.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-10-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configuration" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Caleb Woods"},"dateModified":"2013-10-25T04:00:00+00:00","datePublished":"2013-10-25T04:00:00+00:00","description":"Methodology","headline":"Configuration","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/rails/2013/10/25/configuration.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Caleb Woods"},"url":"https://rolemodel.design/rails/2013/10/25/configuration.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item active"
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Configuration</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2013-10-25T04:00:00+00:00" itemprop="datePublished">Oct 25, 2013
+        </time><p class="post-meta__data">Author: Caleb Woods</p><p class="post-meta__data">Approver: Ken Auer</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h3 id="methodology">Methodology</h3>
+
+<p>As we try to follow the <a href="http://12factor.net/config">12 Factor</a> approach to configuration, we’ve settled on the following strategy for declaring <code class="language-plaintext highlighter-rouge">ENV</code> variables to be used in our standard Rails configuration.</p>
+
+<p>All configuration values such as database connection and external API credentials should be declared in the <code class="language-plaintext highlighter-rouge">env.rb</code> file that lives at the root of the Rails project. These declarations will have values set that work with our standard development setup and are safe to check into source control.  Below is a brief example.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Local override</span>
+<span class="n">dotenv</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../.env_overrides.rb"</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+<span class="nb">require</span> <span class="n">dotenv</span> <span class="k">if</span> <span class="no">File</span><span class="p">.</span><span class="nf">exist?</span><span class="p">(</span><span class="n">dotenv</span><span class="p">)</span>
+
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"RAILS_ENV"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"development"</span>
+
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_ADAPTER"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"postgresql"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_NAME"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"griefnet_</span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s2">"RAILS_ENV"</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_USER"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"root"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_PASSWORD"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">""</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_ENCODING"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"utf8"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_HOST"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"localhost"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_POOL"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"5"</span>
+
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"POSTGRES_INTERACTIVE"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"psql"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"DEVELOPMENT_PORT"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"7100"</span>
+
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"MANDRILL_USERNAME"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">""</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"MANDRILL_PASSWORD"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">""</span>
+</code></pre></div></div>
+
+<h3 id="overriding-env-variables">Overriding ENV variables</h3>
+
+<p>Obviously the default values that are set in <code class="language-plaintext highlighter-rouge">env.rb</code> will not work for every development setup and definitely won’t be the values the we want to use in production.  For those reasons the top of the <code class="language-plaintext highlighter-rouge">env.rb</code> should always include a statement which checks for the presence of a <code class="language-plaintext highlighter-rouge">.env_overrides.rb</code> file, which if it exists will be loaded and set the appropriate config values.</p>
+
+<p>Because the standard format of the <code class="language-plaintext highlighter-rouge">env.rb</code> file is to use the <code class="language-plaintext highlighter-rouge">||=</code> operator to set the default values. If the value has been set else where, either in <code class="language-plaintext highlighter-rouge">.env_overrides.rb</code> or somewhere else, then the default value will not override what is already set.</p>
+
+<p>It should be noted that the <code class="language-plaintext highlighter-rouge">.env_overrides.rb</code> <strong>should not</strong> be checked into source control and <strong>should</strong> be a part of the .gitinore file.</p>
+
+<h3 id="how-to-use">How to Use</h3>
+
+<p>To have access to all your configuration values through out your Rails app, the following line should be added to the top of your <code class="language-plaintext highlighter-rouge">application.rb</code> file.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s1">'../../env'</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Once that is in place you can use your config values in files like <code class="language-plaintext highlighter-rouge">config/database.yml</code> just like the example below which allows the <code class="language-plaintext highlighter-rouge">config/database.yml</code> file to be checked into source control.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ss">default: </span><span class="o">&amp;</span><span class="n">default</span>
+  <span class="ss">adapter: </span><span class="o">&lt;</span><span class="sx">%= ENV["DATABASE_ADAPTER"] %&gt;
+  database: &lt;%=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_NAME"</span><span class="p">]</span> <span class="o">%&gt;</span>
+  <span class="ss">username: </span><span class="o">&lt;</span><span class="sx">%= ENV["DATABASE_USER"] %&gt;
+  password: &lt;%=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_PASSWORD"</span><span class="p">]</span> <span class="o">%&gt;</span>
+  <span class="ss">pool: </span><span class="o">&lt;</span><span class="sx">%= ENV["DATABASE_POOL"] %&gt;
+  encoding: &lt;%=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"DATABASE_ENCODING"</span><span class="p">]</span> <span class="o">%&gt;</span>
+  <span class="ss">host: </span><span class="o">&lt;</span><span class="sx">%= ENV["DATABASE_HOST"] %&gt;
+
+development:
+  &lt;&lt;: *default
+
+test: &amp;test
+  &lt;&lt;: *default
+  database: sample_test
+
+production:
+  &lt;&lt;: *default
+
+cucumber:
+  &lt;&lt;: *test
+</span></code></pre></div></div>
+
+<h3 id="gotchas">Gotchas</h3>
+
+<p>Because we typically set the <code class="language-plaintext highlighter-rouge">RAILS_ENV</code> variable in <code class="language-plaintext highlighter-rouge">env.rb</code> to <code class="language-plaintext highlighter-rouge">development</code> so it’s value can be used in other configuration options the following changes should be made to your <code class="language-plaintext highlighter-rouge">Rakefile</code> to be able to run your tests through normal rake tasks such as <code class="language-plaintext highlighter-rouge">rake spec</code>.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Add your own tasks in files placed in lib/tasks ending in .rake,</span>
+<span class="c1"># for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.</span>
+
+<span class="nb">require</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s1">'../config/application'</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+
+<span class="no">Sample</span><span class="o">::</span><span class="no">Application</span><span class="p">.</span><span class="nf">load_tasks</span>
+
+<span class="n">task</span> <span class="ss">:test_environment</span> <span class="k">do</span>
+  <span class="no">ENV</span><span class="p">[</span><span class="s1">'RAILS_ENV'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'test'</span>
+<span class="k">end</span>
+
+<span class="n">task</span> <span class="ss">:spec</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:test_environment</span><span class="p">]</span>
+</code></pre></div></div>
+
+    </div>
+
+    <a class="u-url" href="/rails/2013/10/25/configuration.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#methodology">Methodology</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#overriding-env-variables">Overriding ENV variables</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#how-to-use">How to Use</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#gotchas">Gotchas</a></li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The Purpose of Git | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="The Purpose of Git" />
+<meta name="author" content="Jeff Terrell" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Or: Philosophy of Git" />
+<meta property="og:description" content="Or: Philosophy of Git" />
+<link rel="canonical" href="https://rolemodel.design/git/2017/05/25/purpose-of-git.html" />
+<meta property="og:url" content="https://rolemodel.design/git/2017/05/25/purpose-of-git.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-05-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The Purpose of Git" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jeff Terrell"},"dateModified":"2017-05-25T04:00:00+00:00","datePublished":"2017-05-25T04:00:00+00:00","description":"Or: Philosophy of Git","headline":"The Purpose of Git","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/git/2017/05/25/purpose-of-git.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Jeff Terrell"},"url":"https://rolemodel.design/git/2017/05/25/purpose-of-git.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item active"
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">The Purpose of Git</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2017-05-25T04:00:00+00:00" itemprop="datePublished">May 25, 2017
+        </time><p class="post-meta__data">Author: Jeff Terrell</p><p class="post-meta__data">Approver: Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h3 id="or-philosophy-of-git">Or: Philosophy of Git</h3>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>Use git to tell a story rather than to strictly record what happened.</p>
+
+<h2 id="two-views">Two views</h2>
+
+<p>There are two competing philosophies for how to use git. One view says that git
+should record <em>what happened</em>. What series of steps did the developers take
+to add this feature? The other view says that git should record <em>why things
+came to be as they are</em>. We’ll call the former view the <em>git as log</em> view and
+the latter view the <em>git as history</em> view.</p>
+
+<h2 id="our-recommendation">Our recommendation</h2>
+
+<p>At RoleModel, we prefer the <em>git as history</em> view. A log generally has less
+meaning to humans than a history. Although logs in general contain more data
+and often can be composed into a variety of stories, neither of these values is
+particularly useful in a git context: the commit contains all the change-level
+data of interest, and a variety of stories isn’t useful.</p>
+
+<p>Just as histories are more interesting and meaningful for humans to read than a
+daily chronicle of what happened when, so a history-based view of git will be
+more useful for (present and future) developers on a project.</p>
+
+<p>Also, at RoleModel we sometimes go to some length to ensure that the code we
+create is legible to humans (especially those hypothetical humans not yet on
+the project). We consider it worth the effort in all but very short term
+projects to optimize for the reader of code rather than the writer of code.</p>
+
+<p>We apply the same argument to git messages. It is definitely more difficult to
+rewrite history with git than to merely record what happened. You must learn
+(and, indeed, get comfortable with) <code class="language-plaintext highlighter-rouge">git rebase</code>, for example. But all future
+readers of the code will have an easier time understanding what happened.</p>
+
+<h2 id="tradeoffs">Tradeoffs</h2>
+
+<p>As with spikes and other short-lived projects, where code legibility is often
+not worth the cost of slower development speed, it may make sense for
+short-term projects to use a log-based view of git.</p>
+
+    </div>
+
+    <a class="u-url" href="/git/2017/05/25/purpose-of-git.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#or-philosophy-of-git">Or: Philosophy of Git</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#abstract">Abstract</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#two-views">Two views</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#our-recommendation">Our recommendation</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#tradeoffs">Tradeoffs</a></li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ES6 | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="ES6" />
+<meta name="author" content="Caleb Woods, Tim Irwin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Summary" />
+<meta property="og:description" content="Summary" />
+<link rel="canonical" href="https://rolemodel.design/rails/2016/11/09/es6.html" />
+<meta property="og:url" content="https://rolemodel.design/rails/2016/11/09/es6.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-11-09T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ES6" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Caleb Woods, Tim Irwin"},"dateModified":"2016-11-09T04:00:00+00:00","datePublished":"2016-11-09T04:00:00+00:00","description":"Summary","headline":"ES6","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/rails/2016/11/09/es6.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Caleb Woods, Tim Irwin"},"url":"https://rolemodel.design/rails/2016/11/09/es6.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item active"
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">ES6</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2016-11-09T04:00:00+00:00" itemprop="datePublished">Nov 9, 2016
+        </time><p class="post-meta__data">Author: Caleb Woods, Tim Irwin</p><p class="post-meta__data">Approver: Ken Auer, Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h2 id="summary">Summary</h2>
+
+<p>Including ES6 in Rails applications can be very useful. Using JavaScript packages that are only available/maintained in npm has traditionally been a problem with Rails application. This documents an approach chosen among a couple of different options.</p>
+
+<p>We settled upon <a href="https://github.com/Shopify/sprockets-commoner">sprockets-commoner</a> over webpack and browserify because it integrates with the Rails asset pipeline and least modifies the natural development of JavaScript components.</p>
+
+<h3 id="steps-to-upfit-your-rails-application">Steps to upfit your Rails application</h3>
+
+<ul>
+  <li>add <code class="language-plaintext highlighter-rouge">'expose window.[component_name]'</code> to the top of ES6 class files
+    <ul>
+      <li>if class needs to be available on <code class="language-plaintext highlighter-rouge">window</code>, see <code class="language-plaintext highlighter-rouge">react-rails</code>
+example below</li>
+    </ul>
+  </li>
+  <li>add <code class="language-plaintext highlighter-rouge">gem 'sprockets-commoner'</code> to Gemfile</li>
+  <li>add <code class="language-plaintext highlighter-rouge">.babelrc</code> to project root
+    <ul>
+      <li>
+        <p>add other presets as necessary (eg. react)</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="err">presets:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"es2015"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>add NPM dependencies to <code class="language-plaintext highlighter-rouge">package.json</code> (including react-dom, react-chartjs, etc.)</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"babel-core"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.14.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"babel-generator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.14.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"babel-helpers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.8.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"babel-polyfill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.7.4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"babel-types"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.14.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"babel-preset-es2015"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.9.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"babel-runtime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.6.1"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>add <code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> file</p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../images</span>
+<span class="c1">//= link_directory ../javascripts .js</span>
+<span class="c1">//= link_directory ../stylesheets .css</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="react-specific-steps">React specific steps</h4>
+
+<ul>
+  <li>rename .jsx files to .js</li>
+  <li>move propTypes out of class, and change syntax to <code class="language-plaintext highlighter-rouge">[class_name].propTypes = { ... }</code></li>
+  <li>
+    <p>modify <code class="language-plaintext highlighter-rouge">application.js</code> (NOTE: no space between last import and window.React)</p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= require jquery</span>
+<span class="c1">//= require turbolinks</span>
+<span class="c1">//= require react_ujs</span>
+<span class="c1">// require_tree ./components</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">babel-polyfill</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-dom</span><span class="dl">"</span>
+<span class="k">import</span> <span class="nx">DoughnutChart</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/DoughnutChart</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">MyForm</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/MyForm</span><span class="dl">'</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">React</span> <span class="o">=</span> <span class="nx">React</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">ReactDOM</span> <span class="o">=</span> <span class="nx">ReactDOM</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>add imports for React, ReactDOM, individual components (if individually importing)</li>
+      <li>set values on <code class="language-plaintext highlighter-rouge">window</code> for React and ReactDOM</li>
+      <li><code class="language-plaintext highlighter-rouge">require jquery</code></li>
+      <li><code class="language-plaintext highlighter-rouge">require react_ujs</code> (if using <code class="language-plaintext highlighter-rouge">react-rails</code> gem and view helper)</li>
+    </ul>
+  </li>
+  <li>add <code class="language-plaintext highlighter-rouge">gem 'react-rails'</code> to Gemfile</li>
+  <li>
+    <p>use <code class="language-plaintext highlighter-rouge">react-rails</code> helper method in views</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">=</span> <span class="n">react_component</span><span class="p">(</span><span class="s1">'ScorecardsDoughnutChart'</span><span class="p">,</span> <span class="n">graph_data</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="deployment">Deployment</h3>
+
+<p>Note: When deploying to Heroku, you will need to turn on an additional <a href="https://devcenter.heroku.com/articles/buildpacks#using-multiple-buildpacks">buildpack</a> for node.</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="https://github.com/Shopify/sprockets-commoner">sprockets-commoner</a> - serve assets</li>
+  <li><a href="https://github.com/reactjs/react-rails">react-rails</a> - provides Rails helper</li>
+</ul>
+
+<h3 id="testing">Testing</h3>
+
+<ul>
+  <li><a href="https://github.com/jejacks0n/teaspoon">Teaspoon</a> works with mocha and jasmine</li>
+  <li>add <code class="language-plaintext highlighter-rouge">gem 'teaspoon-mocha'</code> and <code class="language-plaintext highlighter-rouge">gem 'teaspoon-bundle'</code> to <code class="language-plaintext highlighter-rouge">Gemfile</code> (the latter is required because <code class="language-plaintext highlighter-rouge">sprockets-commoner</code> does not recognize teaspoon by default, see <a href="https://github.com/Shopify/sprockets-commoner">here</a>)</li>
+  <li>run <code class="language-plaintext highlighter-rouge">rails generate teaspoon:install</code></li>
+  <li>edit <code class="language-plaintext highlighter-rouge">teaspoon_env.rb</code> to include <code class="language-plaintext highlighter-rouge">suite.boot_partial = 'bundle_boot'</code></li>
+  <li>rename all tests to end with <code class="language-plaintext highlighter-rouge">_spec.js</code></li>
+  <li>run teaspoon with <code class="language-plaintext highlighter-rouge">RAILS_ENV=test rake teaspoon</code></li>
+  <li>override default <code class="language-plaintext highlighter-rouge">teaspoon</code> rake task to force RAILS_ENV=test, and ensure teaspoon tests run with <code class="language-plaintext highlighter-rouge">rake</code></li>
+</ul>
+
+    </div>
+
+    <a class="u-url" href="/rails/2016/11/09/es6.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#summary">Summary</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#steps-to-upfit-your-rails-application">Steps to upfit your Rails application</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#react-specific-steps">React specific steps</a></li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#deployment">Deployment</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#references">References</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

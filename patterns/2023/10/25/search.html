@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Search | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Search" />
+<meta name="author" content="Andy Cohen, Reed Law" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Search" />
+<meta property="og:description" content="Search" />
+<link rel="canonical" href="https://rolemodel.design/patterns/2023/10/25/search.html" />
+<meta property="og:url" content="https://rolemodel.design/patterns/2023/10/25/search.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Search" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Andy Cohen, Reed Law"},"dateModified":"2023-10-25T04:00:00+00:00","datePublished":"2023-10-25T04:00:00+00:00","description":"Search","headline":"Search","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/patterns/2023/10/25/search.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Andy Cohen, Reed Law"},"url":"https://rolemodel.design/patterns/2023/10/25/search.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item active"
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Search</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2023-10-25T04:00:00+00:00" itemprop="datePublished">Oct 25, 2023
+        </time><p class="post-meta__data">Author: Andy Cohen, Reed Law</p><p class="post-meta__data">Approver: Andy Cohen, Reed Law</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h1 id="search">Search</h1>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>Many web applications include tables or grids of data that can be searched, sorted, filtered and paginated. There are some patterns and tools we have found useful when implementing data grids. <a href="https://github.com/activerecord-hackery/ransack">Ransack</a> helps create advanced search forms using predicates and search matchers which can be encoded directly into URL params. With some front-end interactivity, it’s possible to build a multi-model, multi-attribute, filterable search.</p>
+
+<p><img src="ransack_search_form.png" alt="Example search form built with Ransack" /></p>
+
+<p>Data grids include pagination and for that we have found <a href="https://github.com/kaminari/kaminari">Kaminari</a> to work. Another gem for full text search in PostgreSQL is <a href="https://github.com/Casecommons/pg_search">pg_search</a>.</p>
+
+<p>When dealing with nested associations or other complex joins, a database view makes implementing data grids easier. <a href="https://github.com/scenic-views/scenic">Scenic</a> makes it possible to create SQL views and update them using migrations.</p>
+
+<p>All of these tools work well with each other so we mix and match as needed.</p>
+
+<h2 id="better-search">Better Search</h2>
+
+<h3 id="use-http-get-requests">Use HTTP GET requests</h3>
+<p>Encoding search params in URLs allows discoverability, shareability, and extensibility.</p>
+
+<p>🟥 Bad</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="sx">%= search_form_for @q, html: { method: :post } do |f| %&gt;
+</span></code></pre></div></div>
+
+<p>🟩 Good</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="sx">%= search_form_for @q do |f| %&gt;
+</span></code></pre></div></div>
+
+<p>Note that there is an <a href="https://github.com/activerecord-hackery/ransack/blob/fb6027d805997a7856a5b4b67d98c35afd46f8e5/docs/docs/getting-started/advanced-mode.md">advanced mode</a> that may require use of HTTP POST because queries could exceed the character limits of URLs.</p>
+
+    </div>
+
+    <a class="u-url" href="/patterns/2023/10/25/search.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h1"><a href="#search">Search</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#rationale">Rationale</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#better-search">Better Search</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#use-http-get-requests">Use HTTP GET requests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

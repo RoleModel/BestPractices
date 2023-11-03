@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Squashing Commits | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Squashing Commits" />
+<meta name="author" content="Caleb Woods, Jeff Terrell" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="At RoleModel we generally recommend the squashing of commits on a feature branch before merging. This provides the following benefits:" />
+<meta property="og:description" content="At RoleModel we generally recommend the squashing of commits on a feature branch before merging. This provides the following benefits:" />
+<link rel="canonical" href="https://rolemodel.design/git/2015/11/10/squashing.html" />
+<meta property="og:url" content="https://rolemodel.design/git/2015/11/10/squashing.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-11-10T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Squashing Commits" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Caleb Woods, Jeff Terrell"},"dateModified":"2015-11-10T04:00:00+00:00","datePublished":"2015-11-10T04:00:00+00:00","description":"At RoleModel we generally recommend the squashing of commits on a feature branch before merging. This provides the following benefits:","headline":"Squashing Commits","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/git/2015/11/10/squashing.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Caleb Woods, Jeff Terrell"},"url":"https://rolemodel.design/git/2015/11/10/squashing.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item active"
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Squashing Commits</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2015-11-10T04:00:00+00:00" itemprop="datePublished">Nov 10, 2015
+        </time><p class="post-meta__data">Author: Caleb Woods, Jeff Terrell</p><p class="post-meta__data">Approver: Ken Auer, Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <p>At RoleModel we generally recommend the squashing of commits on a feature branch
+before merging. This provides the following benefits:</p>
+
+<ol>
+  <li>Single commit to reference task and PR numbers
+(see <a href="merge-strategies">Merge Strategies</a>)</li>
+  <li>Ease of rebasing features when included in other branches like release
+branches (avoids complicated “rebase thrashing”)</li>
+  <li>Single place to provide in depth explanation of the feature (see
+<a href="commit-messages">Commit Messages</a> best practice)</li>
+</ol>
+
+<h2 id="tradeoffs">Tradeoffs</h2>
+
+<p>In some cases, there may be two (or more) logically separated changes that you
+want to keep separate. For example, a rule of refactoring is, “First make the
+change easy, and then make the easy change”–which really is two logical steps
+that are often relatively separate. In that case, using two (or more) commits is
+acceptable. The important things are that each commit merged into a release
+branch is (1) logically separated from other commits and (2) well described.</p>
+
+<p>Generally speaking, though, it usually makes the most sense to squash all of the
+code in a feature branch together.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Here is an example that we’ll squash. Let’s assume we have the following state
+in our git repository.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log --decorate --oneline --graph
+* b9f319c (HEAD -&gt; new-branch, origin/new-branch) Update API version
+* cab2298 git-ignore more files
+* 08139c2 (origin/release-v12, release-v12) [TR#564] Add company codes as message filter parameter
+* c46bd09 [TR#672] Create dev API server
+* 19ccdc5 [TR#571] Add simple mock-json test for multi-company feature
+* c943c35 [TR#650] Improve testing approach for API responses
+* 851fcf4 [TR#576] Add saved filters privilege
+...
+</code></pre></div></div>
+
+<p>From that output we can see that we have two commits unique to our feature
+branch. If we rebase onto the <code class="language-plaintext highlighter-rouge">release-v12</code> branch, we will replay those two
+commits onto the current <code class="language-plaintext highlighter-rouge">HEAD</code> of <code class="language-plaintext highlighter-rouge">release-v12</code>. By itself this would be
+boring, leaving us where we started. But with the <code class="language-plaintext highlighter-rouge">-i</code> (or <code class="language-plaintext highlighter-rouge">--interactive</code>)
+switch, we can change our instructions to the rebase operation.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git rebase -i release-v12
+</code></pre></div></div>
+
+<p>Running this command will open your editor with something that looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pick cab2298 git-ignore more files
+pick b9f319c Update API version
+# Rebase 08139c2..b9f319c onto 08139c2
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+</code></pre></div></div>
+
+<p>This shows all the commits that will be replayed. To squash everything into a
+single commit we just change every commit after the first to <code class="language-plaintext highlighter-rouge">squash</code>.
+(Abbreviating to <code class="language-plaintext highlighter-rouge">s</code> works too.)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pick cab2298 git-ignore more files
+squash b9f319c Update API version
+</code></pre></div></div>
+
+<p>(Power tip: if you use vim or a sufficiently vim-like editor, the following
+incantation will accomplish this change: <code class="language-plaintext highlighter-rouge">:2,$s/^pick/squash/</code>)</p>
+
+<p>Save and close the file. That will trigger git to open your editor to edit the
+commit message:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This is a combination of 2 commits.
+# The first commit's message is:
+git-ignore more files
+# This is the 2nd commit message:
+Update API version
+</code></pre></div></div>
+
+<p>Edit this to be the final commit message according
+to <a href="commit-messages">our standards</a>.</p>
+
+<p>Save and close the file. You can now see the single commit in the log.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log --decorate --oneline --graph
+* 6fd7f35 (HEAD -&gt; new-branch, origin/new-branch) [TR#678] &lt;My final commit message&gt;
+* 08139c2 (origin/release-v12, release-v12) [TR#564] Add company codes as message filter parameter
+* c46bd09 [TR#672] Create dev API server
+* 19ccdc5 [TR#571] Add simple mock-json test for multi-company feature
+* c943c35 [TR#650] Improve testing approach for API responses
+* 851fcf4 [TR#576] Add saved filters privilege
+...
+</code></pre></div></div>
+
+    </div>
+
+    <a class="u-url" href="/git/2015/11/10/squashing.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#tradeoffs">Tradeoffs</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#example">Example</a></li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

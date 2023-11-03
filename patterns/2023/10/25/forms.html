@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Forms | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Forms" />
+<meta name="author" content="Andy Cohen, Reed Law" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Forms" />
+<meta property="og:description" content="Forms" />
+<link rel="canonical" href="https://rolemodel.design/patterns/2023/10/25/forms.html" />
+<meta property="og:url" content="https://rolemodel.design/patterns/2023/10/25/forms.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Forms" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Andy Cohen, Reed Law"},"dateModified":"2023-10-25T04:00:00+00:00","datePublished":"2023-10-25T04:00:00+00:00","description":"Forms","headline":"Forms","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/patterns/2023/10/25/forms.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Andy Cohen, Reed Law"},"url":"https://rolemodel.design/patterns/2023/10/25/forms.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item active"
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Forms</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2023-10-25T04:00:00+00:00" itemprop="datePublished">Oct 25, 2023
+        </time><p class="post-meta__data">Author: Andy Cohen, Reed Law</p><p class="post-meta__data">Approver: Andy Cohen, Reed Law</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h1 id="forms">Forms</h1>
+
+<h2 id="why">Why</h2>
+
+<p>Forms are crucial to nearly all apps.  They tend to comprise much of an app’s view layer complexity.  For that reason, consistent design &amp; user interaction is very important.</p>
+
+<h2 id="tools">Tools</h2>
+
+<p><a href="https://github.com/heartcombo/simple_form">SimpleForm</a></p>
+
+<h2 id="useful-patterns-embrace-these">Useful Patterns (embrace these)</h2>
+
+<ul>
+  <li>ActiveModel Form Objects <!-- TODO: concrete examples --></li>
+  <li>Lean on existing <a href="authorization.md">Policies</a> for collection scoping</li>
+  <li>custom inputs <!-- TODO: link to currency input example --></li>
+</ul>
+
+<h2 id="code-smells-avoid-these">Code Smells (avoid these)</h2>
+
+<ol>
+  <li>Passing lots of configuration options into input helpers. In most cases, <code class="language-plaintext highlighter-rouge">f.input :attr_name</code> should be sufficient.
+    <ul>
+      <li>If you find yourself passing the same options over and over again, those options probably belong in <code class="language-plaintext highlighter-rouge">config/initializers/simpleform.rb</code></li>
+      <li>consider implementing a custom input <code class="language-plaintext highlighter-rouge">f.input :total_cost, as: :currency</code></li>
+    </ul>
+  </li>
+  <li>Explicitly setting the form action (<code class="language-plaintext highlighter-rouge">url</code> option)
+    <ul>
+      <li>
+        <!-- TODO: explain (tldr; resource routing/ RESTful controllers, etc) -->
+      </li>
+    </ul>
+  </li>
+  <li>Custom Stimulus controllers used on only 1 form
+    <ul>
+      <li>This boils down to consistency.  Forms are often where we want to leverage JavaScript to enhance the user experience.  However, custom behavior should feel consistent between forms &amp; Stimulus is flexible enough that you should be able to reuse the same controller between forms. So long as your forms adhere to the other patterns mentioned in this document.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">turbo: false</code>
+    <ul>
+      <li>Turbo is a core component of modern Rails apps.  Turning it off is an indication that something is broken.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><a href="https://api.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html">ActionView::FormBuilder docs</a></li>
+  <li><a href="https://rm-almanac.herokuapp.com/presentations/388">Forms Chow Talk</a></li>
+  <li><a href="https://github.com/RoleModel/rolemodel_rails/tree/master/lib/generators/rolemodel/simple_form">RoleModel Rails Generator</a></li>
+</ul>
+
+    </div>
+
+    <a class="u-url" href="/patterns/2023/10/25/forms.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h1"><a href="#forms">Forms</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#why">Why</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#tools">Tools</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#useful-patterns-embrace-these">Useful Patterns (embrace these)</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#code-smells-avoid-these">Code Smells (avoid these)</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

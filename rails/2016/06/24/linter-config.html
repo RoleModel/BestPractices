@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linter Config | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Linter Config" />
+<meta name="author" content="Wes Rich, Caleb Woods" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Using Code Linters on Rails" />
+<meta property="og:description" content="Using Code Linters on Rails" />
+<link rel="canonical" href="https://rolemodel.design/rails/2016/06/24/linter-config.html" />
+<meta property="og:url" content="https://rolemodel.design/rails/2016/06/24/linter-config.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-06-24T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linter Config" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Wes Rich, Caleb Woods"},"dateModified":"2016-06-24T04:00:00+00:00","datePublished":"2016-06-24T04:00:00+00:00","description":"Using Code Linters on Rails","headline":"Linter Config","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/rails/2016/06/24/linter-config.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Wes Rich, Caleb Woods"},"url":"https://rolemodel.design/rails/2016/06/24/linter-config.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item active"
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Linter Config</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2016-06-24T04:00:00+00:00" itemprop="datePublished">Jun 24, 2016
+        </time><p class="post-meta__data">Author: Wes Rich, Caleb Woods</p><p class="post-meta__data">Approver: Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h2 id="using-code-linters-on-rails">Using Code Linters on Rails</h2>
+
+<h2 id="rake-task">Rake Task</h2>
+<p>A Rake Task can be set up to run all of the linters contained in this document.
+The RoleModel Rails Template contains a copy of this file, with a configuration
+setting for determining if the <code class="language-plaintext highlighter-rouge">abort</code> line should be inserted into the task.</p>
+
+<p>This Rake Task assumes that the gems for running the linters have been set up
+according to the documentation below.</p>
+
+<h3 id="running-linters">Running Linters</h3>
+<p>The Lint Rake file will provide the following Rake tasks:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Runs all linters, configurable pass/fail in task code</span>
+bundle <span class="nb">exec </span>rake lint
+<span class="c"># Linters individually, always return pass/fail exit codes</span>
+bundle <span class="nb">exec </span>rake bundle:audit
+bundle <span class="nb">exec </span>rake rubocop
+bundle <span class="nb">exec </span>rake scss_lint
+bundle <span class="nb">exec </span>rake eslint:run
+</code></pre></div></div>
+
+<h3 id="lintrake"><code class="language-plaintext highlighter-rouge">lint.rake</code></h3>
+
+<p><a href="https://raw.githubusercontent.com/RoleModel/Rails-Template/master/templates/lib/tasks/lint.rake.tt">ERB Templated <code class="language-plaintext highlighter-rouge">lint.rake</code> File</a></p>
+
+<h2 id="bundler-audit">Bundler Audit</h2>
+<p>Bundler Audit reviews your Gemfile for any gems which need to be updated for
+security notices.</p>
+
+<ul>
+  <li><a href="https://github.com/rubysec/bundler-audit">Bundler-Audit Documentation</a></li>
+</ul>
+
+<h3 id="installing-bundler-audit">Installing Bundler Audit</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'bundler-audit'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="running-bundler-audit">Running Bundler Audit</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle-audit check <span class="nt">--update</span>
+</code></pre></div></div>
+
+<h2 id="rubocop">Rubocop</h2>
+<p>Rubocop will determine if your code matches the Ruby style guide (or your
+project’s configured adjustments).</p>
+
+<ul>
+  <li><a href="http://rubocop.readthedocs.io/en/latest/">Rubocop Documentation</a></li>
+  <li><a href="https://github.com/RoleModel/shared_rubocop">Rubocop Shared Config</a></li>
+</ul>
+
+<h3 id="create-the-config-file">Create the config file</h3>
+<p>Create a <code class="language-plaintext highlighter-rouge">.rubocop.yml</code> config file in the root of your project:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">inherit_from</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">https://raw.githubusercontent.com/RoleModel/shared_rubocop/master/.rubocop.yml</span>
+
+<span class="c1"># This is a minimum Rubocop checks against, not necessarily what is actually</span>
+<span class="c1">#   used by the project.</span>
+<span class="na">AllCops</span><span class="pi">:</span>
+  <span class="na">TargetRubyVersion</span><span class="pi">:</span> <span class="m">2.2</span>
+</code></pre></div></div>
+
+<p>When Rubocop is downloading the remote shared config file, it puts it in the
+project’s root directory. We’ll want to add it to <code class="language-plaintext highlighter-rouge">.gitignore</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ignore Rubocop's local copy of our shared Rubocop config</span>
+.rubocop-https<span class="k">*</span>
+</code></pre></div></div>
+
+<h3 id="install-rubocop">Install Rubocop</h3>
+<p>Installing the gem under development and test environments allows your local,
+as well as Sempahore or other CI services, to be able to run Rubocop.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'rubocop'</span><span class="p">,</span> <span class="ss">require: </span><span class="kp">false</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>And run <code class="language-plaintext highlighter-rouge">bundle</code> to install</p>
+
+<h3 id="running-rubocop">Running Rubocop</h3>
+<p>Assuming all config files are set up as specified above, and the gem is installed,
+running Rubocop in various forms can be done as follows:</p>
+
+<h4 id="local">Local</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>rubocop
+</code></pre></div></div>
+
+<h4 id="editor-plugins">Editor Plugins</h4>
+<ul>
+  <li><a href="https://atom.io/packages/linter-rubocop">Atom</a></li>
+</ul>
+
+<h4 id="semaphore--other-ci">Semaphore / Other CI</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>rubocop
+</code></pre></div></div>
+
+<p>You can also tell Semaphore to only exit with a failing error code on ERROR and
+above by specifying a <code class="language-plaintext highlighter-rouge">--fail-level</code> argument:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>rubocop <span class="nt">--fail-level</span> ERROR
+</code></pre></div></div>
+
+<p>Additionally it can be useful to have Rubocop generate a “TODO” file for the current violations.  This ensures things pass in the current state and gives a nice list of items to fix.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>rubocop <span class="nt">--auto-gen-config</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat .rubocop_todo.yml
+# Offense count: 3
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Enabled: false
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: line_count_dependent, lambda, literal
+Style/Lambda:
+  Enabled: false
+</code></pre></div></div>
+
+<h2 id="eslint">ESLint</h2>
+<ul>
+  <li><a href="http://eslint.org/docs/user-guide">ESLint Documentation</a></li>
+</ul>
+
+<h3 id="create-the-config-file-1">Create the config file</h3>
+<p>You’ll want to copy these two files into your project directory:</p>
+<ul>
+  <li><a href="https://github.com/RoleModel/Rails-Template/blob/master/templates/.eslintrc.js">.eslintrc.js</a></li>
+  <li>
+    <p><a href="https://github.com/RoleModel/Rails-Template/blob/master/templates/.eslintignore">.eslintignore</a></p>
+  </li>
+  <li>Note: Need to update various <a href="http://eslint.org/docs/user-guide/configuring#specifying-environments">environments</a> (i.e. jQuery)</li>
+</ul>
+
+<h3 id="rails">Rails</h3>
+
+<h4 id="install-eslint">Install ESLint</h4>
+<p>Follow the directions for <a href="https://github.com/appfolio/eslint-rails">eslint-rails</a>
+setup. This includes a different location for your config files!</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'eslint-rails'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="stand-alone">Stand Alone</h3>
+
+<h4 id="install-eslint-1">Install ESLint</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> eslint
+</code></pre></div></div>
+
+<h4 id="running-eslint">Running ESLint</h4>
+
+<h5 id="local-1">Local</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run ESLint, showing Errors and Warnings</span>
+eslint <span class="s1">'**/*.js'</span>
+<span class="c"># Only show Errors (ignore Warnings)</span>
+eslint <span class="nt">--quiet</span> <span class="s1">'**/*.js'</span>
+</code></pre></div></div>
+
+<h5 id="editor-plugins-1">Editor Plugins</h5>
+<ul>
+  <li><a href="https://atom.io/packages/linter-eslint">Atom</a></li>
+</ul>
+
+<h5 id="semaphore--other-ci-1">Semaphore / Other CI</h5>
+<p>You can run either of the Local commands above on Semaphore / CI environments.
+However, if you want to pass the build, regardless of any errors:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eslint <span class="s1">'**/*.js'</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Please clean up any errors"</span>
+</code></pre></div></div>
+
+<h2 id="scss-lint">SCSS Lint</h2>
+<ul>
+  <li><a href="https://github.com/brigade/scss-lint">SCSS Lint Documentation</a></li>
+</ul>
+
+<h3 id="configuration">Configuration</h3>
+<p>We’re currently using the default config file. No action required at this time.</p>
+
+<h3 id="install-scss-lint">Install SCSS Lint</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'scss_lint'</span><span class="p">,</span> <span class="ss">require: </span><span class="kp">false</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="running-scss-lint">Running SCSS Lint</h3>
+
+<h4 id="local-2">Local</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scss-lint
+</code></pre></div></div>
+
+<h4 id="editor-plugins-2">Editor Plugins</h4>
+<ul>
+  <li><a href="https://atom.io/packages/linter-scss-lint">Atom</a></li>
+</ul>
+
+<h4 id="semaphore--other-ci-2">Semaphore / Other CI</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scss-lint
+</code></pre></div></div>
+
+    </div>
+
+    <a class="u-url" href="/rails/2016/06/24/linter-config.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#using-code-linters-on-rails">Using Code Linters on Rails</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#rake-task">Rake Task</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#running-linters">Running Linters</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#lintrake">lint.rake</a></li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#bundler-audit">Bundler Audit</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#installing-bundler-audit">Installing Bundler Audit</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#running-bundler-audit">Running Bundler Audit</a></li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#rubocop">Rubocop</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#create-the-config-file">Create the config file</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#install-rubocop">Install Rubocop</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#running-rubocop">Running Rubocop</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#local">Local</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#editor-plugins">Editor Plugins</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#semaphore--other-ci">Semaphore / Other CI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#eslint">ESLint</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#create-the-config-file-1">Create the config file</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#rails">Rails</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#install-eslint">Install ESLint</a></li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#stand-alone">Stand Alone</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#install-eslint-1">Install ESLint</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#running-eslint">Running ESLint</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h5"><a href="#local-1">Local</a></li>
+<li class="table-of-contents__item table-of-contents-h5"><a href="#editor-plugins-1">Editor Plugins</a></li>
+<li class="table-of-contents__item table-of-contents-h5"><a href="#semaphore--other-ci-1">Semaphore / Other CI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#scss-lint">SCSS Lint</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#configuration">Configuration</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#install-scss-lint">Install SCSS Lint</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#running-scss-lint">Running SCSS Lint</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#local-2">Local</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#editor-plugins-2">Editor Plugins</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#semaphore--other-ci-2">Semaphore / Other CI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

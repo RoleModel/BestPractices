@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>RoleModel Software Best Practices | Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="RoleModel Software Best Practices" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+<meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+<link rel="canonical" href="https://rolemodel.design/styleguide/" />
+<meta property="og:url" content="https://rolemodel.design/styleguide/" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="RoleModel Software Best Practices" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","headline":"RoleModel Software Best Practices","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"}},"url":"https://rolemodel.design/styleguide/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="v-stack gap-md margin-y-md">
+  <h1></h1>
+
+  <h1 id="styleguide">Styleguide</h1>
+
+<h2 id="framework">Framework</h2>
+
+<p>This website is built with <a href="https://jekyllrb.com/docs/">Jekyll</a> for the static site generation.
+It also uses <a href="https://docs.optics.rolemodel.design/">Optics</a> for all its styles.</p>
+
+<h2 id="adding-posts">Adding Posts</h2>
+
+<p>New posts can be added to the <code class="language-plaintext highlighter-rouge">/_posts</code> folder and will show up in the <code class="language-plaintext highlighter-rouge">All Posts</code> page.</p>
+
+<p>Static Pages can be added to the <code class="language-plaintext highlighter-rouge">/_static_pages</code> folder which will automatically add a link in the sidebar under the Introduction section</p>
+
+<p>If you want to create a new category like the existing ones, you can create a folder like <code class="language-plaintext highlighter-rouge">/support</code>, add a <code class="language-plaintext highlighter-rouge">/support/_posts</code> folder and any posts inside will have the <code class="language-plaintext highlighter-rouge">support</code> category in their front-matter. You can add an <code class="language-plaintext highlighter-rouge">index.md</code> and loop through the posts to create links.</p>
+
+<h2 id="jekyll-plugins">Jekyll Plugins</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">jekyll-timeago</code> plugin is available which allows you to create timeago dates like so <code class="language-plaintext highlighter-rouge">{ { '2020-04-13T10:20:00Z' | timeago } }</code></p>
+
+<ul>
+  <li>Original date - 2020-04-13T10:20:00Z</li>
+  <li>With timeago filter - 3 years and 6 months ago</li>
+</ul>
+
+<h2 id="syntax-highlighting">Syntax Highlighting</h2>
+
+<p>You can also use syntax highlighing with the standard markdown syntax.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is just plain text
+</code></pre></div></div>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hi, #{name}</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">print_hi</span><span class="p">(</span><span class="dl">'</span><span class="s1">Tom</span><span class="dl">'</span><span class="p">)</span>
+<span class="c1">// prints 'Hi, Tom' to STDOUT.</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Another Key"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Nested Key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nested Value"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"One More Key"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Item 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Item 2"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@mixin</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:root</span> <span class="p">{</span>
+  <span class="py">--custom-property</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-info alert--muted"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"material-symbols-outlined alert__icon"</span><span class="nt">&gt;</span>info<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert__messages"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert__title"</span><span class="nt">&gt;</span>Intended audience<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert__description"</span><span class="nt">&gt;</span>
+      This article is written for developers that are familiar with the basics of React,
+      but are still pretty early in their journey.
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>If a syntax used does not show the language tag, you can add a new one by adding the following lines to the <code class="language-plaintext highlighter-rouge">_sass/componets/syntax-highlighting.scss</code> file</p>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.language-</span><span class="p">{</span><span class="nt">new</span> <span class="nt">language</span><span class="p">}</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nv">%language-badge</span><span class="p">;</span>
+
+  <span class="k">&amp;</span><span class="nd">::before</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s2">"{new language}"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="optics-components">Optics Components</h2>
+
+<p>Any components available in Optics are available here.</p>
+
+<p>E.G. <a href="https://docs.optics.rolemodel.design/?path=/docs/components-alert--info">The Alert Component</a> can be used for notices, callouts, and warnings</p>
+
+<div class="alert-info alert--muted">
+  <span class="material-symbols-outlined alert__icon">info</span>
+  <div class="alert__messages">
+    <div class="alert__title">Intended audience</div>
+    <div class="alert__description">
+      This article is written for developers that are familiar with the basics of React, but are still pretty early in their journey.
+    </div>
+  </div>
+</div>
+
+<div class="alert-danger alert--muted">
+  <div class="alert__messages">
+    <div class="alert__description text-center">
+      Warning: Each child in a list should have a unique "key" prop.
+    </div>
+  </div>
+</div>
+
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

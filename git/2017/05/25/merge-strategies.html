@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Merge Strategies | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Merge Strategies" />
+<meta name="author" content="Jeff Terrell" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Once your feature branch is approved by a reviewer and ready to merge, how do you merge it into the release branch?" />
+<meta property="og:description" content="Once your feature branch is approved by a reviewer and ready to merge, how do you merge it into the release branch?" />
+<link rel="canonical" href="https://rolemodel.design/git/2017/05/25/merge-strategies.html" />
+<meta property="og:url" content="https://rolemodel.design/git/2017/05/25/merge-strategies.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-05-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Merge Strategies" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jeff Terrell"},"dateModified":"2017-05-25T04:00:00+00:00","datePublished":"2017-05-25T04:00:00+00:00","description":"Once your feature branch is approved by a reviewer and ready to merge, how do you merge it into the release branch?","headline":"Merge Strategies","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/git/2017/05/25/merge-strategies.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Jeff Terrell"},"url":"https://rolemodel.design/git/2017/05/25/merge-strategies.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item active"
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Merge Strategies</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2017-05-25T04:00:00+00:00" itemprop="datePublished">May 25, 2017
+        </time><p class="post-meta__data">Author: Jeff Terrell</p><p class="post-meta__data">Approver: Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <p>Once your feature branch is approved by a reviewer and ready to merge, how do
+you merge it into the <a href="release-branching">release branch</a>?</p>
+
+<p>The <a href="development-workflow">Git Development Workflow</a> best practice
+describes the process at a high level, including rebasing, squashing, merging,
+pushing, and cleaning up. This document provides more detail about the merge
+step.</p>
+
+<h3 id="background">Background</h3>
+
+<p>There are two types of merges: fast-forward (FF) merges and non-fast-forward
+(non-FF) merges. Also, non-FF merges can be <em>linearizable</em>, meaning there is no
+ambiguity about the logically linear ordering of commits. Note that linearizable
+non-FF merges can be reduced to a FF merge, a property that we discuss below.</p>
+
+<p>Let’s consider the difference with an example. Say this is your starting point
+(ignoring the complexity of a release branch for now):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A   B   C
+o---o---o master
+     \
+      F   G
+      o---o feature
+</code></pre></div></div>
+
+<p>A non-linearizable non-FF merge of <code class="language-plaintext highlighter-rouge">feature</code> into <code class="language-plaintext highlighter-rouge">master</code> would look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A   B   C    M
+o---o---o---o master
+     \     /
+      F   G
+      o---o feature
+</code></pre></div></div>
+
+<p>Here <code class="language-plaintext highlighter-rouge">M</code> is a <em>merge commit</em>, which is a commit with more than one parent
+commit. Note that even if the <code class="language-plaintext highlighter-rouge">feature</code> branch is deleted, the structure of the
+commit history remains the same, and <code class="language-plaintext highlighter-rouge">M</code> is still needed.</p>
+
+<p>The other two examples require rebasing <code class="language-plaintext highlighter-rouge">feature</code> onto master first, resulting
+in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A   B   C
+o---o---o master
+         \
+          F'  G'
+          o---o feature
+</code></pre></div></div>
+
+<p>Now a <em>linearizable</em> non-FF merge is possible, which looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A   B   C        M'
+o---o---o--------o master
+         \      /
+          F'  G'
+          o---o feature
+</code></pre></div></div>
+
+<p>In this case, we still have a merge commit <code class="language-plaintext highlighter-rouge">M'</code> with two parents. And again,
+even if the <code class="language-plaintext highlighter-rouge">feature</code> branch is deleted, the git history still contains the
+above structure because of the merge commit. The history is linearizable
+because, despite the merge commit, there is no ambiguity about the logical
+ordering of commits. More technically, this is true because there is no overlap
+between the two parents of <code class="language-plaintext highlighter-rouge">M'</code>: all the commits of one branch (the feature
+branch) come after all the commits of the other branch (the master branch).</p>
+
+<p>Lastly, with a rebased <code class="language-plaintext highlighter-rouge">feature</code> branch, we can instead to a FF merge, which
+looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A   B   C   F'  G'
+o---o---o---o---o master, feature
+</code></pre></div></div>
+
+<p>In this case, there are no merge commits and a simple linear structure. Deleting
+the <code class="language-plaintext highlighter-rouge">feature</code> branch again has no consequence on the structure of the history
+but merely removes the label.</p>
+
+<h3 id="recommendation">Recommendation</h3>
+
+<p>As described above, there are three types of merge strategies:</p>
+
+<ol>
+  <li>non-linearizable non-FF merges (discouraged)</li>
+  <li>linearizable non-FF merges (sometimes useful)</li>
+  <li>FF merges (recommended)</li>
+</ol>
+
+<p>The value we generally prioritize at RoleModel is understandability for humans.
+In terms of git, we want humans reading the git history to be able to navigate
+and understand the history as easily as possible.</p>
+
+<p>For that reason, we discourage Strategy 1. Although such merges tend to be
+easier to create since no rebasing is required, they are in almost every case
+harder for humans to understand and reason about. This is primarily because they
+are not linearizable. (You can read more about the tradeoffs of linear histories
+in the <a href="linear-history">Linear History</a> best practice.)</p>
+
+<p>We encourage the use of Strategy 3. Just as FF merges were easier to explain
+above, they are also easier to understand and reason about. They can be more
+complicated to create because you must rebase, but we generally find the cost to
+be worth paying in all but short-lived projects.
+(The <a href="purpose-of-git">Purpose of Git</a> best practice discusses this
+tradeoff at a more philosophical level.)</p>
+
+<p>Finally, we consider it useful on occasion to use Strategy 2, when it is worth
+recording in the historical record the fact that multiple commits are closely
+related. We discourage Strategy 2 if there is only a single commit to be merged,
+since the merge commit itself provides no additional information. <strong>Note that
+merge commits can be lost in <code class="language-plaintext highlighter-rouge">git rebase</code> events and will not show up in <code class="language-plaintext highlighter-rouge">git
+blame</code> lists.</strong></p>
+
+<h3 id="appendix-git-commands">Appendix: git commands</h3>
+
+<p>So far, we’ve elided the commands one would use to create the various kinds of
+history, in order not to distract from the concepts. We include them here for
+completeness.</p>
+
+<p>To create a non-linearizable non-FF merge of <code class="language-plaintext highlighter-rouge">feature</code> into <code class="language-plaintext highlighter-rouge">master</code>, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout master
+git merge --no-ff feature
+</code></pre></div></div>
+
+<p>To rebase feature onto the latest commit(s) of <code class="language-plaintext highlighter-rouge">master</code>, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout feature
+git rebase master
+</code></pre></div></div>
+
+<p>To create a linearizable non-FF merge (assuming the above rebase step has
+already happened), do the same <code class="language-plaintext highlighter-rouge">--no-ff</code> merge as above:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout master
+git merge --no-ff feature
+</code></pre></div></div>
+
+<p>To create an FF merge (assuming the above rebase step has already happened and
+the commits are already <a href="squashing">squashed</a> as necessary), say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout master
+git merge --ff-only feature
+</code></pre></div></div>
+
+<p>Typically, you will want to delete the <code class="language-plaintext highlighter-rouge">feature</code> branch (locally and on
+<code class="language-plaintext highlighter-rouge">origin</code>) after it has been merged into <code class="language-plaintext highlighter-rouge">master</code>. To do that, assuming you’re
+already on the <code class="language-plaintext highlighter-rouge">master</code> branch, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch -d feature
+git push origin --delete feature  # or `git push origin :feature`
+</code></pre></div></div>
+
+    </div>
+
+    <a class="u-url" href="/git/2017/05/25/merge-strategies.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#background">Background</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#recommendation">Recommendation</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#appendix-git-commands">Appendix: git commands</a></li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

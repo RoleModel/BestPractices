@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Git Setup | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Git Setup" />
+<meta name="author" content="Ken Auer" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Setting up git" />
+<meta property="og:description" content="Setting up git" />
+<link rel="canonical" href="https://rolemodel.design/git/2013/10/16/git-setup.html" />
+<meta property="og:url" content="https://rolemodel.design/git/2013/10/16/git-setup.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-10-16T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Git Setup" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ken Auer"},"dateModified":"2013-10-16T04:00:00+00:00","datePublished":"2013-10-16T04:00:00+00:00","description":"Setting up git","headline":"Git Setup","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/git/2013/10/16/git-setup.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Ken Auer"},"url":"https://rolemodel.design/git/2013/10/16/git-setup.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item active"
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Git Setup</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2013-10-16T04:00:00+00:00" itemprop="datePublished">Oct 16, 2013
+        </time><p class="post-meta__data">Author: Ken Auer</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h2 id="setting-up-git">Setting up git</h2>
+
+<p>If git is not installed, it can be installed via your operating system’s package
+manager (e.g. Homebrew on MacOS).</p>
+
+<p>We recommend also installing <a href="https://github.com/github/hub">hub</a>, a
+command-line tool which adds additional git functionality for working with
+Github. (It’s also available in Homebrew on MacOS.) The normal installation of
+hub aliases the <code class="language-plaintext highlighter-rouge">git</code> command to call <code class="language-plaintext highlighter-rouge">hub</code>, because hub will automatically
+delegate any commands it doesn’t recognize directly to git. To do that, add a
+line like the following to your shell’s initialization file (<code class="language-plaintext highlighter-rouge">~/.bash_profile</code>,
+or <code class="language-plaintext highlighter-rouge">~/.zprofile</code> for zsh):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>alias git='hub'
+</code></pre></div></div>
+
+<h2 id="aliases">Aliases</h2>
+
+<p>Many developers like to make aliases for common git commands to save time and
+typing. These can come in two forms: git aliases and shell aliases for git
+commands.</p>
+
+<h3 id="git-aliases">Git Aliases</h3>
+
+<p>Below are commands to setup the a standard git alias.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> alias.st status
+git config <span class="nt">--global</span> alias.co checkout
+git config <span class="nt">--global</span> alias.br branch
+</code></pre></div></div>
+
+<p>For example, with these aliases installed, <code class="language-plaintext highlighter-rouge">git st</code> is an alias for
+<code class="language-plaintext highlighter-rouge">git status</code>.</p>
+
+<p>Git aliases can also be used to encapsulate commonly used commands and argument
+combinations.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> alias.aa <span class="s1">'add --all'</span>
+git config <span class="nt">--global</span> alias.d <span class="s1">'diff --staged'</span>
+git config <span class="nt">--global</span> alias.pf <span class="s1">'push --force-with-lease'</span>
+git config <span class="nt">--global</span> alias.l1 <span class="s1">'log --graph --decorate --oneline'</span>
+git config <span class="nt">--global</span> alias.l2 <span class="s1">'log --pretty=format:"%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset" --graph'</span>
+</code></pre></div></div>
+
+<p>Aliases can also be set by editing your <code class="language-plaintext highlighter-rouge">~/.gitconfig</code> file in the <code class="language-plaintext highlighter-rouge">[alias]</code>
+section. See the <code class="language-plaintext highlighter-rouge">git-config(1)</code> man page for more information.</p>
+
+<h3 id="shell-aliases">Shell Aliases</h3>
+
+<p>The most common git command to be aliased is <code class="language-plaintext highlighter-rouge">git status</code>. Many developers will
+alias that command to 1 or 2 characters by adding one of the following to their
+<code class="language-plaintext highlighter-rouge">.bash_profile</code> (or <code class="language-plaintext highlighter-rouge">.zprofile</code> for zsh).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">gs</span><span class="o">=</span><span class="s2">"git status"</span>
+<span class="c"># or</span>
+<span class="nb">alias </span><span class="nv">s</span><span class="o">=</span><span class="s2">"git status"</span>
+<span class="c"># or for shorter terminal output</span>
+<span class="nb">alias </span><span class="nv">gs</span><span class="o">=</span><span class="s2">"git status -sb"</span>
+</code></pre></div></div>
+
+<h2 id="git-status-in-command-prompt">Git Status in Command Prompt</h2>
+
+<p>Another useful part of git config is to have the branch names and status of the
+working directory expressed in your command prompt when in a git repo. For bash,
+check out <a href="https://github.com/magicmonty/bash-git-prompt">bash-git-prompt</a>. Zsh
+ships with git completion and prompt support; for more information, see
+<a href="https://git-scm.com/book/en/v2/Appendix-A:-Git-in-Other-Environments-Git-in-Zsh">this appendix in the git book</a>.</p>
+
+<h2 id="two-factor-authentication">Two-factor Authentication</h2>
+
+<p>Some code that we have access to is confidential. It’s not a bad idea to enable
+two-factor authentication (2FA) for your git service accounts like
+<a href="https://help.github.com/articles/about-two-factor-authentication/">Github</a>
+and
+<a href="https://docs.gitlab.com/ce/user/profile/account/two_factor_authentication.html">Gitlab</a>.</p>
+
+<p>Note: 2FA based on SMS messages
+<a href="http://www.forbes.com/sites/laurashin/2016/12/20/hackers-have-stolen-millions-of-dollars-in-bitcoin-using-only-phone-numbers/">is not secure</a>.
+For better security, use an app on your mobile phone like Google Authenticator.</p>
+
+    </div>
+
+    <a class="u-url" href="/git/2013/10/16/git-setup.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#setting-up-git">Setting up git</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#aliases">Aliases</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#git-aliases">Git Aliases</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#shell-aliases">Shell Aliases</a></li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#git-status-in-command-prompt">Git Status in Command Prompt</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#two-factor-authentication">Two-factor Authentication</a></li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

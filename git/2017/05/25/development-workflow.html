@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Git Development Workflow | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Git Development Workflow" />
+<meta name="author" content="Jeff Terrell, Reed Law" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This document describes the high-level process of using git as part of the software development process, including development commits, rewriting history, code reviews, squashing, rebasing, and merging." />
+<meta property="og:description" content="This document describes the high-level process of using git as part of the software development process, including development commits, rewriting history, code reviews, squashing, rebasing, and merging." />
+<link rel="canonical" href="https://rolemodel.design/git/2017/05/25/development-workflow.html" />
+<meta property="og:url" content="https://rolemodel.design/git/2017/05/25/development-workflow.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-05-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Git Development Workflow" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jeff Terrell, Reed Law"},"dateModified":"2017-05-25T04:00:00+00:00","datePublished":"2017-05-25T04:00:00+00:00","description":"This document describes the high-level process of using git as part of the software development process, including development commits, rewriting history, code reviews, squashing, rebasing, and merging.","headline":"Git Development Workflow","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/git/2017/05/25/development-workflow.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Jeff Terrell, Reed Law"},"url":"https://rolemodel.design/git/2017/05/25/development-workflow.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item active"
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Git Development Workflow</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2017-05-25T04:00:00+00:00" itemprop="datePublished">May 25, 2017
+        </time><p class="post-meta__data">Author: Jeff Terrell, Reed Law</p><p class="post-meta__data">Approver: Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <p>This document describes the high-level process of using git as part of the
+software development process, including development commits, rewriting history,
+code reviews, squashing, rebasing, and merging.</p>
+
+<h3 id="check-project-readme">Check project README</h3>
+
+<p>Not all projects will conform exactly to our git best practices. Some are
+deliberate deviations; others are accidental. As a first step, check the project
+README for any mention of how to use git. Project-level instructions should
+supercede general best practices.</p>
+
+<h3 id="create-a-branch">Create a branch</h3>
+
+<p>Start by creating a branch from the <a href="release-branching">release branch</a> or
+from the master branch if your project is not using the release branch strategy.
+Switch to your new branch.</p>
+
+<h3 id="develop">Develop</h3>
+
+<p>Now, implement the feature. The focus is generally on development, not using
+git, during this phase. Some developers will not use git at all until the entire
+feature is done. Others will add code to the index when it feels done, but
+commit only at the end. Others will create terse work-in-progress (WIP) commits
+as they go. Still others will take the time to create commits that are cleanly
+separated in functionality and well described.</p>
+
+<p>Any of these approaches is acceptable. It is useful to maintain your development
+flow and not get hung up on git. However, note that it is a kindness to your
+reviewer to have good logical commits, and commits are generally easier to
+combine than to separate, so you may find the overall development process easier
+if you bias towards many small commits rather than committing at the end.</p>
+
+<h3 id="prepare-the-development-story-for-your-reviewer">Prepare the development story for your reviewer</h3>
+
+<p>Next, tell a logical story of how this feature came to be, in preparation for
+your reviewer seeing your code. As described
+in <a href="purpose-of-git">The Purpose of Git</a>, we don’t recommend using git as a
+log of <em>what happened</em> but rather as a <em>readable history</em>. At a high level, the
+difference is that the latter will contain cleanly separated and well described
+commits.</p>
+
+<p>Unless you were disciplined with your development process and already have a
+good story in your commit messages, you will need to rewrite history. Our
+general recommendation is to use <code class="language-plaintext highlighter-rouge">git rebase -i</code> for
+this. <a href="commit-messages">Commit Messages</a> talks more about what a good
+history looks like and includes a tutorial of using <code class="language-plaintext highlighter-rouge">git rebase -i</code>. Just
+remember: the point is to explain what you did, and why, to your reviewer, so
+that he doesn’t get a large glob of changes with no explanation.</p>
+
+<h3 id="open-a-pull-request">Open a pull request</h3>
+
+<p>Once your history of changes is ready for review, open a pull request (called a
+merge request in Gitlab). Inform your reviewer that the code is ready for
+review.</p>
+
+<h3 id="respond-to-code-review-comments">Respond to code review comments</h3>
+
+<p>Sometimes your reviewer will approve your code as-is, with no revisions needed.
+Other times, he may have questions about what you did or why you did it that
+way. Other times, he may want you to change what you did in some respects,
+either by yourself or in a pairing session.</p>
+
+<p>If you do need to change your code, append new commits to the history rather
+than rewriting history. Once your reviewer has read your history, don’t change
+the story on him. If various kinds of changes (or “fixups”) are needed, keeping
+each kind in its own commit is a kindness to your reviewer, since it keeps
+related changes closer together.</p>
+
+<h3 id="merge-your-branch">Merge your branch</h3>
+
+<p>When your code is approved to be merged, there are a few things to do to ensure
+clean merging: rebase, squash, merge, push, and clean up.</p>
+
+<h4 id="rebase">Rebase</h4>
+
+<p>To ensure a <a href="linear-history">linear history</a>, it’s important to rebase
+your branch onto the <code class="language-plaintext highlighter-rouge">HEAD</code> of the
+current <a href="release-branching">release branch</a>. First, fetch the latest code
+from <code class="language-plaintext highlighter-rouge">origin</code>. Then rebase your code onto it.</p>
+
+<h4 id="squash">Squash</h4>
+
+<p>Once your branch is rebased, <a href="squashing">squash your commits</a>. In most
+cases, a feature is a good granularity for commits at this level. Again,
+the <a href="commit-messages">Commit Messages</a> best practice provides a good way
+to think about this issue.</p>
+
+<h4 id="merge">Merge</h4>
+
+<p>Next, merge your branch into the release branch, typically with the <code class="language-plaintext highlighter-rouge">--ff-only</code>
+option to <code class="language-plaintext highlighter-rouge">git merge</code>. More details can be found in
+the <a href="merge-strategies">Merge Strategies</a> best practice.</p>
+
+<h4 id="push">Push</h4>
+
+<p>Next you need to push your local updates to the <code class="language-plaintext highlighter-rouge">origin</code> remote, so that others
+will see your changes.</p>
+
+<p>If you get an error that a fast-forward merge was not possible, it may mean that
+somebody else pushed commits to the release branch, and you need to fetch the
+latest commits and rebase again.</p>
+
+<p>You should be careful to push your local feature branch (typically using the
+<code class="language-plaintext highlighter-rouge">--force-with-lease</code> option to overwrite history on the remote) before you push
+your local release branch so that your pull request (or merge request) is
+correctly marked as “merged”.</p>
+
+<h4 id="clean-up">Clean up</h4>
+
+<p>Finally, your feature is done and merged into the release branch. Delete your
+feature branch, both locally and on the <code class="language-plaintext highlighter-rouge">origin</code> remote, so that it doesn’t
+linger and clutter the list of open branches.</p>
+
+<h4 id="update">Update</h4>
+
+<p>Before starting a new feature update <code class="language-plaintext highlighter-rouge">master</code> using:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase origin/master
+</code></pre></div></div>
+
+<h3 id="appendix-git-command-reference">Appendix: git command reference</h3>
+
+<p>So far, we’ve elided the commands one would use during development, in order not
+to distract from the concepts. We include them here for completeness.</p>
+
+<p>To create a new branch named <code class="language-plaintext highlighter-rouge">feature</code> that branches from <code class="language-plaintext highlighter-rouge">release</code>, and
+simultaneously switch to the <code class="language-plaintext highlighter-rouge">feature</code> branch, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout -b feature release
+</code></pre></div></div>
+
+<p>To create commits during development, say <code class="language-plaintext highlighter-rouge">git status</code> and follow the
+instructions to add and remove files from the index, or staging area for changes
+before they are committed. When you’re ready to create a commit from what’s in
+the index, say <code class="language-plaintext highlighter-rouge">git commit</code>. (You may want to set your <code class="language-plaintext highlighter-rouge">$EDITOR</code> environment
+variable before you do.)</p>
+
+<p>To rewrite history, we recommend reading
+<a href="https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History">the relevant section from the Pro Git Book</a>.
+Don’t worry too much about messing things up. If you do, you can abort any
+in-progress rebase or, worst case, simply reset your branch to be what’s on
+<code class="language-plaintext highlighter-rouge">origin</code>. Remember that your local changes (including rebases) aren’t published
+until you <code class="language-plaintext highlighter-rouge">push</code>. If you’re intimidated, ask for help.</p>
+
+<p>To open a pull request, you can use the web-based UI of GitHub or Gitlab. Or, if
+GitHub is your <code class="language-plaintext highlighter-rouge">origin</code>, you can use the <code class="language-plaintext highlighter-rouge">hub</code> command for to open a preview
+page for the pull request. The following instructions assume <code class="language-plaintext highlighter-rouge">git</code> is aliased to
+<code class="language-plaintext highlighter-rouge">hub</code>, which is common practice when using <code class="language-plaintext highlighter-rouge">hub</code> since it passes unrecognized
+commands through to <code class="language-plaintext highlighter-rouge">git</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout feature        # switch to your feature branch
+git push -u origin feature  # push it to `origin`
+git compare feature         # use the `hub` command to open a comparison webpage
+</code></pre></div></div>
+
+<p>To respond to code review comments, you’re usually stuck with the web UI and in
+some cases email replies. If you want to add new commits to your pull request:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># on your `feature` branch
+# do normal development, including `git add` and `git commit`
+git push
+</code></pre></div></div>
+
+<p>To rebase your <code class="language-plaintext highlighter-rouge">feature</code> branch onto the latest <code class="language-plaintext highlighter-rouge">release</code> branch:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout release
+git pull
+git checkout feature
+git rebase release
+</code></pre></div></div>
+
+<p>If you run into problems with the rebasing, it helps to remember what rebasing
+is actually doing: it replays commits onto a new starting point (the updated
+<code class="language-plaintext highlighter-rouge">release</code> branch in this case). <code class="language-plaintext highlighter-rouge">git status</code> can help orient you to where you
+are in the rebase process. Also, <code class="language-plaintext highlighter-rouge">git rebase --onto</code> is helpful to more
+precisely specify which commits should be replayed where, and <code class="language-plaintext highlighter-rouge">git rebase -i</code> is
+helpful to provide a preview of which commits are getting replayed before it
+actually happens. But, this is perhaps the most tricky part of using git, and it
+does take a while to orient to what’s going on. Don’t be afraid to ask for help.</p>
+
+<p>Assuming you escaped from the rebase unscathed, you can squash your commits with
+<code class="language-plaintext highlighter-rouge">git rebase -i</code>, which opens up a text editor. If you change the commands in all
+but the first line to <code class="language-plaintext highlighter-rouge">squash</code>, all of your commits will be squashed into the
+first one, and you will have the chance to combine the commit messages before
+everything is committed. For more information, read
+<a href="https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_squashing">the Pro Git book</a> or
+<a href="http://www.rakeroutes.com/blog/deliberate-git/">Deliberate Git</a>.</p>
+
+<p>To merge your squashed <code class="language-plaintext highlighter-rouge">feature</code> branch into <code class="language-plaintext highlighter-rouge">release</code>, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout release
+git merge --ff-only feature
+</code></pre></div></div>
+
+<p>To push your changes up, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout feature
+git push
+git checkout release
+git push
+</code></pre></div></div>
+
+<p>The ordering is important here, so that any open PRs will get marked as “merged”
+instead of merely “closed”.</p>
+
+<p>If your last <code class="language-plaintext highlighter-rouge">git push</code> was rejected, it probably means that somebody else
+pushed commits to <code class="language-plaintext highlighter-rouge">origin/release</code> before you could. In that case, from the
+<code class="language-plaintext highlighter-rouge">release</code> branch, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch origin
+git rebase origin/release
+git push
+</code></pre></div></div>
+
+<p>To delete your feature branch locally and on <code class="language-plaintext highlighter-rouge">origin</code>, say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch -d feature
+git push origin --delete feature
+</code></pre></div></div>
+
+    </div>
+
+    <a class="u-url" href="/git/2017/05/25/development-workflow.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#check-project-readme">Check project README</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#create-a-branch">Create a branch</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#develop">Develop</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#prepare-the-development-story-for-your-reviewer">Prepare the development story for your reviewer</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#open-a-pull-request">Open a pull request</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#respond-to-code-review-comments">Respond to code review comments</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#merge-your-branch">Merge your branch</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#rebase">Rebase</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#squash">Squash</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#merge">Merge</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#push">Push</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#clean-up">Clean up</a></li>
+<li class="table-of-contents__item table-of-contents-h4"><a href="#update">Update</a></li>
+</ul>
+</li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#appendix-git-command-reference">Appendix: git command reference</a></li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

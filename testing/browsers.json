@@ -1,0 +1,38 @@
+{
+   "chrome_osx": {
+      "human": "Chrome 54 on OS X Yosemite",
+      "browser_version":"54.0",
+      "browser":"chrome",
+      "os":"OS X",
+      "os_version":"Yosemite"
+   },
+   "chrome_windows": {
+      "human": "Chrome 54 on Windows 8",
+      "browser_version":"54.0",
+      "browser":"chrome",
+      "os":"Windows",
+      "os_version":"8"
+   },
+   "ie9": {
+      "human": "IE 9 on Windows 7",
+      "browser_version":"9.0",
+      "browser":"IE",
+      "os":"Windows",
+      "os_version":"7"
+   },
+   "ie10": {
+      "human": "IE 10 on Windows 8",
+      "browser_version":"10.0",
+      "browser":"IE",
+      "os":"Windows",
+      "os_version":"8"
+   },
+   "ie11": {
+      "human": "IE 11 on Windows 8",
+      "browser_version":"11.0",
+      "browser":"IE",
+      "os":"Windows",
+      "os_version":"8"
+   }
+}
+

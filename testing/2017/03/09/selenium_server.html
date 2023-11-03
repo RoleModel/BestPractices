@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Selenium Server | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Selenium Server" />
+<meta name="author" content="Sam Neely" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Selenium Server Setup and Testing" />
+<meta property="og:description" content="Selenium Server Setup and Testing" />
+<link rel="canonical" href="https://rolemodel.design/testing/2017/03/09/selenium_server.html" />
+<meta property="og:url" content="https://rolemodel.design/testing/2017/03/09/selenium_server.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-09T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Selenium Server" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Sam Neely"},"dateModified":"2017-03-09T04:00:00+00:00","datePublished":"2017-03-09T04:00:00+00:00","description":"Selenium Server Setup and Testing","headline":"Selenium Server","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/testing/2017/03/09/selenium_server.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Sam Neely"},"url":"https://rolemodel.design/testing/2017/03/09/selenium_server.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item active"
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Selenium Server</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2017-03-09T04:00:00+00:00" itemprop="datePublished">Mar 9, 2017
+        </time><p class="post-meta__data">Author: Sam Neely</p><p class="post-meta__data">Approver: Caleb Woods, Jeff Terrell</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h2 id="selenium-server-setup-and-testing">Selenium Server Setup and Testing</h2>
+
+<p>Using Selenium Server and a guest virtual machine requires a lot of setup and configuration. The following sections describe the configuration and test execution process when using Selenium Server.</p>
+
+<h3 id="virtualbox-and-virtual-machine-setup">VirtualBox and Virtual Machine Setup</h3>
+
+<p>The following steps describe the process for configuring an Internet Explorer 9 and Windows 7 VM provided by Microsoft.</p>
+
+<ol>
+  <li>
+    <p><a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/">Download a virtual machine</a> from Microsoft by selecting ‘IE9 on Win7’ with ‘VirtualBox’ as the platform.</p>
+  </li>
+  <li>
+    <p>Import the virtual machine with VirtualBox.</p>
+  </li>
+  <li>
+    <p>Configure your VirtualBox preferences host-only adapter.
+ <img src="/assets/images/virtualbox_hostonly.png" alt="" /></p>
+
+    <p><img src="/assets/images/virtualbox_hostonly_config.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Change the virtual machine network configuration.
+ <img src="/assets/images/guest_machine_adapter_1.png" alt="" /></p>
+
+    <p><img src="/assets/images/guest_machine_adapter_2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Boot the virtual machine.</p>
+  </li>
+  <li>Setup Selenium Server on the virtual machine.
+    <ul>
+      <li>Create the directory <code class="language-plaintext highlighter-rouge">C:\selenium</code></li>
+      <li>Download the latest version of Java</li>
+      <li>Download the <code class="language-plaintext highlighter-rouge">selenium-server-standalone-2.53.1.jar</code> from <a href="http://selenium-release.storage.googleapis.com/index.html?path=2.53/">here</a> and extract it to <code class="language-plaintext highlighter-rouge">C:\selenium</code></li>
+      <li>Download the <code class="language-plaintext highlighter-rouge">IEDriver</code> from <a href="http://www.seleniumhq.org/download/">here</a> and extract it to <code class="language-plaintext highlighter-rouge">C:\selenium</code></li>
+      <li>Modify your <code class="language-plaintext highlighter-rouge">%PATH%</code> to include <code class="language-plaintext highlighter-rouge">C:\selenium</code></li>
+    </ul>
+
+    <p><img src="/assets/images/windows_path.png" alt="" /></p>
+  </li>
+  <li>Configure port-forwarding on the virtual machine.
+    <ul>
+      <li>Open PowerShell running as an Administrator</li>
+      <li>Run this command
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">listenaddress</code> represents the <code class="language-plaintext highlighter-rouge">SELENIUM_SERVER_APP_DOMAIN</code>, generally <code class="language-plaintext highlighter-rouge">localhost</code></li>
+          <li><code class="language-plaintext highlighter-rouge">listenport</code> represents the port you expose using Selenium Server</li>
+          <li><code class="language-plaintext highlighter-rouge">connectaddress</code> represents the host IP address (our host-only adapter IP address)</li>
+          <li><code class="language-plaintext highlighter-rouge">connectport</code> represents the <code class="language-plaintext highlighter-rouge">SELENIUM_SERVER_APP_PORT</code>
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>netsh interface portproxy add v4tov4 <span class="nv">listenport</span><span class="o">=</span>3001 <span class="nv">listenaddress</span><span class="o">=</span>localhost <span class="nv">connectport</span><span class="o">=</span>3001 <span class="nv">connectaddress</span><span class="o">=</span>10.100.1.1
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="/assets/images/windows_portforward_config.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Disable Windows Firewall on all profiles.</p>
+
+    <p><img src="/assets/images/windows_firewall.png" alt="" /></p>
+  </li>
+  <li>
+    <p>In Windows Network and Sharing Center, configure the Local network settings.</p>
+
+    <p><img src="/assets/images/windows_local_network.png" alt="" /></p>
+  </li>
+  <li>Verify the machines are connected by pinging the guest virtual machine
+    <ul>
+      <li>From your computer
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>ping 10.100.1.2
+</code></pre></div>        </div>
+      </li>
+      <li>From the Windows VM
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>ping 10.100.1.1
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="setting-up-and-starting-selenium-server">Setting Up and Starting Selenium Server</h3>
+
+<p>The following steps are for a macOS/OSX host running a Windows 7 guest with Internet Explorer 9.</p>
+
+<ol>
+  <li>Install <code class="language-plaintext highlighter-rouge">selenium-server</code>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>brew <span class="nb">install </span>selenium-server
+</code></pre></div>    </div>
+  </li>
+  <li>In a bash window, start a <code class="language-plaintext highlighter-rouge">selenium-server</code> hub
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>selenium-server <span class="nt">-role</span> hub
+</code></pre></div>    </div>
+  </li>
+  <li>In a CMD window on the virtual machine, start a <code class="language-plaintext highlighter-rouge">selenium-server</code> node:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>java <span class="nt">-jar</span> C:<span class="se">\s</span>elenium<span class="se">\s</span>elenium-server-standalone-2.53.1.jar <span class="nt">-role</span> node <span class="nt">-hub</span> http://10.100.1.1:4444/grid/register  <span class="nt">-maxSession</span> 15 <span class="nt">-browser</span> <span class="nv">browserName</span><span class="o">=</span><span class="s2">"internet explorer"</span>,version<span class="o">=</span>ANY,platform<span class="o">=</span>WINDOWS,maxInstances<span class="o">=</span>5 <span class="nt">-Dwebdriver</span><span class="o">=</span>C:<span class="se">\s</span>elenium<span class="se">\I</span>EDriverServer.exe <span class="nt">-port</span> 5556
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+    </div>
+
+    <a class="u-url" href="/testing/2017/03/09/selenium_server.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#selenium-server-setup-and-testing">Selenium Server Setup and Testing</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#virtualbox-and-virtual-machine-setup">VirtualBox and Virtual Machine Setup</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#setting-up-and-starting-selenium-server">Setting Up and Starting Selenium Server</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

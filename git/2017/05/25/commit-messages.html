@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Commit Messages | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Commit Messages" />
+<meta name="author" content="Jeff Terrell" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Commit Message Format" />
+<meta property="og:description" content="Commit Message Format" />
+<link rel="canonical" href="https://rolemodel.design/git/2017/05/25/commit-messages.html" />
+<meta property="og:url" content="https://rolemodel.design/git/2017/05/25/commit-messages.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-05-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Commit Messages" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jeff Terrell"},"dateModified":"2017-05-25T04:00:00+00:00","datePublished":"2017-05-25T04:00:00+00:00","description":"Commit Message Format","headline":"Commit Messages","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/git/2017/05/25/commit-messages.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Jeff Terrell"},"url":"https://rolemodel.design/git/2017/05/25/commit-messages.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item active"
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item "
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Commit Messages</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2017-05-25T04:00:00+00:00" itemprop="datePublished">May 25, 2017
+        </time><p class="post-meta__data">Author: Jeff Terrell</p><p class="post-meta__data">Approver: Caleb Woods</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h2 id="commit-message-format">Commit Message Format</h2>
+
+<p>If <a href="purpose-of-git">the purpose of git is to record a logical history of what
+happened</a>, then it’s essential to have good commit messages,
+since they are the substance of the history.</p>
+
+<p>To motivate and describe what constitutes a “good” commit message, we have
+found no better resource than <a href="http://rakeroutes.com/blog/deliberate-git">Deliberate
+Git</a> by Stephen Ball.</p>
+
+<h3 id="deliberate-git">Deliberate Git</h3>
+
+<p>A brief summary follows, but we recommend reading the whole thing.</p>
+
+<ul>
+  <li>A good commit subject is written in the present tense and as a command.</li>
+  <li>Good commit bodies:
+    <ul>
+      <li>can be informal,</li>
+      <li>describe the “Why?”,</li>
+      <li>are messages to your team, and</li>
+      <li>contain links to more information.</li>
+    </ul>
+  </li>
+  <li>Well written commits explain:
+    <ul>
+      <li>what the code change does,</li>
+      <li>why the change is necessary,</li>
+      <li>alternatives considered, and</li>
+      <li>potential consequences.</li>
+    </ul>
+  </li>
+  <li>To maintain good development flow, you can use WIP commits and reorganize the
+commits into a logical history later using <code class="language-plaintext highlighter-rouge">git rebase -i</code>.</li>
+  <li>Git commits are searchable in a variety of ways to quickly find a change you
+are looking for.</li>
+</ul>
+
+<h3 id="extra-information">Extra Information</h3>
+
+<p>At RoleModel, we like to include in the “Subject” line (i.e. the first line of
+the commit message) an abbreviated reference to the canonical resource(s)
+associated with the change. For example, if a change is for card number 123 on
+the project’s Trello board, include <code class="language-plaintext highlighter-rouge">[TR #123]</code>. Also, if there is a
+corresponding pull request on Github or your repo host, you can include that
+number in parentheses, like <code class="language-plaintext highlighter-rouge">(GH #4)</code>.</p>
+
+<p>Here’s a template to describe what we mean:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;title of card or summary of feature&gt; [&lt;board abbreviation&gt; #&lt;card number&gt;] (&lt;source control abbreviation&gt; #&lt;pull request number&gt;)
+&lt;highlights of feature change if any&gt;
+</code></pre></div></div>
+
+<p>For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Return 404 on permissions API when no access [TR #45] (GH #4)
+If a user cannot access a study at all we want to be able communicate that to API clients, thus we will return a 404.
+</code></pre></div></div>
+
+<p>Note: git commits and the code are the sources of truth. External references
+made in commit messages may become broken if tools change for managing cards or
+PRs. If there is critical information related to the commit, copy it into the
+commit message body and consider using fully qualified URLs if you want to
+ensure the link will work in the future.</p>
+
+<h4 id="canonical-abbreviations">Canonical Abbreviations</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th style="text-align: left">Tasks</th>
+      <th style="text-align: left">Source Control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">TR - Trello</td>
+      <td style="text-align: left">GH - Github</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JI - Jira</td>
+      <td style="text-align: left">GL - Gitlab</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">LK - LeanKit</td>
+      <td style="text-align: left">BB - BitBucket</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">KB - Kanbanery</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+    <a class="u-url" href="/git/2017/05/25/commit-messages.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#commit-message-format">Commit Message Format</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#deliberate-git">Deliberate Git</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#extra-information">Extra Information</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h4"><a href="#canonical-abbreviations">Canonical Abbreviations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

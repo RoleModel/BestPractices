@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Authorization | RoleModel Software Best Practices</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Authorization" />
+<meta name="author" content="Andy Cohen, Reed Law" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Authorization" />
+<meta property="og:description" content="Authorization" />
+<link rel="canonical" href="https://rolemodel.design/patterns/2023/10/25/authorization.html" />
+<meta property="og:url" content="https://rolemodel.design/patterns/2023/10/25/authorization.html" />
+<meta property="og:site_name" content="RoleModel Software Best Practices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-25T04:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Authorization" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Andy Cohen, Reed Law"},"dateModified":"2023-10-25T04:00:00+00:00","datePublished":"2023-10-25T04:00:00+00:00","description":"Authorization","headline":"Authorization","mainEntityOfPage":{"@type":"WebPage","@id":"https://rolemodel.design/patterns/2023/10/25/authorization.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://rolemodel.design/assets/images/logo.svg"},"name":"Andy Cohen, Reed Law"},"url":"https://rolemodel.design/patterns/2023/10/25/authorization.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body class="app-with-sidebar"><div id="sidebar-menu" class="sidebar-primary sidebar--drawer sidebar--mobile-friendly">
+  <div class="sidebar-menu-button-container">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">close</span>
+  </div>
+  <a class="sidebar__brand" href="/">
+    <img src="/assets/images/logo.svg">
+  </a>
+
+  <div class="sidebar__content sidebar__content--start">
+    <div class="sidebar__section-title">Introduction</div>
+    <a class="sidebar__item " href="/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="home">home</span>
+      <div class="sidebar__item-label">Home</div>
+    </a><a class="sidebar__item "
+      href="/about/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="info">info</span>
+      <div class="sidebar__item-label">About</div>
+    </a><a class="sidebar__item " href="/all-posts">
+      <span class="material-symbols-outlined sidebar__item-icon" title="feed">feed</span>
+      <div class="sidebar__item-label">All Posts</div>
+    </a>
+
+    <div class="sidebar__section-title">Topics</div>
+    <a class="sidebar__item "
+      href="/rails/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="train">train</span>
+      <div class="sidebar__item-label">Rails</div>
+    </a><a class="sidebar__item "
+      href="/git/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="code">code</span>
+      <div class="sidebar__item-label">Git</div>
+    </a><a class="sidebar__item active"
+      href="/patterns/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="texture">texture</span>
+      <div class="sidebar__item-label">Patterns</div>
+    </a><a class="sidebar__item "
+      href="/support/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="support_agent">support_agent</span>
+      <div class="sidebar__item-label">Support</div>
+    </a><a class="sidebar__item "
+      href="/devops/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="dns">dns</span>
+      <div class="sidebar__item-label">DevOps</div>
+    </a><a class="sidebar__item "
+      href="/presentations/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="co_present">co_present</span>
+      <div class="sidebar__item-label">Presentations</div>
+    </a><a class="sidebar__item "
+      href="/testing/">
+      <span class="material-symbols-outlined sidebar__item-icon" title="bug_report">bug_report</span>
+      <div class="sidebar__item-label">Testing</div>
+    </a></div>
+</div>
+<div id="app-body" class="app-body"><header class="app__header" role="banner">
+  <div class="app__header-navigation">
+    <span class="sidebar-menu-button material-symbols-outlined icon--x-large">menu</span>
+  </div>
+  <div class="app__header-title">
+    <span>RoleModel Software Best Practices</span>
+  </div>
+  <div class="app__header-actions"></div>
+</header>
+<div class="app__content">
+      <div class="post-body">
+  <article class="card margin-y-md full-width" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card__header">
+      <h1 class='post-title' itemprop="name headline">Authorization</h1>
+      <div class="post-meta"><time class="post-meta__date" datetime="2023-10-25T04:00:00+00:00" itemprop="datePublished">Oct 25, 2023
+        </time><p class="post-meta__data">Author: Andy Cohen, Reed Law</p><p class="post-meta__data">Approver: Andy Cohen, Reed Law</p></div>
+    </header>
+
+    <div class="card__body" itemprop="articleBody">
+      <h1 id="authorization">Authorization</h1>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>Authorization answers the question: am I allowed to do that? Not wanting to introduce a lot of complexity in controllers, services, and views, we introduce an authorization model. This model is the abstraction used for all the logic pertaining to authorization. To implement this, we can extract policy objects from our domain model entities or resources. Policy objects encapsulate business rules describing which actions can be performed on a particular resource. For instance, if we have a <code class="language-plaintext highlighter-rouge">Post</code> model, we might implement a <code class="language-plaintext highlighter-rouge">PostPolicy</code> to handle authorization logic around posts.</p>
+
+<h2 id="tools">Tools</h2>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/varvet/pundit">Pundit</a> is most common and well received. Being relatively simple, it lacks features such as multiple scopes and custom error messages.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/palkan/action_policy">Action Policy</a> is similar to Pundit and provides those missing features.</p>
+  </li>
+</ul>
+
+<h2 id="better-policies">Better Policies</h2>
+
+<h3 id="keep-authorization-logic-in-policy">Keep authorization logic in policy</h3>
+
+<p>🟥 Bad</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">post</span><span class="p">.</span><span class="nf">user_id</span> <span class="o">==</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">id</span>
+      <span class="n">post</span><span class="p">.</span><span class="nf">destroy</span>
+      <span class="n">redirect_to</span> <span class="n">posts_path</span>
+    <span class="k">else</span>
+      <span class="n">redirect_to</span> <span class="n">posts_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s1">'Forbidden'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>🟩 Good</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostPolicy</span> <span class="o">&lt;</span> <span class="no">ApplicationPolicy</span>
+  <span class="k">def</span> <span class="nf">destroy?</span>
+    <span class="n">record</span><span class="p">.</span><span class="nf">user_id</span> <span class="o">==</span> <span class="n">user</span><span class="p">.</span><span class="nf">id</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">authorize</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">post</span><span class="p">.</span><span class="nf">destroy</span>
+      <span class="n">redirect_to</span> <span class="n">posts_path</span>
+    <span class="k">else</span>
+      <span class="n">redirect_to</span> <span class="n">posts_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s1">'Forbidden'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="use-resource-policies-in-views">Use resource policies in views</h3>
+
+<p>Policies provide a single source of truth.</p>
+
+<p>🟥 Bad</p>
+<div class="language-slim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">-</span> <span class="k">if</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">admin?</span>
+  <span class="p">=</span> <span class="n">render</span> <span class="s1">'accountant'</span>
+</code></pre></div></div>
+
+<p>🟩 Good</p>
+
+<div class="language-slim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">-</span> <span class="k">if</span> <span class="n">policy</span><span class="p">(</span><span class="ss">:accountant</span><span class="p">).</span><span class="nf">show?</span>
+  <span class="p">=</span> <span class="n">render</span> <span class="s1">'accountant'</span>
+</code></pre></div></div>
+
+<p>If authorization rules change for accountants, using policies ensures the accountants resource always performs the same checks.</p>
+
+<h3 id="filter-permitted-params-with-policies">Filter permitted params with policies</h3>
+
+<p>Both Pundit and Action Policy provide mechanisms to restrict access to mass-assignment of model attributes.</p>
+
+<p>🟥 Bad</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
+      <span class="n">redirect_to</span> <span class="vi">@user</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:edit</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">user_params</span>
+    <span class="k">if</span> <span class="n">user</span><span class="p">.</span><span class="nf">admin?</span>
+      <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:role</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>🟩 Good</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserPolicy</span> <span class="o">&lt;</span> <span class="no">ApplicationPolicy</span>
+  <span class="k">def</span> <span class="nf">permitted_attributes</span>
+    <span class="k">if</span> <span class="n">user</span><span class="p">.</span><span class="nf">admin?</span>
+      <span class="sx">%i[name email role]</span>
+    <span class="k">else</span>
+      <span class="p">[</span><span class="ss">:name</span><span class="p">]</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">permitted_attributes</span><span class="p">(</span><span class="vi">@user</span><span class="p">))</span>
+      <span class="n">redirect_to</span> <span class="vi">@user</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:edit</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This might not look much different but it helps separate layers and provides a central place for all authorization code.</p>
+
+    </div>
+
+    <a class="u-url" href="/patterns/2023/10/25/authorization.html" hidden></a>
+  </article>
+
+  <div class="table-of-contents">
+    <p class="table-of-contents__title">Table of Contents</p>
+    <ul id="table-of-contents" class="table-of-contents__nav">
+<li class="table-of-contents__item table-of-contents-h1"><a href="#authorization">Authorization</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h2"><a href="#rationale">Rationale</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#tools">Tools</a></li>
+<li class="table-of-contents__item table-of-contents-h2"><a href="#better-policies">Better Policies</a>
+<ul class="table-of-contents__sub-nav">
+<li class="table-of-contents__item table-of-contents-h3"><a href="#keep-authorization-logic-in-policy">Keep authorization logic in policy</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#use-resource-policies-in-views">Use resource policies in views</a></li>
+<li class="table-of-contents__item table-of-contents-h3"><a href="#filter-permitted-params-with-policies">Filter permitted params with policies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>
