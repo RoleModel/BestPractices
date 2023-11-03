@@ -27,8 +27,7 @@ This holds *all* of our [best practices](about.md).
 
 1. [Authorization](patterns/authorization.md)
 2. [Forms](patterns/forms.md)
-3. [Presenters](patterns/presenters.md) <!-- TODO: More specific name -->
-4. [Search](patterns/search.md)
+3. [Search](patterns/search.md)
 
 ## Testing
 
