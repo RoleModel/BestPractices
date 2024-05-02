@@ -153,7 +153,55 @@ ActiveJob::Base.retry_on StandardError, wait: :polynomially_longer, attempts: 25
 ```
 
 ### Cron
-Projects often need to run jobs on a regular schedule. In the past RoleModel has used various options for this like the Heroku scheduler, or the whenever gem. However GoodJob has a built-in mechanism for [cron jobs](https://github.com/bensheldon/good_job?tab=readme-ov-file#cron-style-repeatingrecurring-jobs), that runs as part of your worker processes, which means that your cron job definitions can be version controlled and managed as part of the standard deployment process. In order to monitor the success (or failure) of cron jobs we add a honey badger check-in which alerts us when the job has not been run on schedule.
+Projects often need to run jobs on a regular schedule. In the past RoleModel has used various options for this like the Heroku scheduler, or the whenever gem. However GoodJob has a built-in mechanism for [cron jobs](https://github.com/bensheldon/good_job?tab=readme-ov-file#cron-style-repeatingrecurring-jobs), that runs as part of your worker processes, which means that your cron job definitions can be version controlled and managed as part of the standard deployment process. In order to monitor the success (or failure) of cron jobs we add a honey badger check-in which alerts us when the job has not been run on schedule. Below you will find a set of examples that show how to add cron jobs with Honeybadger check-ins to your project.
+
+Define a good job initializer that enables cron jobs, and defines them `config/initializers/good_job.rb`:
+```ruby
+Rails.application.configure do
+  config.good_job = {
+    enable_cron: true,
+    cron: {
+      pghero_capture_stats: {
+        cron: 'every 5 minutes',
+        class: 'PgHeroCaptureJob'
+      },
+      pghero_clean_stats: {
+        cron: 'every day at 2am EST',
+        class: 'PgHeroCleanJob'
+      }
+    }
+  }
+end
+```
+
+Define the CheckIn concern which will perform a check-in after a job succeeds `app/jobs/concerns/check_in.rb`:
+```ruby
+module CheckIn
+  extend ActiveSupport::Concern
+
+  included do
+    after_perform do |job|
+      CheckInJob.perform_later(source_job_id: job.job_id.to_s, source_job_class: job.class.to_s)
+    end
+  end
+end
+```
+
+Define the CheckInJob which performs the Honeybadger check-in `app/jobs/check_in_job.rb`:
+```ruby
+class CheckInJob < ApplicationJob
+  def perform(source_job_id:, source_job_class:)
+    key = Rails.application.config.honeybadger_check_in_config[source_job_class]
+    raise 'Check-in failed' unless Honeybadger.check_in(key)
+  end
+end
+```
+
+Define the `honeybadger_check_in_config` in `config/application.rb`:
+```ruby
+# This expects an environment variable to be defined with a value like this: 'Job1:key1,Job2:key2'. The key values can be acquired when setting up a Honeybadger check-in.
+config.honeybadger_check_in_config = ENV.fetch('HONEBADGER_CHECK_IN_CONFIG', '').split(',').to_h { |e| e.split(':') }
+```
 
 ### Job cleanup
 To avoid taking up uneeded amounts of database space, old jobs should be deleted from the database backend. Good Job handles this by default in version 3, but not in version 1 or 2.
