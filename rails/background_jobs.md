@@ -152,7 +152,7 @@ ENV['GOOD_JOB_QUEUES'] = 'mailers:1;default:3;pdf:1;-pdf'
 ```
 
 ### Job retries
-We want to ensure that jobs which fail for transient reasons (like a network issue) are retried automatically. For this reason jobs should be written in a way that is idempotent (able to be run multiple times and produce the same result). We also want to ensure that our job system is configured to automatically retry failed jobs by default. Because libraries like `noticed` or Action Mailer do not inherit from your app’s ApplicationJob class, it is recommended to include the following configuration in an initializer (order is important, see `rolemodel_rails#good_job` generator):
+We want to ensure that jobs which fail for transient reasons (like a network issue) are retried automatically. For this reason jobs should be written in a way that is idempotent (able to be run multiple times and produce the same result). We also want to ensure that our job system is configured to automatically retry failed jobs by default. Because libraries like Noticed or Action Mailer do not inherit from your app’s ApplicationJob class, it is recommended to include the following configuration in an initializer (order is important, see `rolemodel_rails#good_job` generator):
 
 ```ruby
 ActiveJob::Base.retry_on StandardError, wait: :polynomially_longer, attempts: 25
