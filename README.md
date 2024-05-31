@@ -22,6 +22,7 @@ This holds *all* of our [best practices](about.md).
 2. [Upgrade Checklist](rails/upgrade-checklist.md)
 3. [ES6](rails/es6.md)
 4. [Database Migrations](rails/database-migrations.md)
+5. [Background Jobs](rails/background_jobs.md)
 
 ## Patterns
 
