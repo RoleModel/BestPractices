@@ -29,6 +29,7 @@ This holds *all* of our [best practices](about.md).
 1. [Authorization](patterns/authorization.md)
 2. [Forms](patterns/forms.md)
 3. [Search](patterns/search.md)
+4. [Mentorship](patterns/mentorship/overview.md)
 
 ## Testing
 
