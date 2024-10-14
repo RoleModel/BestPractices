@@ -212,7 +212,7 @@ end
 Define the `honeybadger_check_in_config` in `config/application.rb`:
 ```ruby
 # This expects an environment variable to be defined with a value like this: 'Job1:key1,Job2:key2'. The key values can be acquired when setting up a Honeybadger check-in.
-config.honeybadger_check_in_config = ENV.fetch('HONEBADGER_CHECK_IN_CONFIG', '').split(',').to_h { |e| e.split(':') }
+config.honeybadger_check_in_config = ENV.fetch('HONEYBADGER_CHECK_IN_CONFIG', '').split(',').to_h { |e| e.split(':') }
 ```
 
 ### Job cleanup
