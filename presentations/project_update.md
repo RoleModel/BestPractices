@@ -36,4 +36,4 @@
 
 ## Customer Quotes - 1 minutes
 
-What impact has the product had on users or their business?
+* What impact has the product had on users or their business?
