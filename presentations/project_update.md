@@ -3,7 +3,7 @@
 ## Overview - 1 minute
 
 * Basic background on the company and project
-* What is their business model and what are we doing for them
+* What is their business model and what are we doing for them?
 
 ## Business Goals - 1 minute
 
@@ -27,8 +27,7 @@
 
 ### What might be relevant elsewhere
 
-* Advanced Search functionality
-* Notifications, specifically revalidating notifications. Nothing crazy here and potentially some more performant ways to achieve this.
+* Examples: Advanced Search functionality, Notifications, other common features, etc
 
 ### Demo
 

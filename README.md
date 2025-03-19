@@ -41,5 +41,6 @@ This holds *all* of our [best practices](about.md).
 
 ## Presentations
 
-1. [Core Project Presentations](presentations/core_presentation.md)
-2. [Chow and Pow Wow](presentations/chow_and_pow_wow.md)
+1. [Project Update Presentations](presentations/project_update.md)
+2. [Chow and Pow Wow](presentations/chow_and_pow_wow.md) (deprecated)
+3. [Core Project Presentations](presentations/core_presentation.md) (deprecated)
