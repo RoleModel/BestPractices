@@ -8,7 +8,7 @@ since they are the substance of the history.
 
 To motivate and describe what constitutes a "good" commit message, we have
 found no better resource than [Deliberate
-Git](http://rakeroutes.com/blog/deliberate-git) by Stephen Ball.
+Git](https://strangeleaflet.com/blog/deliberate-git) by Stephen Ball.
 
 ### Deliberate Git
 
