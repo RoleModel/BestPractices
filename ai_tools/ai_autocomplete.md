@@ -34,7 +34,7 @@ These keybindings incorporate the above suggestions and address a few other conf
   {
     "key": ";",
     "command": "editor.action.inlineSuggest.commit",
-    "when": "inlineEditIsVisible && inlineSuggestionVisible && !editorHoverFocused"
+    "when": "inlineEditIsVisible || inlineSuggestionVisible"
   },
 
   // Suggested keyboard shortcuts to accept part of a suggestion
