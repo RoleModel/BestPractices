@@ -14,7 +14,7 @@ In addition, it is helpful to add a keybinding to toggle AI completions on and o
 
 These keybindings incorporate the above suggestions and address a few other conflicts between common navigation shortcuts and Copilot's default keybindings.
 
-```json
+```javascript
 [
   // Unbind the default shortcut to accept inline suggestions with tab
   {
