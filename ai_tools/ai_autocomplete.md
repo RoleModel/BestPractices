@@ -48,10 +48,12 @@ These keybindings incorporate the above suggestions and address a few other conf
     "when": "inlineSuggestionVisible && !editorReadonly"
   },
 
-  // Recommended shortcut to toggle inline completions
+  // Recommended shortcut to temporarily pause inline completions.
+  // This will prompt to select a duration to snooze suggestions.
   {
     "key": "cmd+k cmd+a",
-    "command": "github.copilot.completions.toggle"
+    "command": "editor.action.inlineSuggest.snooze",
+    "when": "editorFocus",
   }
 ]
 ```
