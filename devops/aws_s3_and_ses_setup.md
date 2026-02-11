@@ -48,3 +48,44 @@
    3. Add domain for your partner e.i.<partner>.com
    4. Verify the domain
       1. Will need to reach out to get access and add records that AWS gives to their domain setup. Expand “Publish DNS records” to download CSV
+6. Create staging S3 bucket
+   1. Navigate to S3 and click "Create bucket"
+   2. Name the bucket <partner>-staging and use default settings
+   3. Navigate to IAM > Policies and create a new policy
+      a. For a Rails app using active storage, this is a good setup that fits active storage documentation:
+      ```
+      {
+         "Version": "2012-10-17",
+         "Statement": [
+            {
+                  "Sid": "StagingObjectAccess",
+                  "Effect": "Allow",
+                  "Action": [
+                     "s3:PutObject",
+                     "s3:GetObject",
+                     "s3:DeleteObject"
+                  ],
+                  "Resource": "arn:aws:s3:::<partner>-staging/*"
+            },
+            {
+                  "Sid": "StagingListBucket",
+                  "Effect": "Allow",
+                  "Action": [
+                     "s3:ListBucket"
+                  ],
+                  "Resource": "arn:aws:s3:::<moddex>-staging"
+            }
+         ]
+      }
+      ```
+      b. Expand "Resources" and click the "Add ARNs" button next to bucket. Fill in the name of the already created staging bucket.
+      c. Click next
+      d. Name the bucket <Partner>StagingS3Policy
+      e. Optional description: "A policy to give all the access required by Rails Active Storage to interact with the staging bucket only."
+      f. Click "Create Policy"
+   3. Navigate to IAM > Users and create a new user called <Partner>-Staging-S3
+   4. Choose "Attach policies directly" and attach your policy: <Partner>StagingS3Policy
+   5. Name the key <Parnter>-Staging-S3-Access-Key and save keys in 1Password
+   6. Ensure your rails application has the `aws-sdk-s3` gem
+   7. Uncomment `amazon:` section in `storage.yml` file and populate keys in .env_overrides.rb / server ENV
+   8. Set `config.active_storage.service = :amazon` in `/config/environments/production.rb`
