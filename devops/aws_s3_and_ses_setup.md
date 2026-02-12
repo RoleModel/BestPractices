@@ -40,8 +40,6 @@
    }
    ```
    9. **TODO:** Should the resource be set to a certain configuration set?
-4. Create SES Production User
-   1. Follow steps 1-5 for “Create Ses Staging User” except use “Production”
 5. Create Identity
    1. Navigate to “Identities” in left nav
    2. Create Identity
@@ -52,7 +50,8 @@
    1. Navigate to S3 and click "Create bucket"
    2. Name the bucket <partner>-staging and use default settings
    3. Navigate to IAM > Policies and create a new policy
-      a. For a Rails app using active storage, this is a good setup that fits active storage documentation:
+      a. Select the JSON view in the Policy Editor header
+      b. For a Rails app using active storage, this is a good setup that fits active storage documentation:
       ```
       {
          "Version": "2012-10-17",
@@ -78,14 +77,26 @@
          ]
       }
       ```
-      b. Expand "Resources" and click the "Add ARNs" button next to bucket. Fill in the name of the already created staging bucket.
-      c. Click next
-      d. Name the bucket <Partner>StagingS3Policy
-      e. Optional description: "A policy to give all the access required by Rails Active Storage to interact with the staging bucket only."
-      f. Click "Create Policy"
-   3. Navigate to IAM > Users and create a new user called <Partner>-Staging-S3
-   4. Choose "Attach policies directly" and attach your policy: <Partner>StagingS3Policy
-   5. Name the key <Parnter>-Staging-S3-Access-Key and save keys in 1Password
-   6. Ensure your rails application has the `aws-sdk-s3` gem
-   7. Uncomment `amazon:` section in `storage.yml` file and populate keys in .env_overrides.rb / server ENV
-   8. Set `config.active_storage.service = :amazon` in `/config/environments/production.rb`
+      c. Select the Visual view in the Policy Editor header
+      d. Expand "Resources" and click the "Add ARNs" button next to bucket. If your resources tab says Object instead of bucket, open the next S3 accordion. Fill in the name of the already created staging bucket.
+      e. Click next
+      f. Name the bucket <Partner>StagingS3Policy
+      g. Optional description: "A policy to give all the access required by Rails Active Storage to interact with the staging bucket only."
+      h. Click "Create Policy"
+   3. Navigate to IAM > Users and create a new user
+      a. Name it <Partner>-Staging-S3
+      b. Choose "Attach policies directly" and attach your policy: <Partner>StagingS3Policy
+   4. On your new user, create a new access key
+      a. For the use case, select 'Application running outside AWS'
+      b. Name the key <Parnter>-Staging-S3-Access-Key and save keys in 1Password
+   5. Save both the access key and access secret as config variables on your staging server as 'AWS_ACCESS_KEY_ID' and 'AWS_ACCESS_KEY_SECRET'
+
+   ## Production
+
+   1. SES
+      1. Follow steps 1-5 in the staging section for “Create SES Staging User” except use “Production”
+   2. S3 Bucket
+      1. Follow step 6 in the staging section exchanging staging for production
+      2. Ensure your rails application has the `aws-sdk-s3` gem
+      3. Uncomment `amazon:` section in `storage.yml` file and populate keys in .env_overrides.rb / server ENV
+      4. Set `config.active_storage.service = :amazon` in `/config/environments/production.rb`
