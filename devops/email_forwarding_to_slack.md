@@ -1,6 +1,5 @@
 # Forward partner emails to Slack bk channel with it-support email
 
-
 1. Go to slack bk channel settings and click integrations tab. Add email integration and copy email
 2. Log into IT-Support Gmail
 3. Click the gear in top right and "See All Settings"

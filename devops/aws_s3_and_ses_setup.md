@@ -44,15 +44,57 @@
    1. Navigate to “Identities” in left nav
    2. Create Identity
    3. Add domain for your partner e.i.<partner>.com
-   4. Verify the domain
+   4. Accept default config and create Identity
+   5. Verify the domain
       1. Will need to reach out to get access and add records that AWS gives to their domain setup. Expand “Publish DNS records” to download CSV
+   6. Add the following code to the rails application
+   ```ruby
+      # app/mailers/application_mailer.rb
+      class ApplicationMailer < ActionMailer::Base
+        default from: ENV.fetch('SMTP_SENDER', nil)
+        ...
+
+      # production.rb
+      config.x.mail_from = %(#{ENV.fetch('SMTP_SENDER', nil)})
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.perform_deliveries = true
+      config.action_mailer.smtp_settings = {
+         address: 'email-smtp.us-east-1.amazonaws.com',
+         user_name: ENV['AWS_SES_USER'],
+         password: ENV['AWS_SES_PASSWORD'],
+         port: 587,
+         authentication: :login,
+         enable_starttls_auto: true,
+         domain: '<partner>.com'
+      }
+      # Ignore bad email addresses and do not raise email delivery errors.
+      # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+      config.action_mailer.raise_delivery_errors = false
+  ```
+  7. Optional: Add a staging intercepter for an extra layer of safety
+  ```ruby
+    # app/mailers/staging_mailer_intercepter.rb
+    # frozen_string_literal: true
+
+   class StagingMailerInterceptor
+      def self.delivering_email(message)
+         whitelisted_emails = ENV['WHITELISTED_EMAILS'].split(',').map(&:strip)
+         message.to = message.to & whitelisted_emails
+         message.subject = "STAGING - #{message.subject}"
+         message.perform_deliveries = false if message.to.blank?
+      end
+   end
+
+   # config/environemnts/production.rb
+   require Rails.root.join('app/mailers/staging_mailer_interceptor')
+  ```
 6. Create staging S3 bucket
    1. Navigate to S3 and click "Create bucket"
    2. Name the bucket <partner>-staging and use default settings
    3. Navigate to IAM > Policies and create a new policy
       a. Select the JSON view in the Policy Editor header
       b. For a Rails app using active storage, this is a good setup that fits active storage documentation:
-      ```
+      ```json
       {
          "Version": "2012-10-17",
          "Statement": [
@@ -83,19 +125,19 @@
       f. Name the bucket <Partner>StagingS3Policy
       g. Optional description: "A policy to give all the access required by Rails Active Storage to interact with the staging bucket only."
       h. Click "Create Policy"
-   3. Navigate to IAM > Users and create a new user
+   4. Navigate to IAM > Users and create a new user
       a. Name it <Partner>-Staging-S3
       b. Choose "Attach policies directly" and attach your policy: <Partner>StagingS3Policy
-   4. On your new user, create a new access key
+   5. On your new user, create a new access key
       a. For the use case, select 'Application running outside AWS'
       b. Name the key <Parnter>-Staging-S3-Access-Key and save keys in 1Password
-   5. Save both the access key and access secret as config variables on your staging server as 'AWS_ACCESS_KEY_ID' and 'AWS_ACCESS_KEY_SECRET'
+   6. Save both the access key and access secret as config variables on your staging server as 'AWS_ACCESS_KEY_ID' and 'AWS_ACCESS_KEY_SECRET'
 
    ## Production
 
-   1. SES
+   7. SES
       1. Follow steps 1-5 in the staging section for “Create SES Staging User” except use “Production”
-   2. S3 Bucket
+   8. S3 Bucket
       1. Follow step 6 in the staging section exchanging staging for production
       2. Ensure your rails application has the `aws-sdk-s3` gem
       3. Uncomment `amazon:` section in `storage.yml` file and populate keys in .env_overrides.rb / server ENV
