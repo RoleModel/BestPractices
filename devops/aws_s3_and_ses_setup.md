@@ -21,33 +21,52 @@
        1. Top right menu -> “Account”
        2. Scroll down in left nav to “Payment preferences”
 3. Create SES Staging User
-   1. Navigate to Amazon SES
-   2. Click on “SMTP Settings”
-   3. Click “Create SMTP Credentials”
-   4. Change name to “<PartnerName>-SES-User-Staging”
-   5. Create user and copy credentials into 1P and return to SES dasboard
-   6. Navigate to IAM Users and click on Staging SES users
-   7. Under the “Permissions policies” card, click the plus icon next to the policy to edit
-   8. Add  following after “resource” declaration for staging mail limiting and save.
-   ```JSON
-   "Condition": {
-       "ForAllValues:StringLike": {
-         "ses:Recipients": [
-             "*@<partner>.com",
-             "*@rolemodelsoftware.com"
+   1. Navigate to IAM > Policies and create a new policy
+      a. Select the JSON view in the Policy Editor header
+      b. Use the following policy with staging mail limiting:
+      ```JSON
+      {
+         "Version": "2012-10-17",
+         "Statement": [
+            {
+               "Effect": "Allow",
+               "Action": "ses:*",
+               "Resource": "*",
+               "Condition": {
+                  "ForAllValues:StringLike": {
+                     "ses:Recipients": [
+                        "*@<partner>.com",
+                        "*@rolemodelsoftware.com"
+                     ]
+                  }
+               }
+            }
          ]
       }
-   }
-   ```
-   9. **TODO:** Should the resource be set to a certain configuration set?
-5. Create Identity
+      ```
+      c. Name the policy `<Partner>StagingSESPolicy`
+      d. Click "Create Policy"
+   2. Navigate to Amazon SES
+   3. Click on "SMTP Settings"
+   4. Click "Create SMTP Credentials"
+   5. Change name to "<PartnerName>-SES-User-Staging"
+   6. Under "Existing IAM Group", select the group associated with your `<Partner>StagingSESPolicy` policy
+   7. Create user and copy credentials into 1P
+4. Create Identity
    1. Navigate to “Identities” in left nav
    2. Create Identity
    3. Add domain for your partner e.i.<partner>.com
    4. Accept default config and create Identity
    5. Verify the domain
       1. Will need to reach out to get access and add records that AWS gives to their domain setup. Expand “Publish DNS records” to download CSV
-   6. Add the following code to the rails application
+   6. Complete the setup steps
+      1. Navigate to the "Get set up" page within SES
+      2. Verify the sending domain after the records you sent your partner have been registered.
+      3. Create an identity and verify email address `it-support+<partner>@rolemodelsoftware.com`
+      4. Enable Virtual Deliverability Manager
+      5. Request Production Access
+      6. Dedicated IP Address if needed. Read up if this would be advantageous. Generally useful if sending higher volume of emails.
+   7. Add the following code to the rails application
    ```ruby
       # app/mailers/application_mailer.rb
       class ApplicationMailer < ActionMailer::Base
@@ -71,7 +90,7 @@
       # Set this to true and configure the email server for immediate delivery to raise delivery errors.
       config.action_mailer.raise_delivery_errors = false
   ```
-  7. Optional: Add a staging intercepter for an extra layer of safety
+  1. Optional: Add a staging intercepter for an extra layer of safety
   ```ruby
     # app/mailers/staging_mailer_intercepter.rb
     # frozen_string_literal: true
@@ -88,7 +107,14 @@
    # config/environemnts/production.rb
    require Rails.root.join('app/mailers/staging_mailer_interceptor')
   ```
-6. Create staging S3 bucket
+  1. Set environment variables:
+     1. `AWS_SES_USER`
+     2. `AWS_SES_PASSWORD`
+     3. `SMTP_SENDER` -> `<Parnter> <noreply@<partner>.com>`
+     4. `PRODUCTION_HOST` -> The url links in mail will be directing to.
+  10.
+
+1. Create staging S3 bucket
    1. Navigate to S3 and click "Create bucket"
    2. Name the bucket <partner>-staging and use default settings
    3. Navigate to IAM > Policies and create a new policy
