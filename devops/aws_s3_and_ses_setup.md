@@ -7,7 +7,7 @@
 2. Create accounts payable customer user
    1. Navigate to IAM console
    2. Create a new User for payable account (<PartnerName>-Accounts-Payable)
-   3. Check Provide user acces to the AWS Management Console
+   3. Check Provide user access to the AWS Management Console
    4. Proceed
    5. Choose “Attach policies directly”
    6. Add “Billing” permission policy
